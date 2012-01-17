@@ -22,8 +22,7 @@ $(function() {
     // async call
     map_cast_list_refresh();
 
-    // sync call. This turns off the loader box on callbackself.map.setBaseLayer(self.gterrainLayer);
-
+    // sync call. This turns off the loader box on callback
     map_refresh(true);
 
     // from frontpage_views.js

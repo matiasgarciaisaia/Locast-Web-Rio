@@ -12,11 +12,12 @@ from django.contrib.gis.db.models.manager import GeoManager
 from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 
-from locast.api import datetostr
+from locast.api import datetostr, cache
 from locast.models import interfaces, modelbases, managers
 from locast.models import ModelBase
 
 from sorl.thumbnail import get_thumbnail
+
 
 # DEPENDENCIES
 
@@ -441,4 +442,7 @@ class LinkedMedia(Media):
 
                 self.screenshot = vimeo_data[0]['thumbnail_large']
                 self.title = vimeo_data[0]['title']
+
+# CACHE CONROLER
+import cache_control
 
