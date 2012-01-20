@@ -1100,7 +1100,9 @@ a#logout-link{
     height:160%;
     left:0;
     top:0;
-    background-color:transparent;
+    background-image:url('../img/closeIconFilled.png');
+    background-repeat: no-repeat;
+    background-position: 159px 45px;
 }
 
 .cast-location{
@@ -1124,7 +1126,7 @@ a#logout-link{
 }
 
 .locast-open-cast{
-     padding:16px;
+    padding:16px;
 }
 
 .locast-open-cast .cast-header{

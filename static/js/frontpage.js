@@ -83,6 +83,7 @@ function activateDHTML(){
     // map reset button
     $('#map-reset').click(function() {
         reset_map();
+        return false;
     });
 
     //view switcher

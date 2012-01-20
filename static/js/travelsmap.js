@@ -499,21 +499,21 @@ self.init = function(div) {
         type: G_PHYSICAL_MAP,
         sphericalMercator: true,
         maxZoomLevel: 20,
-        minZoomLevel: 7,
+        minZoomLevel: 10,
     });
 
     self.gstreetLayer = new OpenLayers.Layer.Google('Google Streets', {
         type: G_NORMAL_MAP,
         sphericalMercator: true,
         maxZoomLevel: 20,
-        minZoomLevel: 7,
+        minZoomLevel: 10,
     });
 
     self.gsatelliteLayer = new OpenLayers.Layer.Google('Google Streets', {
         type: G_SATELLITE_MAP,
         sphericalMercator: true,
         maxZoomLevel: 20,
-        minZoomLevel: 7,
+        minZoomLevel: 10,
     });
 
     self.osmLayer = new OpenLayers.Layer.OSM(
@@ -613,8 +613,6 @@ self.init = function(div) {
 
             featurehighlighted: function(evt) {
                 var html = '';
-
-              
             
                 if ( evt.feature.cluster ) {
                     var features = evt.feature.cluster;
@@ -850,8 +848,8 @@ self.tmsOverlayVisible = function(on) {
 self.baseLayerSwitcher = function(e) {
     if (e.zoomChanged) {
         self.clearPopups();
-        var zoom = parseInt(self.map.zoom);
-        if( zoom >= 9 ) {
+        var zoom = self.gstreetLayer.getMapObjectZoom();
+        if( zoom >= 16 ) {
             self.map.setBaseLayer(self.gstreetLayer);
             fix_openlayers_zoombar();
         }
