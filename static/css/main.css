@@ -856,9 +856,9 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #view-switcher{
     position:absolute;   
-    width:100px;
+    width:102px;
     top:0px;
-    right:-100px;
+    right:-102px;
 }
 
  #view-switcher a{ 

@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 14:17-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: static/js/frontpage.js:315 static/js/frontpage.js.py:672
+msgid "No Casts on Map"
+msgstr "Sem Informes no Mapa"
+
+#: static/js/frontpage.js:509
+msgid "search for maps, casts or people"
+msgstr "pesquise os mapas, informes e pessoas"
+
+#: static/js/frontpage.js:770
+msgid ""
+"The Location you Selected is Outside Abruzzo! Select a Location in Abruzzo."
+msgstr ""
+
+#: static/js/frontpage.js:773
+msgid "Enter a Title for Your Cast"
+msgstr "Dê um Título para o seu Informe"
+
+#: static/js/frontpage.js:785
+msgid "Click the Map to Select a Location for Your Cast"
+msgstr "Clique no Mapa para selecionar a localização do seu informe"
+
+#: static/js/frontpage.js:901
+msgid "Invalid file type!"
+msgstr "Formato de arquivo inválido"
+
+#: static/js/frontpage.js:914
+msgid "Uploading: "
+msgstr "Carregando: "
+
+#: static/js/frontpage.js:921
+msgid "Done!"
+msgstr "Pronto!"
+
+#: static/js/frontpage.js:931
+msgid "File too large."
+msgstr "Arquivo muito grande."
+
+#: static/js/frontpage_views.js:52
+msgid "All Casts"
+msgstr "Todos os informes"
+
+#: static/js/frontpage_views.js:170
+msgid "flagged"
+msgstr "marcado"
+
+#: static/js/frontpage_views.js:207
+msgid "Show Comments"
+msgstr "Exibir Comentários"
+
+#: static/js/frontpage_views.js:207
+msgid "Hide Comments"
+msgstr "Ocultar Comentários"
+
+#: static/js/frontpage_views.js:237
+msgid "Are you sure you want to flag this cast as inappropriate ?"
+msgstr "Você está certo de que deseja marcar este informe como inapropriado?"
+
+#: static/js/frontpage_views.js:413
+msgid "Choose a New Location for This Cast by Clicking the Map"
+msgstr "Escolha a nova localização para este informe clicando no mapa"
+
+#: static/js/frontpage_views.js:415 static/js/templates/castAddForm.js.html:3
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: static/js/frontpage_views.js:416
+msgid "Save New Location"
+msgstr "Salvar Nova Localização"
+
+#: static/js/frontpage_views.js:883
+msgid "Casts Created by"
+msgstr "Informes criados por"
+
+#: static/js/frontpage_views.js:888
+msgid "Casts Favorited by"
+msgstr "Informes Favoritos de"
+
+#: static/js/frontpage_views.js:972
+msgid "Casts Tagged"
+msgstr "Informes marcados"
+
+#: static/js/prettyDate.js:22
+msgid " minutes ago"
+msgstr " minutos atrás"
+
+#: static/js/prettyDate.js:27
+msgid " weeks ago"
+msgstr " semanas atrás"
+
+#: static/js/templates/castAddForm.js.html:5
+msgid "Click The Map To Set Your Cast's Location"
+msgstr "Clique no Mapa para determinar a localização do seu informe"
+
+#: static/js/templates/castAddForm.js.html:6
+msgid "Map Controls on the Left Reposition the Map"
+msgstr "Botões à esquerda reposicionam o Mapa"
+
+#: static/js/templates/castAddForm.js.html:9
+msgid "Select a Location for Your Cast by Clicking the Map."
+msgstr "Selecione o local do seu informe clicando no mapa"
+
+#: static/js/templates/castAddForm.js.html:12
+msgid "Name Your Cast"
+msgstr "Nomeie o seu informe"
+
+#: static/js/templates/castAddForm.js.html:14
+msgid "Brief Description"
+msgstr "Dê uma breve descrição do problema"
+
+#: static/js/templates/castAddForm.js.html:17
+msgid "Tags"
+msgstr "Marcadores"
+
+#: static/js/templates/castClusterPopup.js.html:8
+msgid "more casts"
+msgstr "mais informes"
+
+#: static/js/templates/castHeaderList.js.html:2
+msgid "Casts"
+msgstr "Informes"
+
+#: static/js/templates/castPopup.js.html:3
+msgid "Open"
+msgstr "Abrir"
+
+#: static/js/templates/castPopup.js.html:6
+msgid "Official Cast"
+msgstr "Informe Oficial"
+
+#: static/js/templates/eventOpen.js.html:6
+msgid "until"
+msgstr "até"
+
+#: static/js/templates/searchResults.js.html:1
+msgid "Results"
+msgstr "Resultados"
+
+#: travels/templates/admin/map_admin.django.js:31
+msgid "Move Map"
+msgstr "Mover Mapa"
+
+#: travels/templates/admin/map_admin.django.js:40
+msgid "Create New Path"
+msgstr "Criar novo Trajeto"
+
+#: travels/templates/admin/map_admin.django.js:49
+msgid "Set Location"
+msgstr "Determinar Localização"
+
+#: travels/templates/admin/map_admin.django.js:58
+msgid "Edit Existing Points"
+msgstr "Editar Pontos Existentes"
+
+#: travels/templates/admin/map_admin.django.js:96
+msgid "Title:"
+msgstr "Título:"
+
+#: travels/templates/admin/map_admin.django.js:97
+msgid "Description:"
+msgstr "Descrição:"

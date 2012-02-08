@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 14:35-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: travels/admin.py:36
+msgid "Tags"
+msgstr "Marcadores"
+
+#: travels/forms.py:34
+msgid "Agree"
+msgstr "Concordo"
+
+#: travels/forms.py:35
+msgid "Do Not Agree"
+msgstr "Não Concordo"
+
+#: travels/forms.py:46
+msgid "Passwords did not match!"
+msgstr "Senha incorreta!"
+
+#: travels/forms.py:54
+msgid "email has already been registered!"
+msgstr "este e-mail já foi registrado!"
+
+#: travels/forms.py:80 travels/templates/base.django.html:30
+#: travels/templates/registration/login.html:13
+msgid "Email"
+msgstr "e-mail"
+
+#: travels/forms.py:82
+msgid "First Name"
+msgstr "Nome"
+
+#: travels/forms.py:83
+msgid "Last Name"
+msgstr "Sobrenome"
+
+#: travels/forms.py:86
+msgid "Password"
+msgstr "Senha"
+
+#: travels/forms.py:89
+msgid "Verify Password"
+msgstr "Repetir Senha"
+
+#: travels/forms.py:91
+msgid "Short Bio"
+msgstr "Fale um pouco sobre você"
+
+#: travels/forms.py:92
+msgid "Your Website"
+msgstr "Site Pessoal"
+
+#: travels/forms.py:94
+msgid "Profile Picture"
+msgstr "Imagem do Perfil"
+
+#: travels/models.py:102
+msgid "itinerary"
+msgstr "Mapa"
+
+#: travels/models.py:103
+msgid "itineraries"
+msgstr "Mapas"
+
+#: travels/models.py:158
+msgid "event"
+msgstr "Evento"
+
+#: travels/models.py:206
+msgid "cast"
+msgstr "Informe"
+
+#: travels/models.py:317 travels/templates/ajax/cast_frontpage.django.html:100
+msgid "video"
+msgstr "vídeo"
+
+#: travels/models.py:336 travels/templates/ajax/cast_frontpage.django.html:135
+msgid "photo"
+msgstr "foto"
+
+#: travels/models.py:370
+msgid "link"
+msgstr "link"
+
+#: travels/templates/404.html:5
+msgid "404 Page Not Found"
+msgstr "404 - Página Não Encontrada"
+
+#: travels/templates/404.html:8
+msgid "Go to the Locast Tourism Main Map"
+msgstr "Vá para o Mapa de Turismo Locast"
+
+#: travels/templates/500.html:3
+msgid "500 something has gone wrong "
+msgstr "500 - alguma coisa deu errado"
+
+#: travels/templates/base.django.html:28
+msgid "Login to Your Account"
+msgstr "login"
+
+#: travels/templates/base.django.html:28
+msgid "Close"
+msgstr "fechar"
+
+#: travels/templates/base.django.html:37
+#: travels/templates/registration/login.html:27
+msgid "Register</a> a new account if you don't have one"
+msgstr "Cadastre-se se você ainda não tem uma conta"
+
+#: travels/templates/base.django.html:51
+msgid "Home"
+msgstr "Início"
+
+#: travels/templates/frontpage.django.html:14
+msgid "Login / Register"
+msgstr "login / cadastre-se"
+
+#: travels/templates/frontpage.django.html:24
+msgid "logged in as "
+msgstr "logado como"
+
+#: travels/templates/frontpage.django.html:50
+msgid "You Must Login"
+msgstr "Disponível apenas para usuários logados"
+
+#: travels/templates/frontpage.django.html:56
+msgid "All Casts"
+msgstr "Todos os Informes"
+
+#: travels/templates/frontpage.django.html:58
+msgid "Map"
+msgstr "Mapa"
+
+#: travels/templates/frontpage.django.html:59
+msgid "List"
+msgstr "Lista"
+
+#: travels/templates/frontpage.django.html:67
+msgid "Add Cast"
+msgstr "Adicionar Informe"
+
+#: travels/templates/frontpage.django.html:67
+msgid " to This Map"
+msgstr " para este mapa"
+
+#: travels/templates/frontpage.django.html:72
+msgid "Welcome to the Rio Youth Mapping Project"
+msgstr "Bem-vindo ao Mapeamento Digital Guiado pela Juventude"
+
+#: travels/templates/frontpage.django.html:73
+msgid ""
+"This project explores tools to help youth in Rio de Janeiro build impactful, "
+"communicative digital maps using mobile and web technologies. A phone application "
+"allows youth to produce a realtime portrait of their community through geo-located "
+"photos and videos, organized in thematic maps."
+msgstr ""
+"Este projeto tem o objetivo de empoderar os jovens do Rio de Janeiro, de forma "
+"que eles construam mapas digitais comunicativos e impactantes, utilizando celulares "
+"e internet. Um aplicativo para smartphone possibilita que os jovens produzam um "
+"retrato em tempo-real de sua comunidade, através de fotos e vídeos georreferenciados, "
+"organizados em mapas temáticos"
+
+#: travels/templates/frontpage.django.html:74
+msgid "The Maps"
+msgstr "Mapas Temáticos"
+
+#: travels/templates/frontpage.django.html:85
+msgid "Most Recent"
+msgstr "Mais recentes"
+
+#: travels/templates/frontpage.django.html:86
+msgid "Most Popular"
+msgstr "Mais visitados"
+
+#: travels/templates/frontpage.django.html:93
+msgid "No Casts On Map"
+msgstr "Sem Informes no Mapa"
+
+#: travels/templates/frontpage.django.html:100
+msgid "Reset"
+msgstr "Reset"
+
+#: travels/templates/frontpage.django.html:106
+msgid "OSM Overlay"
+msgstr ""
+
+#: travels/templates/frontpage.django.html:116
+msgid "Loading"
+msgstr "Carregando"
+
+#: travels/templates/root.django.html:10
+msgid ""
+"This project explores tools to help youth in Rio de Janeiro build impactful, "
+"communicative digital maps using mobile and web technologies"
+msgstr ""
+"Este projeto tem o objetivo de empoderar os jovens do Rio de Janeiro, de forma "
+"que eles construam mapas digitais comunicativos e impactantes, utilizando celulares "
+"e internet."
+
+#: travels/templates/admin/map_admin.django.html:47
+msgid "Recenter Map"
+msgstr "Mapa mais recente"
+
+#: travels/templates/admin/map_admin.django.html:48
+msgid "Reset Map"
+msgstr "Resetar Mapa"
+
+#: travels/templates/ajax/cast_frontpage.django.html:14
+msgid ""
+"Your Cast is Waiting to be Approved by a Moderator and is Not Visible to the "
+"Public"
+msgstr ""
+
+#: travels/templates/ajax/cast_frontpage.django.html:20
+msgid "Will Be Deleted! This Cannot be Undone!"
+msgstr "Você está prestes a deletar! Esta ação não poderá ser desfeita!"
+
+#: travels/templates/ajax/cast_frontpage.django.html:21
+#: travels/templates/ajax/cast_frontpage.django.html:197
+#: travels/templates/ajax/cast_frontpage.django.html:246
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: travels/templates/ajax/cast_frontpage.django.html:21
+#: travels/templates/ajax/cast_frontpage.django.html:246
+msgid "Delete"
+msgstr "Deletar"
+
+#: travels/templates/ajax/cast_frontpage.django.html:26
+msgid "featured"
+msgstr "em destaque"
+
+#: travels/templates/ajax/cast_frontpage.django.html:29
+msgid "promotional"
+msgstr "promocional"
+
+#: travels/templates/ajax/cast_frontpage.django.html:33
+msgid "Delete Cast"
+msgstr "Deletar Informe"
+
+#: travels/templates/ajax/cast_frontpage.django.html:34
+msgid "Change Cast Location"
+msgstr "Corrigir Localização do Informe"
+
+#: travels/templates/ajax/cast_frontpage.django.html:38
+msgid "Edit Title"
+msgstr "Editar Título"
+
+#: travels/templates/ajax/cast_frontpage.django.html:42
+msgid "Edit Cast Title"
+msgstr "Editar Título do Informe"
+
+#: travels/templates/ajax/cast_frontpage.django.html:44
+#: travels/templates/ajax/cast_frontpage.django.html:185
+msgid "update"
+msgstr "atualizar"
+
+#: travels/templates/ajax/cast_frontpage.django.html:51
+msgid "favorite"
+msgstr "marcar como favorito"
+
+#: travels/templates/ajax/cast_frontpage.django.html:59
+msgid "flagged"
+msgstr "marcado"
+
+#: travels/templates/ajax/cast_frontpage.django.html:61
+msgid "flag"
+msgstr "marcar"
+
+#: travels/templates/ajax/cast_frontpage.django.html:85
+msgid "of"
+msgstr "de"
+
+#: travels/templates/ajax/cast_frontpage.django.html:89
+msgid "+ add media"
+msgstr "+ adicionar mídia"
+
+#: travels/templates/ajax/cast_frontpage.django.html:109
+msgid "Video is Processing"
+msgstr "O vídeo está sendo processado"
+
+#: travels/templates/ajax/cast_frontpage.django.html:121
+msgid "linked video"
+msgstr ""
+
+#: travels/templates/ajax/cast_frontpage.django.html:144
+msgid "Show Comments"
+msgstr "Exibir Comentários"
+
+#: travels/templates/ajax/cast_frontpage.django.html:146
+msgid "Comments"
+msgstr "Comentários"
+
+#: travels/templates/ajax/cast_frontpage.django.html:154
+msgid "Login to comment!"
+msgstr "Para comentar é preciso estar logado!"
+
+#: travels/templates/ajax/cast_frontpage.django.html:164
+#: travels/templates/ajax/cast_frontpage.django.html:168
+msgid "Add Tags"
+msgstr "Adicionar Marcador"
+
+#: travels/templates/ajax/cast_frontpage.django.html:170
+msgid "seperate tags with a comma"
+msgstr "separe os marcadores com uma vírgula"
+
+#: travels/templates/ajax/cast_frontpage.django.html:178
+#: travels/templates/ajax/cast_frontpage.django.html:183
+msgid "Edit Description"
+msgstr "Editar descrição"
+
+#: travels/templates/ajax/cast_frontpage.django.html:188
+msgid "Mapped On"
+msgstr "Mapeado em"
+
+#: travels/templates/ajax/cast_frontpage.django.html:198
+msgid "Add Media to Cast"
+msgstr "Adicionar Mídia ao Informe"
+
+#: travels/templates/ajax/cast_frontpage.django.html:201
+msgid "+ Add A Photo"
+msgstr "+ Adicionar Imagem/Foto"
+
+#: travels/templates/ajax/cast_frontpage.django.html:207
+#: travels/templates/ajax/cast_frontpage.django.html:224
+msgid "Title"
+msgstr "Título"
+
+#: travels/templates/ajax/cast_frontpage.django.html:209
+#: travels/templates/ajax/cast_frontpage.django.html:226
+msgid "Description"
+msgstr "Descrição"
+
+#: travels/templates/ajax/cast_frontpage.django.html:218
+msgid "+ Add A Video"
+msgstr "+ Adicionar um Vídeo"
+
+#: travels/templates/ajax/cast_frontpage.django.html:235
+msgid "Link To A Video"
+msgstr "Link para um Vídeo"
+
+#: travels/templates/ajax/cast_frontpage.django.html:237
+msgid ""
+"enter link to a <a href=\"http://youtube.com\" target=\"new\">YouTube</a> or "
+"<a href=\"http://vimeo.com\" target=\"new\" >Vimeo</a> video"
+msgstr ""
+"insira o link do vídeo do <a href=\"http://youtube.com\" target=\"new\">YouTube</a> ou do "
+"<a href=\"http://vimeo.com\" target=\"new\" >Vimeo</a> "
+
+#: travels/templates/ajax/cast_frontpage.django.html:245
+msgid "This Media Will Be Deleted"
+msgstr "Essa mídia será deletada"
+
+#: travels/templates/registration/login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr "Usuário e/ou senha incorreta. Por favor, tente novamente."
+
+#: travels/templates/registration/register.django.html:6
+msgid "Register A Mapping Account"
+msgstr "Crie uma nova conta de usuário"
+
+#: travels/templates/registration/register.django.html:11
+msgid "REQUIRED"
+msgstr "OBRIGATÓRIO"
+
+#: travels/templates/registration/register.django.html:17
+msgid "OPTIONAL"
+msgstr "OPCIONAL"
