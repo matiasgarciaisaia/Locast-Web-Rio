@@ -242,7 +242,7 @@ class Cast(ModelBase,
         if self.preview_image:
             d['preview_image'] = self.preview_image
 
-        d['favorites'] = self.favorited_by.count()
+        d['favorites'] = 0
 
         return d
 

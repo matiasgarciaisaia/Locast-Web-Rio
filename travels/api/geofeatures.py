@@ -40,7 +40,7 @@ def get_geofeatures(request):
 
     q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
     try:
-        casts = q.filter(query)
+        casts = q.filter(query).select_related('author')
     except qstranslate.InvalidParameterException, e:
         raise exceptions.APIBadRequest(e.message)
 
