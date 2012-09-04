@@ -179,17 +179,26 @@
             </div>
             {% if allowed_edit %}
                 <form id="description-form-cast_{{cast.id}}" class="cast-description-edit" method="post"> 
-                <label for="id_description">{% trans "Edit Description" %}</label>
-                <textarea id="id_description" type="text" name="description" class="locast-textfield">{% if cast.description %}{{cast.description}}{% endif %}</textarea>
-                <input type="submit" value="{% trans "update" %}" class="locast-button" />
-            </form> 
+                    <label for="id_description">{% trans "Edit Description" %}</label>
+                    <textarea id="id_description" type="text" name="description" class="locast-textfield">{% if cast.description %}{{cast.description}}{% endif %}</textarea>
+                    <input type="submit" value="{% trans "update" %}" class="locast-button" />
+                </form> 
             {% endif %}
-             <h4 class="sub-title">{% trans "Mapped On" %}</h4> 
-            <ul class="cast-itineraries cleared">
-            {% for itin in cast.itinerary_set.all %}
-                <li><a href="#!itinerary/{{itin.id}}/">{{itin.title}}</a></li>
-            {% endfor %}
-        </ul>
+            <h4 style="margin-top:20px;" class="sub-title">{% trans "Mapped On" %}: <span style="font-style:italic;">{% trans 
+            cast_itinerary_title %}</span>{% if allowed_edit %}{% trans " (click on a map below to change)" %}{% endif %}</h4> 
+            {% if allowed_edit %}
+                <ul class="cast-itineraries cleared">
+                    {% for itin in all_itineraries %}
+                        {% if not itin in cast_itineraries %}
+                            <li class="unselected-map-cast">
+                                <form class="cast-itinerary-edit-cast_{{cast.id}}" method="post"> 
+                                    <input id="{{itin.id}}" name="cast-itinerary-{{itin.id}}" type="submit" value="{% trans itin.title %}" class="locast-button" />
+                                </form>           
+                            </li>
+                        {% endif%}
+                    {% endfor %}
+                </ul>
+            {% endif %}
     </div> 
     {% if allowed_edit %}
     <div id="add-media-cast_{{cast.id}}" class="add-media-cast">

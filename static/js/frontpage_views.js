@@ -37,15 +37,15 @@ var initial_view = {
         //$('#map-cast-list-title .title').html(gettext('Casts On Map'));
          
         $('#map-cast-list-title')
-        .add('#map-title')
-        .add('#map-info-container')
-        .add('#map-controls-container')
-        .add('#add-cast-button-container')
-        .add('#tooltip') 
-        .add('#map-layer-switcher')
-        .add('#map-list')
-        .add('#search-bar')
-        .fadeOut();
+            .add('#map-title')
+            .add('#map-info-container')
+            .add('#map-controls-container')
+            .add('#add-cast-button-container')
+            .add('#tooltip') 
+            .add('#map-layer-switcher')
+            .add('#map-list')
+            .add('#search-bar')
+            .fadeOut();
 
         $('#intro-page-container').fadeIn();
 
@@ -384,6 +384,25 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
 
         event.returnValue = false;
         return false;
+    });
+
+    //itinerary updating
+    var itinerary_forms = $('.cast-itinerary-edit-cast_' + cast_id);
+    itinerary_forms.submit(function(event) {
+        var itinerary_form_id = $(this).find('[name|="cast-itinerary"]').attr('name');
+        var itinerary_id = itinerary_form_id.substring(itinerary_form_id.lastIndexOf('-') + 1);
+
+        var data = '{ "itinerary_id" : "' + itinerary_id + '" }';
+
+        $.ajax({
+            url: cast_url,
+            data: data,
+            contentType: 'application/json; charset=utf-8',
+            type: 'PUT',
+            success: function(cast) {
+                cast_info_refresh(cast_id);
+            }
+        });
     });
 
     // tag updating

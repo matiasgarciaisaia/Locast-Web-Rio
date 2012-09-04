@@ -11,8 +11,10 @@ from locast.api import rest, qstranslate, exceptions
 from locast.auth.decorators import require_http_auth, optional_http_auth
 
 from travels import models, forms
+from travels.models import Itinerary
 
 from locast.api import comment as comment_api
+
 
 class CastAPI(rest.ResourceView):
 
@@ -50,6 +52,11 @@ class CastAPI(rest.ResourceView):
         if cast_id:
             if itin_id: check_itinerary(cast_id, itin_id)
             cast = get_object(models.Cast, id=cast_id)
+
+            cast_itineraries = list(cast.itinerary_set.all())
+            cast_itinerary_title = cast_itineraries[0].title
+
+            all_itineraries = list(Itinerary.objects.all())
 
             if not cast.allowed_access(request.user):
                 raise exceptions.APIForbidden
@@ -155,7 +162,6 @@ class CastAPI(rest.ResourceView):
         cast.delete()
 
         return APIResponseOK(content='success')
-
 
     @optional_http_auth
     def get_media(request, cast_id):
@@ -373,7 +379,6 @@ def check_cast_media(media_id, cast_id):
         raise exceptions.APIBadRequest('Media object is not part of cast')
     return cast
 
-
 def cast_from_post(request, cast = None):
 
     data = {}
@@ -433,6 +438,11 @@ def cast_from_post(request, cast = None):
     if location:
         cast.set_location(location[0], location[1])
 
+    if 'itinerary_id' in data:
+        print(data['itinerary_id'])
+        cast.itinerary_set.clear()
+        new_itinerary = Itinerary.objects.get(id=data['itinerary_id'])
+        cast.itinerary_set.add(new_itinerary)
 
     cast.save()
 

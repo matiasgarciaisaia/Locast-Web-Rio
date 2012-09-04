@@ -1907,3 +1907,7 @@ form input.locast-button{
     display:none;
 }
 
+.map-cast {
+    font-weight:bold;
+    font-style:italic;
+}
