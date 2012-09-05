@@ -184,8 +184,7 @@
                     <input type="submit" value="{% trans "update" %}" class="locast-button" />
                 </form> 
             {% endif %}
-            <h4 style="margin-top:20px;" class="sub-title">{% trans "Mapped On" %}: <span style="font-style:italic;">{% trans 
-            cast_itinerary_title %}</span>{% if allowed_edit %}{% trans " (click on a map below to change)" %}{% endif %}</h4> 
+            <h4 style="margin-top:20px;" class="sub-title">{% trans "Mapped On" %}: <span style="font-style:italic;">{% trans cast_itinerary_title %}</span>{% if allowed_edit %}{% trans " (click on a map below to change)" %}{% endif %}</h4> 
             {% if allowed_edit %}
                 <ul class="cast-itineraries cleared">
                     {% for itin in all_itineraries %}
