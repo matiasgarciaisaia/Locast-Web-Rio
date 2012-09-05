@@ -392,7 +392,8 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
         var itinerary_form_id = $(this).find('[name|="cast-itinerary"]').attr('name');
         var itinerary_id = itinerary_form_id.substring(itinerary_form_id.lastIndexOf('-') + 1);
 
-        var data = '{ "itinerary_id" : "' + itinerary_id + '" }';
+        var itineraryDict = { "itinerary_id" : itinerary_id };
+        var data = JSON.stringify(itineraryDict, null, 2);
 
         $.ajax({
             url: cast_url,
@@ -400,9 +401,14 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
             contentType: 'application/json; charset=utf-8',
             type: 'PUT',
             success: function(cast) {
+                itinerary_forms[0].reset();
                 cast_info_refresh(cast_id);
+                window.location.reload();
             }
         });
+
+        event.returnValue = false;
+        return false;
     });
 
     // tag updating
