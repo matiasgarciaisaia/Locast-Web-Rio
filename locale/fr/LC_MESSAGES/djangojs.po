@@ -1,0 +1,180 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 14:17-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: static/js/frontpage.js:315 static/js/frontpage.js.py:672
+msgid "No Casts on Map"
+msgstr "Aucun rapport sur cette carte"
+
+#: static/js/frontpage.js:509
+msgid "search for maps, casts or people"
+msgstr "Rechercher une carte, un rapport ou une personne"
+
+#: static/js/frontpage.js:770
+msgid ""
+"The Location you Selected is Outside Abruzzo! Select a Location in Abruzzo."
+msgstr ""
+
+#: static/js/frontpage.js:773
+msgid "Enter a Title for Your Cast"
+msgstr "Donnez un titre à votre rapport"
+
+#: static/js/frontpage.js:785
+msgid "Click the Map to Select a Location for Your Cast"
+msgstr "Cliquez sur la carte pour sélectionner un emplacement pour votre rapport"
+
+#: static/js/frontpage.js:901
+msgid "Invalid file type!"
+msgstr "Type de fichier invalide!"
+
+#: static/js/frontpage.js:914
+msgid "Uploading: "
+msgstr "Chargement en cours: "
+
+#: static/js/frontpage.js:921
+msgid "Done!"
+msgstr "Terminé!"
+
+#: static/js/frontpage.js:931
+msgid "File too large."
+msgstr "Fichier trop grand."
+
+#: static/js/frontpage_views.js:52
+msgid "All Casts"
+msgstr "Tous les rapports"
+
+#: static/js/frontpage_views.js:170
+msgid "flagged"
+msgstr "signalé"
+
+#: static/js/frontpage_views.js:207
+msgid "Show Comments"
+msgstr "Afficher les commentaires"
+
+#: static/js/frontpage_views.js:207
+msgid "Hide Comments"
+msgstr "Cacher les commentaires"
+
+#: static/js/frontpage_views.js:237
+msgid "Are you sure you want to flag this cast as inappropriate ?"
+msgstr "Êtes-vous sûr de vouloir signaler ce rapport comme étant inapproprié?"
+
+#: static/js/frontpage_views.js:413
+msgid "Choose a New Location for This Cast by Clicking the Map"
+msgstr "Choisissez un nouvel emplacement pour ce rapport en cliquant sur la carte"
+
+#: static/js/frontpage_views.js:415 static/js/templates/castAddForm.js.html:3
+msgid "Cancel"
+msgstr "Annuler"
+
+#: static/js/frontpage_views.js:416
+msgid "Save New Location"
+msgstr "Enregistrer le nouvel emplacement"
+
+#: static/js/frontpage_views.js:883
+msgid "Casts Created by"
+msgstr "Rapports créés par"
+
+#: static/js/frontpage_views.js:888
+msgid "Casts Favorited by"
+msgstr "Rapports favoris par"
+
+#: static/js/frontpage_views.js:972
+msgid "Casts Tagged"
+msgstr "Rapports signalé"
+
+#: static/js/prettyDate.js:22
+msgid " minutes ago"
+msgstr " a l’instant"
+
+#: static/js/prettyDate.js:27
+msgid " weeks ago"
+msgstr " semaines passées"
+
+#: static/js/templates/castAddForm.js.html:5
+msgid "Click The Map To Set Your Cast's Location"
+msgstr "Cliquez sur la carte pour enregistrer l’emplacement de votre rapport"
+
+#: static/js/templates/castAddForm.js.html:6
+msgid "Map Controls on the Left Reposition the Map"
+msgstr "Les boutons sur la gauche repositionnent la carte"
+
+#: static/js/templates/castAddForm.js.html:9
+msgid "Select a Location for Your Cast by Clicking the Map."
+msgstr "Choisissez un emplacement pour votre rapport en cliquant sur la carte."
+
+#: static/js/templates/castAddForm.js.html:12
+msgid "Name Your Cast"
+msgstr "Nommez votre rapport"
+
+#: static/js/templates/castAddForm.js.html:14
+msgid "Brief Description"
+msgstr "Brève description"
+
+#: static/js/templates/castAddForm.js.html:17
+msgid "Tags"
+msgstr "Etiquettes"
+
+#: static/js/templates/castClusterPopup.js.html:8
+msgid "more casts"
+msgstr "plus de rapports"
+
+#: static/js/templates/castHeaderList.js.html:2
+msgid "Casts"
+msgstr "Rapports"
+
+#: static/js/templates/castPopup.js.html:3
+msgid "Open"
+msgstr "Ouvrir"
+
+#: static/js/templates/castPopup.js.html:6
+msgid "Official Cast"
+msgstr "Rapport Officiel"
+
+#: static/js/templates/eventOpen.js.html:6
+msgid "until"
+msgstr "jusqu'à"
+
+#: static/js/templates/searchResults.js.html:1
+msgid "Results"
+msgstr "Résultats"
+
+#: travels/templates/admin/map_admin.django.js:31
+msgid "Move Map"
+msgstr "Déplacez la carte"
+
+#: travels/templates/admin/map_admin.django.js:40
+msgid "Create New Path"
+msgstr "Créer un nouveau trajet"
+
+#: travels/templates/admin/map_admin.django.js:49
+msgid "Set Location"
+msgstr "Déterminer l’emplacement"
+
+#: travels/templates/admin/map_admin.django.js:58
+msgid "Edit Existing Points"
+msgstr "Modifier les points existants"
+
+#: travels/templates/admin/map_admin.django.js:96
+msgid "Title:"
+msgstr "Títre:"
+
+#: travels/templates/admin/map_admin.django.js:97
+msgid "Description:"
+msgstr "Description:"

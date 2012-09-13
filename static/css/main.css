@@ -829,7 +829,6 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #intro-page-content .intro-message{
     margin-bottom:8px;
-    width:400px;
 }
 
 #intro-page-content .sub-head{
@@ -856,7 +855,6 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #view-switcher{
     position:absolute;   
-    width:102px;
     top:0px;
     right:-102px;
 }
@@ -1865,7 +1863,7 @@ form input.locast-button{
     position: relative;
     padding-left:54px;
     padding-top:14px;
-    width:100px;
+    width:220px;
     height:26px;
     background-repeat: no-repeat;
     background-color:#FFF !important;
