@@ -24,7 +24,7 @@ from sorl.thumbnail import get_thumbnail
 class Tag(interfaces.Tag): pass
 
 class Comment(interfaces.Comment,
-        interfaces.Flaggable): 
+        interfaces.Flaggable):
 
     # TODO: this should be more generic incase anything else becomes commentable
     @models.permalink
@@ -42,11 +42,11 @@ class Boundry(modelbases.Boundry): pass
 
 # MAIN MODELS
 
-class TravelsUserManager(GeoManager, 
+class TravelsUserManager(GeoManager,
         managers.LocastUserManager,
         managers.FacebookUserManager): pass
 
-class TravelsUser(modelbases.LocastUser, 
+class TravelsUser(modelbases.LocastUser,
         interfaces.FacebookUser,
         interfaces.Locatable):
 
@@ -82,7 +82,7 @@ class TravelsUser(modelbases.LocastUser,
     objects = TravelsUserManager()
 
     user_image = models.ImageField(upload_to='user_images/%Y/%m/', null=True, blank=True)
-    
+
     personal_url = models.URLField(null=True, blank=True)
 
     hometown = models.CharField(max_length=128, null=True, blank=True)
@@ -91,7 +91,7 @@ class TravelsUser(modelbases.LocastUser,
 class Itinerary(ModelBase,
         interfaces.Authorable,
         interfaces.Titled,
-        interfaces.Taggable, 
+        interfaces.Taggable,
         interfaces.Favoritable):
 
     @models.permalink
@@ -135,11 +135,11 @@ class Itinerary(ModelBase,
 
         return d
 
-    objects = GeoManager() 
+    objects = GeoManager()
 
     related_casts = models.ManyToManyField('Cast', null=True, blank=True)
-    
-    path = gismodels.LineStringField(null=True,blank=True,srid=4326)  
+
+    path = gismodels.LineStringField(null=True,blank=True,srid=4326)
 
     preview_image = models.ImageField(upload_to='content_images', null=True, blank=True)
 
@@ -187,12 +187,12 @@ class Event(ModelBase,
 
 
 class Cast(ModelBase,
-        interfaces.PrivatelyAuthorable, 
-        interfaces.Titled, 
+        interfaces.PrivatelyAuthorable,
+        interfaces.Titled,
         interfaces.Commentable,
         interfaces.Favoritable,
-        interfaces.Flaggable, 
-        interfaces.Locatable, 
+        interfaces.Flaggable,
+        interfaces.Locatable,
         interfaces.Taggable):
 
     @models.permalink
@@ -234,7 +234,7 @@ class Cast(ModelBase,
         d['id'] = self.id
         d['title'] = self.title
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
-        
+
         d['featured'] = self.is_featured
         d['promotional'] = self.is_promotional
         d['official'] = self.author.is_staff
@@ -301,7 +301,7 @@ class Media(modelbases.LocastContent,
         if self.cast:
             d['cast'] = self.cast.get_api_uri()
 
-        return d 
+        return d
 
     objects = GeoManager()
 
@@ -309,8 +309,8 @@ class Media(modelbases.LocastContent,
 
     cast = models.ForeignKey(Cast, null=True, blank=True)
 
-    
-class VideoMedia(Media, 
+
+class VideoMedia(Media,
         modelbases.VideoContent):
 
     class Meta:
@@ -329,9 +329,9 @@ class VideoMedia(Media,
             self.make_mobile_streamable()
 
 
-class ImageMedia(Media, 
+class ImageMedia(Media,
         modelbases.ImageContent):
-    
+
     class Meta:
         verbose_name = _('photo')
 
@@ -346,7 +346,7 @@ class ImageMedia(Media,
             d['resources']['thumbnail'] = self.serialize_resource(self.thumbnail.url)
 
         return d
-    
+
     @property
     def thumbnail(self):
         return get_thumbnail(self.file, '150', quality=75)
@@ -369,14 +369,14 @@ class LinkedMedia(Media):
     class Meta:
         verbose_name = _('link')
 
-    url = models.URLField(verify_exists=True)
+    url = models.URLField()
 
-    screenshot = models.URLField(verify_exists=True, null=True, blank=True)
+    screenshot = models.URLField(null=True, blank=True)
 
     content_provider = models.CharField(max_length=32, choices=CONTENT_PROVIDERS)
 
     video_id = models.CharField(max_length=32)
-    
+
     def _content_api_serialize(self, request=None):
         d = dict(url=self.url)
 
