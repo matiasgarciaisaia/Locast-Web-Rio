@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block style %}
-    <link type="text/css" href="{{MEDIA_URL}}css/main.css" rel="stylesheet" media="screen, projection" />
-    <link type="text/css" href="{{MEDIA_URL}}js/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" media="screen, projection" />
+    <link type="text/css" href="{{STATIC_URL}}css/main.css" rel="stylesheet" media="screen, projection" />
+    <link type="text/css" href="{{STATIC_URL}}js/fancybox/jquery.fancybox-1.3.4.css" rel="stylesheet" media="screen, projection" />
 {% endblock style %}
 
 {% block script %}
-<script type="text/javascript" src="{{MEDIA_URL}}js/frontpage_views.js"></script>
-<script type="text/javascript" src="{{MEDIA_URL}}js/frontpage.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/frontpage_views.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/frontpage.js"></script>
 {% endblock script %}
 
 {% block body %}
