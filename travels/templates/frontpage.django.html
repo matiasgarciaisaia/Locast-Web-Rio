@@ -12,9 +12,9 @@
     {% if not request.user.is_authenticated %}
         <div class="logins">
             <a id="login-link" class="locast-login">{% trans "Login / Register" %}</a>
-        </div>   
+        </div>
     {% else %}
-        
+
         <a href="#!user/{{request.user.id}}/" class="cleared" id="login-info" >
         {% if request.user.user_image %}
             <div class="image-frame user-image"><img src="{{MEDIA_URL}}{{request.user.user_image}}" /></div>
@@ -30,9 +30,9 @@
         {% if request.user.facebook_id %}
             <li><a href="#" onclick="facebook_logout(); return false;">Logout</a></li>
         {% else %}
-            <li><a id="logout-link" href="{% url logout %}?next={{request.path}}">Logout</a></li>
+            <li><a id="logout-link" href="{% url 'logout' %}?next={{request.path}}">Logout</a></li>
         {% endif %}
-        </ul> 
+        </ul>
     {% endif %}
 {% endblock %}
 
@@ -42,12 +42,12 @@
 
 <div id="flowplayer-container" class="hidden" onClick="$('#flowplayer-container').addClass('hidden')" >
     <div id="flowplayer-wrapper">
-     <a id="flowplayer-close" href="#" >[X]</a> 
+     <a id="flowplayer-close" href="#" >[X]</a>
      <div id="flowplayer-player" style="width: 320px; height: 240px;"></div>
     </div>
 </div>
 
-<div id="login-alert"><h3 class="alert">{% trans "You Must Login" %}</h3></div>  
+<div id="login-alert"><h3 class="alert">{% trans "You Must Login" %}</h3></div>
 
 <div style="" id="user-profile-info"></div>
 
@@ -57,11 +57,11 @@
     <div id="view-switcher">
         <a href="" id="view-switch-map" class="map selected locast-button">{% trans "Map" %}</a>
         <a href="" id="view-switch-list" class="list locast-button">{% trans "List" %}</a>
-    </div> 
-    
+    </div>
+
 </div>
 
-<div id="map-list"></div>    
+<div id="map-list"></div>
 
 <div id="add-cast-button-container">
     <div id="add-cast-button" class="locast-button cast-add-button">+ {% trans "Add Cast" %}<span id="add-cast-itin">{% trans " to This Map" %}</span></div>
@@ -73,7 +73,7 @@
         <p class="sub-head"> {% trans "This project explores tools to help youth in Rio de Janeiro build impactful, communicative digital maps using mobile and web technologies. A phone application allows youth to produce a realtime portrait of their community through geo-located photos and videos, organized in thematic maps." %}
         <h2 class="map-list-header">{% trans "The Maps"%}</h2>
         <div id="intro-map-list"></div>
-    </div>   
+    </div>
 </div>
 
 <div id="change-location-container"></div>
@@ -84,15 +84,15 @@
             <div id="cast-list-sort">
                 <a id="cast-list-sort_-created" class="selected">{% trans "Most Recent"%}</a>
                 <a id="cast-list-sort_popularity">{% trans "Most Popular"%}</a>
-                <div id="map-cast-list-pager"></div>  
+                <div id="map-cast-list-pager"></div>
             </div>
         </h4>
-          
-    </div> 
+
+    </div>
     <div id="map-cast-list">
         <span class="list-content"><h3>{% trans "No Casts On Map" %}</h3></span>
     </div>
-    
+
 </div>
 
 <div id="map-controls-container">

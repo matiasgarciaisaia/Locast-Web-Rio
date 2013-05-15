@@ -4,14 +4,14 @@ MEDIA_URL = '{{ MEDIA_URL }}';
 
 FLOWPLAYER_SWF = '{{ FLOWPLAYER_SWF }}'
 
-ITINERARY_API_URL = '{% url itinerary_api %}';
-CAST_API_URL = '{% url cast_api %}';
-EVENT_API_URL = '{% url event_api %}';
-USER_API_URL = '{% url user_api %}';
+ITINERARY_API_URL = '{% url "itinerary_api" %}';
+CAST_API_URL = '{% url "cast_api" %}';
+EVENT_API_URL = '{% url "event_api" %}';
+USER_API_URL = '{% url "user_api" %}';
 
-FEATURES_API_URL = '{% url geofeatures_api %}'
+FEATURES_API_URL = '{% url "geofeatures_api" %}'
 
-SEARCH_API_URL = '{% url search_api %}';
+SEARCH_API_URL = '{% url "search_api" %}';
 
 MAP_DEFAULTS = {
     zoom: {{DEFAULT_ZOOM}},
@@ -23,7 +23,7 @@ MAP_BOUNDRY = {{boundry|safe}};
 // this is set right above the close body tag. Used for UI login prompt only.
 TRAVELS_USER = null;
 
-// taken from: 
+// taken from:
 // http://tobiascohen.com/files/stackoverflow/jquery-form-serializeObject.html
 $.fn.serializeObject = function()
 {
@@ -64,7 +64,7 @@ $.ajaxSetup({
 // maybe find a different way to do current_path
 function update_auth_redirects() {
     var next = get_next();
-    $('#logout-link').attr('href', '{% url logout%}?next=' + next);
+    $('#logout-link').attr('href', '{% url "logout"%}?next=' + next);
     $('#login-form input[name$="next"]').val(next);
 }
 
@@ -74,11 +74,11 @@ function get_next() {
 
 function facebook_logout() {
     if ( FB.getSession() == null ) {
-        window.location.replace('{% url logout %}?next=' + get_next());
+        window.location.replace('{% url "logout" %}?next=' + get_next());
     }
     else {
         FB.logout(function(response) {
-            window.location.replace('{% url logout %}?next=' + get_next());
+            window.location.replace('{% url "logout" %}?next=' + get_next());
         });
     }
 }
@@ -87,7 +87,7 @@ function facebook_logout() {
 
 function translate_template(templ) {
     var list = templ.match( /gettext\('.+'\)/g );
-    
+
     if ( list ) {
         for ( var i = 0; i < list.length; i++ ) {
             templ = templ.replace(list[i], eval(list[i]+';'));
@@ -115,7 +115,7 @@ function format_date(jq_obj, pretty) {
         jq_obj.prettyDate(format);
     }
 
-    else { 
+    else {
         jq_obj.each(function() {
             var _this = $(this);
             var date = new Date(_this.html());

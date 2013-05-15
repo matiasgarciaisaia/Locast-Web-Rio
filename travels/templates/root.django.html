@@ -17,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="index" title="TRAVELS" href="{{BASE_URL}}" />
     <link rel="shortcut icon" href="{{MEDIA_URL}}img/favicon.ico" type="image/x-icon" />
-    {% block style %}   
+    {% block style %}
     {% endblock style %}
 
     <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.min.js"></script>
@@ -41,14 +41,14 @@
     <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key={{GOOGLE_MAPS_KEY}}"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}js/OpenLayers.js"></script>
 
-    <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
+    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
     <script type="text/javascript" src="{{BASE_URL}}/templates.js"></script>
     <script type="text/javascript" src="{{BASE_URL}}/travels.js"></script>
     <script type="text/javascript" src="{{MEDIA_URL}}js/travelsmap.js"></script>
     {% block script %}
     {% endblock %}
     {% if PRODUCTION %}
-        {% include "google_analytics.django.html" %} 
+        {% include "google_analytics.django.html" %}
     {% endif %}
 </head>
 <body class="{% block body-class %}{% endblock %}">
@@ -57,13 +57,13 @@
 <div id="fb-root"></div>
 <script>
 FB.init({appId: '{{FACEBOOK_APP_ID}}', status: true, cookie: true, xfbml: true});
-// perhpas we should subscribe to the session change, 
-// and then logout the user 
+// perhpas we should subscribe to the session change,
+// and then logout the user
 FB.Event.subscribe('auth.login', function(response) {
     if (response.session) {
         // New user logged in
-        window.location.replace('{% url facebook_login %}?next=' + get_next());
-    } 
+        window.location.replace('{% url "facebook_login" %}?next=' + get_next());
+    }
 });
 
 FB.Event.subscribe('auth.logout', function(response) {

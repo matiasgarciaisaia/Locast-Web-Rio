@@ -23,50 +23,50 @@
 /* LOCAST ADDITIONS */
 
 $(function() {
-    $('.olControlNavigationItemInactive').tooltip({ 
-        delay: 0, 
-        showURL: false, 
+    $('.olControlNavigationItemInactive').tooltip({
+        delay: 0,
+        showURL: false,
         track: true,
-        bodyHandler: function() { 
+        bodyHandler: function() {
             return gettext('Move Map');
-        } 
+        }
     });
 
-    $('.olControlDrawFeaturePathItemInactive, .olControlDrawFeaturePathItemActive').tooltip({ 
-        delay: 0, 
-        showURL: false, 
+    $('.olControlDrawFeaturePathItemInactive, .olControlDrawFeaturePathItemActive').tooltip({
+        delay: 0,
+        showURL: false,
         track: true,
-        bodyHandler: function() { 
+        bodyHandler: function() {
             return gettext('Create New Path');
-        } 
+        }
     });
 
-    $('.olControlDrawFeaturePointItemActive, .olControlDrawFeaturePointItemInactive').tooltip({ 
-        delay: 0, 
-        showURL: false, 
+    $('.olControlDrawFeaturePointItemActive, .olControlDrawFeaturePointItemInactive').tooltip({
+        delay: 0,
+        showURL: false,
         track: true,
-        bodyHandler: function() { 
+        bodyHandler: function() {
             return gettext('Set Location');
-        } 
+        }
     });
 
-    $('.olControlModifyFeatureItemActive, .olControlModifyFeatureItemInactive').tooltip({ 
-        delay: 0, 
-        showURL: false, 
+    $('.olControlModifyFeatureItemActive, .olControlModifyFeatureItemInactive').tooltip({
+        delay: 0,
+        showURL: false,
         track: true,
-        bodyHandler: function() { 
+        bodyHandler: function() {
             return gettext('Edit Existing Points');
-        } 
+        }
     });
 
-    $('.inline-group .vLargeTextField').attr('rows', 2) 
-    $('.inline-group .vLargeTextField').css('width', '36em') 
+    $('.inline-group .vLargeTextField').attr('rows', 2)
+    $('.inline-group .vLargeTextField').css('width', '36em')
 });
 
 var nav = null;
 
-var admin_map = null; 
-var marker_layer = null; 
+var admin_map = null;
+var marker_layer = null;
 
 var goog_proj = new OpenLayers.Projection('EPSG:900913');
 var disp_proj = new OpenLayers.Projection('EPSG:4326');
@@ -78,7 +78,7 @@ function recenter_map() {
 function on_map_move() {
     var cur_bounds = get_bounds();
     $.ajax({
-        url: '{% url cast_api %}?within=' + cur_bounds, 
+        url: '{% url "cast_api" %}?within=' + cur_bounds,
         dataType: 'json',
         success: rai_map_cb
     });
@@ -95,7 +95,7 @@ function rai_map_cb(data) {
                 var feature = evt.object.feature;
                 var html = gettext('Title:') + ' <strong>' + feature.title + '</strong> (id: ' + feature.id + ')<br/><br/>';
                 html += gettext('Description:') + '<br/>' + feature.description + '<br/><br/>';
-                 
+
                 $('#info_box').html(html);
             });
 
@@ -116,19 +116,19 @@ function get_bounds() {
     str += bounds.left + ',';
     str += bounds.bottom + ',';
     str += bounds.right + ',';
-    str += bounds.top;  
+    str += bounds.top;
     return str;
 }
 
-function add_marker(lon, lat, data) { 
+function add_marker(lon, lat, data) {
     var marker = null;
     var ss = null;
     var size = new OpenLayers.Size(23, 20);
     // derived through trial and error.
     var offset = new OpenLayers.Pixel(-2, -16);
     var ll = get_proj_ll(lon,lat);
-    
-    ss = '{% url frontpage %}static/img/cCastClosed.png';
+
+    ss = '{% url "frontpage" %}static/img/cCastClosed.png';
 
     var ol_icon = new OpenLayers.Icon(ss, size, offset);
     marker = new OpenLayers.Marker(ll, ol_icon);
@@ -271,7 +271,7 @@ function checkMarkerZIndex() {
     /* LOCAST ADDITION */
     {% if is_linestring %}
         OpenLayers.Feature.Vector.style["default"]["strokeWidth"] = 4; // Default too thin for linestrings.
-        OpenLayers.Feature.Vector.style["default"]["strokeColor"] = '#00AEEF'; 
+        OpenLayers.Feature.Vector.style["default"]["strokeColor"] = '#00AEEF';
     {% endif %}
     /* LOCAST ADDITION */
 
