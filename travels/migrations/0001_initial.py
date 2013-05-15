@@ -6,10 +6,6 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
-    def forwards(self, orm):
-
-    def backwards(self, orm):
-
     models = {
         'auth.group': {
             'Meta': {'object_name': 'Group'},
