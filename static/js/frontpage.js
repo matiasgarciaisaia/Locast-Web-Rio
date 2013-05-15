@@ -27,17 +27,12 @@ $(function() {
 
     // from frontpage_views.js
     frontpage_app.run();
-
-    //check chrome frame
-    CFInstall.check({ 
-        mode:'overlay'
-    });
 });
 
 function on_resize() {
 
     var height = $(window).height();
-    var width = $(window).width(); 
+    var width = $(window).width();
 
     //if we are on a static form then make the page the height of the form so that scrolling works on mobile
     if($('#main-content .static-form').length == 0) {
@@ -46,10 +41,10 @@ function on_resize() {
     else {
         $('#footer').add('#fdbk_tab').addClass('form');
         var min_height = height
-            - parseInt($('#main-content .static-form').css('margin-top')) 
+            - parseInt($('#main-content .static-form').css('margin-top'))
             - $('#header').height()
             - 10;
-        $('#main-content .static-form').css('min-height',min_height);    
+        $('#main-content .static-form').css('min-height',min_height);
         $('body').height($('#main-content .static-form').height()).css('overflow', 'auto');
     }
 
@@ -61,12 +56,12 @@ function on_resize() {
 $(window).resize(on_resize);
 
 function map_cast_list_height() {
-    /*var height = $(window).height() 
+    /*var height = $(window).height()
         - $('#map-cast-list-title').height() -2
-        - parseInt( $('#map-cast-list-title').css('margin-top')) 
-        - parseInt( $('#map-cast-list-title').css('padding-top')) 
-        - parseInt( $('#map-cast-list-title').css('padding-bottom')) 
-        - parseInt( $('#map-cast-list-title').css('padding-top')); 
+        - parseInt( $('#map-cast-list-title').css('margin-top'))
+        - parseInt( $('#map-cast-list-title').css('padding-top'))
+        - parseInt( $('#map-cast-list-title').css('padding-bottom'))
+        - parseInt( $('#map-cast-list-title').css('padding-top'));
 
     $('#map-cast-list .locast-list').add('#map-cast-list').height(height);
     refresh_custom_scroll();*/
@@ -78,7 +73,7 @@ function map_cast_list_height() {
 function activateDHTML(){
 
     activate_search_bar();
- 
+
 
     // map reset button
     $('#map-reset').click(function() {
@@ -88,11 +83,11 @@ function activateDHTML(){
 
     //view switcher
     //
-    
+
     $('#map-info-container').click(function(e){
             if($(e.target).is('#map-cast-list-title a')||$(e.target).is('#map-cast-list-title li')){
                 return;
-            }     
+            }
                 $('#view-switch-map').addClass('selected');
                 $('#view-switch-list').removeClass('selected');
                 $('#map-info-container').fadeOut(100);
@@ -123,7 +118,7 @@ function activateDHTML(){
 
     // activate top nav lists
     $('#content-lists').find('h3').click(
-        function(event){ 
+        function(event){
             toggle_nav_list(event);
         }
     );
@@ -134,18 +129,18 @@ function activateDHTML(){
         return false;
     });
 
-    //activate map filters 
+    //activate map filters
     $('#content-lists .checkbox').click(
         function(e){
-            var checkbox = $('input',this);           
-            if(checkbox.attr('checked')){ 
+            var checkbox = $('input',this);
+            if(checkbox.attr('checked')){
                 checkbox.removeAttr('checked');
                 $(this).removeClass('checked');
             }else{
                 checkbox.attr('checked', true);
                 $(this).addClass('checked');
             }
-            on_filter_checkboxes(true); 
+            on_filter_checkboxes(true);
         }
     );
 
@@ -154,17 +149,17 @@ function activateDHTML(){
         var filter_type = $(this).attr('id');
         switch(filter_type) {
             case 'o-filter-title':
-                $('.checkbox' , '#official-cast-list-container').click();    
+                $('.checkbox' , '#official-cast-list-container').click();
                 break;
             case 'c-filter-title':
-                $('.checkbox' , '#community-cast-list-container').click();    
+                $('.checkbox' , '#community-cast-list-container').click();
                 break;
             case 'e-filter-title':
-                $('.checkbox' , '#event-list-container').click();    
+                $('.checkbox' , '#event-list-container').click();
                 break;
             case 'i-filter-title':
-                $('.checkbox' , '#itinerary-list-container').click();    
-                break; 
+                $('.checkbox' , '#itinerary-list-container').click();
+                break;
         }
         return false;
     });
@@ -187,7 +182,7 @@ function activateDHTML(){
         map_cast_list_refresh();
     });
 
-}    
+}
 
 /*******
  * MAP *
@@ -197,7 +192,7 @@ function setup_map() {
     main_map = new Map(MAP_DEFAULTS);
     main_map.init('main-map');
     main_map.map.events.on({'moveend' : on_map_move });
-    
+
     //checkbox for aerial map
     $('#pl-checkbox').click(function(){
         var is_checked = $(this).attr('checked');
@@ -206,7 +201,7 @@ function setup_map() {
             $('#osm-checkbox').removeAttr('checked');
         }else{
             main_map.tmsOverlayVisible(false);
-        } 
+        }
     });
     //checkbox for osm
     $('#osm-checkbox').click(function(){
@@ -216,7 +211,7 @@ function setup_map() {
             $('#pl-checkbox').removeAttr('checked');
         }else{
             main_map.osmLayerSwitcher(false);
-        } 
+        }
     });
 }
 
@@ -255,7 +250,7 @@ function map_refresh(disable_async) {
         async = false;
     }
 
-    main_map.clearPopups();    
+    main_map.clearPopups();
 
     var query = get_cast_filter_query();
 
@@ -270,7 +265,7 @@ function map_refresh(disable_async) {
         url: FEATURES_API_URL + query,
         success: map_refresh_cb
     })
-    
+
     // refresh the sidebar list of casts
     // only on an asynchronous call.
     if ( async ) {
@@ -280,7 +275,7 @@ function map_refresh(disable_async) {
 
 function map_refresh_cb(data) {
     main_map.clearFeatures();
-    main_map.renderFeatures(data); 
+    main_map.renderFeatures(data);
     if ( ITIN_ID_FILTER ) {
         highlightItinerary( ITIN_ID_FILTER );
     }
@@ -306,13 +301,13 @@ function map_cast_list_refresh(maintain_page) {
 
     MAP_LIST_REFRESH_ACTIVE = true;
     check_map_loader();
-   
+
     var resp = $.ajax({
         url: CAST_API_URL + query,
         cache: false,
         success: function(data) {
             var page = resp.getResponseHeader('X-Page-Number');
-            var total = 
+            var total =
                 Math.ceil(resp.getResponseHeader('X-Object-Total')/pagesize);
 
             map_cast_list_cb(data, page, total);
@@ -325,7 +320,7 @@ function map_cast_list_cb(data, page, total) {
         casts: data
     }
 
-    $('#map-cast-list-pager').pager({ 
+    $('#map-cast-list-pager').pager({
         pagenumber: page,
         pagecount: total,
         buttonClickCallback: function (pgnum) {
@@ -335,7 +330,7 @@ function map_cast_list_cb(data, page, total) {
     });
 
     var html = '<h3 class="alert">' + gettext('No Casts on Map') + '</h3>';
-    //if there are no casts then insert some html 
+    //if there are no casts then insert some html
     if( ca_data['casts'].length > 0 ) {
         html = render_to_string('mapCastList.js.html', ca_data);
     }
@@ -343,7 +338,7 @@ function map_cast_list_cb(data, page, total) {
     $('#map-cast-list .list-content').html(html);
     map_cast_list_height();
     $('#map-cast-list').hide().fadeIn(200);
-   
+
     MAP_LIST_REFRESH_ACTIVE = false;
     check_map_loader();
 }
@@ -425,33 +420,33 @@ function event_list_cb(data){
 
 function itinerary_list_refresh() {
     $.ajax({
-        url:  BASE_URL + '/api/itinerary/', 
+        url:  BASE_URL + '/api/itinerary/',
         success: itinerary_list_cb
     });
 }
 
-function itinerary_list_cb(data) { 
+function itinerary_list_cb(data) {
     var it_data={
-        itineraries: data    
-    } 
+        itineraries: data
+    }
 
     var html = render_to_string('itinHeaderList.js.html', it_data);
-    $('#map-list').add('#intro-map-list').html(html); 
+    $('#map-list').add('#intro-map-list').html(html);
 
-    //map list reveal 
+    //map list reveal
     $('#map-title').add('#map-list a').click(function(){
         $('#map-list').slideToggle(100);
         var right = $('#current-map .arrow').hasClass('right');
-        if(right){ 
+        if(right){
             $('#current-map .arrow').removeClass('right').addClass('down');
         }else{
              $('#current-map .arrow').removeClass('down').addClass('right');
         }
         //return false;
-    }); 
+    });
 }
 
-function page_header_list(target_list) { 
+function page_header_list(target_list) {
        $('.locast-list',target_list).quickPager({
             pageSize: 9,
             pagerLocation: 'before',
@@ -459,7 +454,7 @@ function page_header_list(target_list) {
             }
        });
 
-       //refresh_custom_scroll();               
+       //refresh_custom_scroll();
 }
 
 function toggle_nav_list(e){
@@ -468,7 +463,7 @@ function toggle_nav_list(e){
 
     //get the locast-block (holds the nav list)
     var tog_tar = $(e.target).siblings('.locast-block');
-    $(tog_tar).toggleClass('closed', 0); 
+    $(tog_tar).toggleClass('closed', 0);
 
     // refresh the content
     if ( !$(tog_tar).hasClass('closed') ) {
@@ -477,21 +472,21 @@ function toggle_nav_list(e){
 
     //unset map filter when content list is opened
     var checkbox = $('.checkbox input', e.target);
-    if(checkbox.attr('checked') == undefined && 
+    if(checkbox.attr('checked') == undefined &&
        $(tog_tar).hasClass('closed') == false) {
 
         checkbox.attr('checked', true);
         $('.checkbox', e.target).addClass('checked');
-        on_filter_checkboxes(true); 
+        on_filter_checkboxes(true);
     }
 
     // close all nav lists except target
     close_nav_list(tog_tar);
 
     //format dates in event lists
-    
+
     // TODO: find a better place than this
-    //refresh_custom_scroll($('#content-lists')); 
+    //refresh_custom_scroll($('#content-lists'));
 }
 
 function refresh_nav_list(target) {
@@ -512,7 +507,7 @@ function refresh_nav_list(target) {
             break;
 
         case 'event-list-container':
-            event_list_refresh();   
+            event_list_refresh();
             break;
     }
 }
@@ -521,17 +516,17 @@ function close_nav_list(target) {
     if(typeof(target) == 'undefined') {
         $('#content-lists .locast-block').addClass('closed',0);
     }
-    else {  
+    else {
         $('#content-lists .locast-block').not(target).addClass('closed',0);
     }
 }
 
-function slideToPreview(e){ 
+function slideToPreview(e){
     locastScrollBar('.locast-preview-description' , e.target);
     $(e.target).closest('li')
         .find('.locast-content-preview')
         .toggleClass('closed', 300);
-    $(e.target).closest('.locast-list').add('#itinerary-list .simplePagerNav').toggleClass('closed', 300); 
+    $(e.target).closest('.locast-list').add('#itinerary-list .simplePagerNav').toggleClass('closed', 300);
 }
 
 /* SEARCH BAR */
@@ -539,8 +534,8 @@ function slideToPreview(e){
 function activate_search_bar() {
     var default_val = gettext('search for maps, casts or people');
     var search_input = $('#search-input');
-    var search_results = $('#search-results');    
-   
+    var search_results = $('#search-results');
+
     // keep track if search is active
     var search_active = false;
 
@@ -551,12 +546,12 @@ function activate_search_bar() {
         search_active = false;
         search_results.fadeOut();
     };
-   
+
     //fade out results when they lose focus
-    search_results.attr('tabindex', -1).focusout( function(e){ 
+    search_results.attr('tabindex', -1).focusout( function(e){
         search_results.fadeOut();
     });
-    
+
     //on keypress return focus to search input
     search_results.keydown(function(e){
          if(e.keyCode == 13 || e.keyCode == 8){
@@ -566,15 +561,15 @@ function activate_search_bar() {
             search_input.focus();
         }
     });
- 
+
     //set timeout to reset search input when it loses focus
-    search_input.focusout(function(e){ 
+    search_input.focusout(function(e){
         var reset = setTimeout(reset_search, 3000);
         $(search_input).data('timer', reset);
     });
 
     //remove timeout and clear search input when it gains focus
-    search_input.focusin(function() { 
+    search_input.focusin(function() {
         clearTimeout($(search_input).data('timer'));
         if(search_active == false){
             $(this).val('');
@@ -588,7 +583,7 @@ function activate_search_bar() {
             e.preventDefault();
             universal_search(search_input.val());
             return false;
-        }   
+        }
     });
 
     search_input.keyup(function() {
@@ -612,7 +607,7 @@ function universal_search(keyword) {
             url: SEARCH_API_URL,
             data: {q:keyword},
             type: 'GET',
-            success: function(result) { 
+            success: function(result) {
                 var html = render_to_string('searchResults.js.html', result);
                 $('#search-results').fadeIn(15).html(html).focus();
             }
@@ -667,11 +662,11 @@ function on_filter_checkboxes(refresh_map) {
     $('.filter-title' , '#map-title').add('#filter-desc').hide();
     $('#content-lists input:not(:checked)').each(function() {
         var name = $(this).attr('name');
-        if (name == 'official-cast-filter') { 
+        if (name == 'official-cast-filter') {
             official_on = false;
             $('#o-filter-title').add('#filter-desc').show();
         }
-        else if (name == 'community-cast-filter') { 
+        else if (name == 'community-cast-filter') {
             community_on = false;
             $('#c-filter-title').add('#filter-desc').show();
         }
@@ -680,7 +675,7 @@ function on_filter_checkboxes(refresh_map) {
             $('#i-filter-title').add('#filter-desc').show();
         }
         // event checkbox
-        else { 
+        else {
             events_on = false;
             $('#e-filter-title').add('#filter-desc').show();
         }
@@ -730,7 +725,7 @@ function activate_cast_add() {
     $('#cast-add-form').attr('action', action);
 
     $('#cancel-cast-add').click(function() {
-        cast_add_form_clear(); 
+        cast_add_form_clear();
         return false;
     });
 
@@ -768,7 +763,7 @@ function cast_add_form_clear() {
     cast_add_container.html('');
 
     if ( ITIN_ID_FILTER ) {
-        $('.itinerary-add-cast') 
+        $('.itinerary-add-cast')
         .add('#itinerary-info .locast-icon.close')
         .add('.open-itinerary')
             .fadeIn(200);
@@ -776,7 +771,7 @@ function cast_add_form_clear() {
 
     if($('#view-switch-list').hasClass('selected')){
         $('#map-info-container').fadeIn(200);
-    }   
+    }
 
     $('#content-lists')
         .add('#map-title')
@@ -798,23 +793,23 @@ function cast_add_form_submit(e) {
         var data = JSON.stringify(obj, null, 2);
 
         $.ajax({
-            url: url, 
+            url: url,
             data: data,
             contentType: 'application/json; charset=utf-8',
             type: 'POST',
             error: function(error){
                 var message = jQuery.parseJSON(error.responseText);
-                if(message.location != undefined){ 
+                if(message.location != undefined){
                     $('#cast-add-error').text(gettext('The Location you Selected is Outside Abruzzo! Select a Location in Abruzzo.')).fadeIn();
                 }
                 if(message.title != undefined){
                     $('#cast-add-error').text(gettext('Enter a Title for Your Cast')).fadeIn();
                 }
             },
-            success: function(cast) { 
+            success: function(cast) {
                 cast_add_form_clear();
                 map_refresh();
-                frontpage_app.setLocation('#!cast/' + cast.id + '/'); 
+                frontpage_app.setLocation('#!cast/' + cast.id + '/');
             }
         });
     }
@@ -851,11 +846,11 @@ function activate_favorite_button(type, id, url) {
             _this.toggleClass('favorited');
 
             $.ajax({
-                url: url, 
+                url: url,
                 data: data,
                 contentType: 'application/json; charset=utf-8',
                 type: 'POST',
-                success: function(result) { 
+                success: function(result) {
                 }
             });
         }
@@ -886,16 +881,16 @@ function create_uploader(container, content_type, url, callback) {
     var extensions = '';
 
     if ( content_type == 'videomedia' ) {
-        filters = { 
-            title: 'Video file', 
+        filters = {
+            title: 'Video file',
             extensions: '3gp,mp4,mov,mpg,mpeg',
         }
         max_file_size = '100mb';
     }
     else if ( content_type == 'imagemedia' ) {
-        filters = { 
-            title: 'Photo file', 
-            extensions: 'jpg,jpeg,png' 
+        filters = {
+            title: 'Photo file',
+            extensions: 'jpg,jpeg,png'
         }
         max_file_size = '1mb';
     }
@@ -938,7 +933,7 @@ function create_uploader(container, content_type, url, callback) {
                 upload_info.removeClass('hidden');
             }
             else {
-                $('#' + file_list).append('<h6 class="upload-file">' + 
+                $('#' + file_list).append('<h6 class="upload-file">' +
                     gettext('Invalid file type!') + '</h6>');
                 up.removeFile(file);
                 upload_info.addClass('hidden');
@@ -946,7 +941,7 @@ function create_uploader(container, content_type, url, callback) {
         });
 
         // only 1 file allowed
-        if (up.files.length > 0) { 
+        if (up.files.length > 0) {
             up.removeFile(up.files[0]);
         }
 
@@ -961,8 +956,8 @@ function create_uploader(container, content_type, url, callback) {
 
     uploader.bind('FileUploaded', function(up, file) {
         $('#' + file.id + ' .upload-progress').html(uploading_txt + gettext('Done!'));
-        if ( callback ) { 
-            callback(); 
+        if ( callback ) {
+            callback();
         }
     });
 
@@ -985,7 +980,7 @@ function create_uploader(container, content_type, url, callback) {
 }
 
 function activate_upload_form(form_id, url, uploader) {
-    $('#' + form_id).submit(function(event) { 
+    $('#' + form_id).submit(function(event) {
         var obj = $('#' + form_id).serializeObject();
         var data = JSON.stringify(obj, null, 2);
 
@@ -993,7 +988,7 @@ function activate_upload_form(form_id, url, uploader) {
             url: url,
             data: data,
             type: 'POST',
-            success: function(media) { 
+            success: function(media) {
                 uploader.settings.url = url + media.id + '/'
                 uploader.start();
                 $('#' + form_id)[0].reset();
@@ -1009,7 +1004,7 @@ function activate_upload_form(form_id, url, uploader) {
 function locastScrollBar(scroll_el){
 $(scroll_el).each(function(){
 
-    var viewport = $(this); 
+    var viewport = $(this);
 
     //check if target has scrollbar html already
     var has_scroll = $(viewport).hasClass('locast-scroll-container');
@@ -1018,13 +1013,13 @@ $(scroll_el).each(function(){
     var init_h = $(viewport).height();
     var children = $(viewport).children();
     var child_h = 0;
-    
+
     $(children).each(function(){
         child_h += $(this).height();
     });
 
     if( child_h > init_h ) {
-        
+
         //if no scrollbar html, add it
         if (has_scroll == false) {
             $(viewport).children().wrapAll('<div class="locast-scroll-box cleared"></div>');
@@ -1033,7 +1028,7 @@ $(scroll_el).each(function(){
         else {
             $('.locast-scroll-bar', $(viewport)).slider('destroy');
         }
-        
+
         //re-measure and calculate scroll bar and scroll handle dimensions
         var content = $(viewport).find('.locast-scroll-box');
         var viewport_h = $(viewport).height();
@@ -1043,17 +1038,17 @@ $(scroll_el).each(function(){
 
         var pro = dif/content_h;
         var handle_h = Math.round((1-pro)*viewport_h);
-        var actual_range = viewport_h - handle_h; 
+        var actual_range = viewport_h - handle_h;
         var bar_padding = handle_h*.5;
         $('.locast-scroll-bar-wrapper', $(viewport)).height(viewport_h);
         $('.locast-scroll-bar', $(viewport)).height(actual_range).css('top',bar_padding);
-        
+
         //handles scrollbar events
         function scrollContent(event, ui){
             var content_pos = -((100-ui.value)*dif/100)
             $(content).css('margin-top',content_pos+'px');
         }
-        
+
         var slider_op = {
             max:100,
             min: 0,
@@ -1070,7 +1065,7 @@ $(scroll_el).each(function(){
                 scrollContent(event, ui);
             }
         }
-        
+
         $('.locast-scroll-bar', $(viewport)).slider(slider_op);
 
         //handle clicks on scrollbar
@@ -1083,7 +1078,7 @@ $(scroll_el).each(function(){
             if(y >= (actual_range+bar_padding)){
                 $(event.target).children('.locast-scroll-bar').slider('value', 0);
             }
-                
+
         });
 
         //code to make scroll responsive to mousewheel requires jquery mousewheel plugin
@@ -1093,14 +1088,14 @@ $(scroll_el).each(function(){
             slider_val += (delta*speed);
                 $(viewport).find('.locast-scroll-bar').slider('value', slider_val);
             event.preventDefault();
-        });                  
-    }     
+        });
+    }
 });
 }
 
 function refresh_custom_scroll(scope) {
     if(typeof(scope) == 'undefined'){scope = $('body');}
-       
+
     //recalculate scroll bars
     var scroll_elements = $('.scrolling', scope);
     locastScrollBar(scroll_elements);
@@ -1110,9 +1105,9 @@ function make_p (t){
     //check if text already has <p> tags
     if($('p', t).length == 0) {
         var raw_t = $(t).text();
-        var new_t = p(raw_t); 
+        var new_t = p(raw_t);
         $(t).html(new_t);
-    } else { 
+    } else {
         return;
     }
 }
