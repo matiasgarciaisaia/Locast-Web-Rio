@@ -7,38 +7,8 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        db.add_column('travels_itinerary',
-            'title_fr', self.gf('django.db.models.fields.CharField')(max_length=160, null=True, blank=True))
-
-        db.add_column('travels_itinerary', 
-            'description_fr', self.gf('django.db.models.fields.TextField')(null=True, blank=True))
-
-        db.add_column('travels_event', 
-            'title_fr', self.gf('django.db.models.fields.TextField')(null=True, blank=True))
-
-        db.add_column('travels_event', 
-            'description_fr', self.gf('django.db.models.fields.TextField')(null=True, blank=True))
-
-        db.add_column('travels_cast', 
-            'title_fr', self.gf('django.db.models.fields.TextField')(null=True, blank=True))
-
-        db.add_column('travels_cast', 
-            'description_fr', self.gf('django.db.models.fields.TextField')(null=True, blank=True))
-
 
     def backwards(self, orm):
-        db.delete_column('travels_itinerary', 'title_fr')
-
-        db.delete_column('travels_itinerary', 'description_fr')
-
-        db.delete_column('travels_event', 'title_fr')
-
-        db.delete_column('travels_event', 'description_fr')
-
-        db.delete_column('travels_cast', 'title_fr')
-
-        db.delete_column('travels_cast', 'description_fr')
-
 
     models = {
         'auth.group': {
@@ -90,7 +60,6 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'description_en': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'description_fr': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'favorited_by': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'favorite_cast'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['travels.TravelsUser']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.contrib.gis.db.models.fields.PointField', [], {'null': 'True', 'blank': 'True'}),
@@ -99,7 +68,6 @@ class Migration(SchemaMigration):
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'tag_cast'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['travels.Tag']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '160'}),
             'title_en': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'}),
-            'title_fr': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'})
         },
         'travels.comment': {
             'Meta': {'object_name': 'Comment'},
@@ -117,7 +85,6 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'description_en': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'description_fr': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'end_date': ('django.db.models.fields.DateTimeField', [], {}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.contrib.gis.db.models.fields.PointField', [], {'null': 'True', 'blank': 'True'}),
@@ -126,7 +93,6 @@ class Migration(SchemaMigration):
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'tag_event'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['travels.Tag']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '160'}),
             'title_en': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'}),
-            'title_fr': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'})
         },
         'travels.flag': {
             'Meta': {'object_name': 'Flag'},
@@ -147,7 +113,6 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'description_en': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'description_fr': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'favorited_by': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'favorite_itinerary'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['travels.TravelsUser']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
@@ -157,7 +122,6 @@ class Migration(SchemaMigration):
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'tag_itinerary'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['travels.Tag']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '160'}),
             'title_en': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'}),
-            'title_fr': ('django.db.models.fields.CharField', [], {'max_length': '160', 'null': 'True', 'blank': 'True'})
         },
         'travels.linkedmedia': {
             'Meta': {'object_name': 'LinkedMedia', '_ormbases': ['travels.Media']},
