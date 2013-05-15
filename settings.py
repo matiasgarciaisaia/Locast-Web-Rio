@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.gis',
+    'django.contrib.staticfiles',
     'locast',
     'south',
     'sorl.thumbnail',
