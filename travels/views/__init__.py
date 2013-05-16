@@ -69,7 +69,7 @@ def register(request):
 
 
 def facebook_login(request,
-        redirect_field_name = REDIRECT_FIELD_NAME): 
+        redirect_field_name = REDIRECT_FIELD_NAME):
 
     redirect_to = request.REQUEST.get(redirect_field_name, '')
 
@@ -78,9 +78,9 @@ def facebook_login(request,
     # Light security check -- make sure redirect_to isn't garbage.
     if not redirect_to or ' ' in redirect_to:
         redirect_to = settings.LOGIN_REDIRECT_URL
-    
-    # Heavier security check -- redirects to http://example.com should 
-    # not be allowed, but things like /view/?param=http://example.com 
+
+    # Heavier security check -- redirects to http://example.com should
+    # not be allowed, but things like /view/?param=http://example.com
     # should be allowed. This regex checks if there is a '//' *before* a
     # question mark.
 
@@ -98,7 +98,7 @@ def facebook_login(request,
         # how to get more data:
         # http://developers.facebook.com/docs/authentication/permissions
 
-        fb_info = facebook.get_user_from_cookie(request.COOKIES, 
+        fb_info = facebook.get_user_from_cookie(request.COOKIES,
             settings.FACEBOOK_APP_ID, settings.FACEBOOK_APP_SECRET)
 
         if fb_info:
@@ -137,12 +137,12 @@ def travels_js(request):
     if boundry_obj:
         boundry = boundry_obj.bounds.geojson
 
-    return render_to_response('travels.django.js', locals(), 
+    return render_to_response('travels.django.js', locals(),
         context_instance = RequestContext(request), mimetype='text/javascript')
 
 
 def templates_js(request):
-    template_dir = settings.MEDIA_ROOT + 'js/templates/'
+    template_dir = settings.STATIC_ROOT + 'js/templates/'
 
     template_files = [
         'castAddForm.js.html',
@@ -168,14 +168,14 @@ def templates_js(request):
             templates[tf] = ofile.read()
         except IOError:
             pass
-        
+
     content = 'var templates = ' + simplejson.dumps(templates);
 
     return HttpResponse(status=200, mimetype='application/json; charset=utf-8', content=content)
 
 
 def iphone_welcome(request):
-    json = render_to_string('mobile_static/iphone_welcome.django.json', locals(), 
+    json = render_to_string('mobile_static/iphone_welcome.django.json', locals(),
         context_instance = RequestContext(request))
 
     return HttpResponse(status=200, mimetype='application/json; charset=utf-8', content=json)
