@@ -1,4 +1,6 @@
 #!/usr/bin/python
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from travels.models import TravelsUser
 
