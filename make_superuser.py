@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from Tourism.travels.models import TravelsUser
+from travels.models import TravelsUser
 
 users = TravelsUser.objects.all()
 
