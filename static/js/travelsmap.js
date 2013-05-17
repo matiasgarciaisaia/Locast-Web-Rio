@@ -8,7 +8,7 @@ CLUSTER_THRESHOLD = 2;
 CAST_STYLE = {
     backgroundGraphic: '${getBackground}',
     backgroundGraphicZIndex: SHADOW_Z_INDEX,
-    backgroundHeight:'${getBHeight}',    
+    backgroundHeight:'${getBHeight}',
     backgroundWidth:'${getBWidth}',
     backgroundXOffset:'${getBXOffset}',
     backgroundYOffset: '${getBYOffset}',
@@ -19,8 +19,8 @@ CAST_STYLE = {
     fontColor: 'white',
     fontWeight: 'bold',
     graphicWidth:'${getWidth}',
-    graphicHeight:'${getHeight}',    
-    graphicXOffset:'${getXOffset}',    
+    graphicHeight:'${getHeight}',
+    graphicXOffset:'${getXOffset}',
     graphicYOffset:'${getYOffset}',
     graphicZIndex: MARKER_Z_INDEX,
     labelXOffset: 0,
@@ -36,13 +36,13 @@ CAST_HOVER_STYLE = {
 
 EVENT_STYLE = {
     cursor: 'pointer',
-    externalGraphic: MEDIA_URL + 'img/eventGreenPuck.png',
-    backgroundGraphic: MEDIA_URL + 'img/blank.png',
+    externalGraphic: STATIC_URL + 'img/eventGreenPuck.png',
+    backgroundGraphic: STATIC_URL + 'img/blank.png',
     graphicWidth:26,
-    graphicHeight:39,    
+    graphicHeight:39,
     backgroundWidth:0,
-    backgroundHeight:0,    
-    graphicXOffset:-2,    
+    backgroundHeight:0,
+    graphicXOffset:-2,
     graphicYOffset:-19,
     backgroundXOffset: 1,
     backgroundYOffset: -6,
@@ -57,13 +57,13 @@ EVENT_STYLE = {
 
 EVENT_HOVER_STYLE = {
     cursor: 'pointer',
-    externalGraphic: MEDIA_URL + 'img/eventGreen.png',
-    backgroundGraphic: MEDIA_URL + 'img/eventShadow.png',
+    externalGraphic: STATIC_URL + 'img/eventGreen.png',
+    backgroundGraphic: STATIC_URL + 'img/eventShadow.png',
     graphicWidth:25,
-    graphicHeight:60,    
+    graphicHeight:60,
     backgroundWidth:44,
-    backgroundHeight:24,    
-    graphicXOffset:0,    
+    backgroundHeight:24,
+    graphicXOffset:0,
     graphicYOffset:-40,
     backgroundXOffset: 1,
     backgroundYOffset: -6,
@@ -148,7 +148,7 @@ function get_cluster_icon_style(cluster) {
         }
         if ( or_all == false ) {
             // all community
-            return 'community'; 
+            return 'community';
         }
     }
 }
@@ -187,16 +187,16 @@ self.highlightCtrl = null;
 
 self.defaults = defaults;
 
-self.geojson_format = new OpenLayers.Format.GeoJSON({ 
-    internalProjection: self.projection, 
+self.geojson_format = new OpenLayers.Format.GeoJSON({
+    internalProjection: self.projection,
     externalProjection: self.displayProjection
 });
 
 // Turn on the map
 self.init = function(div) {
-     
+
     OpenLayers.Util.onImageLoadErrorColor = "transparent";
-  
+
     var zoombar = new OpenLayers.Control.PanZoomBar(
         {'div': OpenLayers.Util.getElement('map-controls')}
     );
@@ -207,7 +207,7 @@ self.init = function(div) {
 
     var ol_options = {
         controls: [
-            zoombar, 
+            zoombar,
             new OpenLayers.Control.Navigation()
         ],
         projection: self.projection,
@@ -218,18 +218,18 @@ self.init = function(div) {
         panDuration: 20
     };
 
-     
+
     self.map = new OpenLayers.Map(div, ol_options);
 
     // STYLE
-    
+
     // cast
-    
+
     strategy = new OpenLayers.Strategy.Cluster();
     strategy.distance = CLUSTER_DISTANCE;
     strategy.threshold = CLUSTER_THRESHOLD;
-    
-    var CAST_ICON = { 
+
+    var CAST_ICON = {
             width: 25,
             height: 25,
             xOffset: -12,
@@ -239,7 +239,7 @@ self.init = function(div) {
             bxOffset: 0,
             byOffset: -14
     }
-    
+
     function calc_cluster_icon(c_length){
         var size = mapValue(c_length, 2, 60, 40,90);
         var x_off = -size*.5;
@@ -258,11 +258,11 @@ self.init = function(div) {
 
     var cast_context = {
         getIcon: function(feature) {
-                    
+
             if ( feature.cluster ) {
                 var style = get_cluster_icon_style(feature.cluster);
-                
-                return MEDIA_URL + 'img/castCluster.png';
+
+                return STATIC_URL + 'img/castCluster.png';
 
                 /*switch(style){
                     case 'official':
@@ -282,13 +282,13 @@ self.init = function(div) {
                 var promotional = feature.attributes.promotional;
 
                 if (official) {
-                    return MEDIA_URL+'img/castMarker.png';
+                    return STATIC_URL+'img/castMarker.png';
                     /*if (featured) { return MEDIA_URL+'img/castBlueFeatured.png'; }
                     if (promotional) { return MEDIA_URL+'img/castBluePromotional.png'; }
                     else { return MEDIA_URL+'img/castBluePuck.png'; }*/
                 }
                 else {
-                    return MEDIA_URL+'img/castMarker.png';
+                    return STATIC_URL+'img/castMarker.png';
                     /*if (featured) { return MEDIA_URL+'img/castRedFeatured.png'; }
                     if (promotional) { return MEDIA_URL+'img/castRedPromotional.png'; }
                     else { return MEDIA_URL+'img/castRedPuck.png'; }*/
@@ -299,7 +299,7 @@ self.init = function(div) {
         getLabel: function(feature) {
             if ( feature.cluster ) {
                 return feature.cluster.length;
-            } 
+            }
             else {
                 return '';
             }
@@ -307,10 +307,10 @@ self.init = function(div) {
 
         getBackground: function(feature) {
             if(feature.cluster){
-                return MEDIA_URL + 'img/blank.png';
+                return STATIC_URL + 'img/blank.png';
             }
             else{
-                return MEDIA_URL+'img/blank.png';
+                return STATIC_URL+'img/blank.png';
                 //castShadowShort2.png
             }
         },
@@ -331,7 +331,7 @@ self.init = function(div) {
                return calc.dimension;
             }
             else{
-               return CAST_ICON.height; 
+               return CAST_ICON.height;
             }
         },
 
@@ -351,7 +351,7 @@ self.init = function(div) {
                return calc.yOffset;
             }
             else{
-               return CAST_ICON.yOffset; 
+               return CAST_ICON.yOffset;
             }
         },
 
@@ -371,7 +371,7 @@ self.init = function(div) {
                return calc.dimension;
             }
             else{
-               return CAST_ICON.bHeight; 
+               return CAST_ICON.bHeight;
             }
         },
 
@@ -391,18 +391,18 @@ self.init = function(div) {
                return calc.byOffset;
             }
             else{
-               return CAST_ICON.byOffset; 
+               return CAST_ICON.byOffset;
             }
         }
     }
-    
+
     var cast_hover_context = {
-        getIcon: function(feature) { 
+        getIcon: function(feature) {
             if ( feature.cluster ) {
                 var style = get_cluster_icon_style(feature.cluster);
-                
 
-                return MEDIA_URL + 'img/castClusterHover.png';
+
+                return STATIC_URL + 'img/castClusterHover.png';
 
                 /*switch(style){
                     case 'official':
@@ -420,15 +420,15 @@ self.init = function(div) {
                 var official = feature.attributes.official;
                 var featured = feature.attributes.featured;
                 var promotional = feature.attributes.promotional;
-                
+
                 if (official) {
-                    return MEDIA_URL+'img/castMarkerHover.png';
+                    return STATIC_URL+'img/castMarkerHover.png';
                     /*if (featured) { return MEDIA_URL+'img/castBlueFeatured.png'; }
                     if (promotional) { return MEDIA_URL+'img/castBluePromotional.png'; }
                     else { return MEDIA_URL+'img/castBluePuck.png'; }*/
                 }
                 else {
-                    return MEDIA_URL+'img/castMarkerHover.png';
+                    return STATIC_URL+'img/castMarkerHover.png';
                     /*if (featured) { return MEDIA_URL+'img/castRedFeatured.png'; }
                     if (promotional) { return MEDIA_URL+'img/castRedPromotional.png'; }
                     else { return MEDIA_URL+'img/castRedPuck.png'; }*/
@@ -437,17 +437,17 @@ self.init = function(div) {
         },
         getBackground: function(feature) {
             if( feature.cluster ) {
-                return MEDIA_URL + 'img/blank.png';
+                return STATIC_URL + 'img/blank.png';
             }
             else {
-                return MEDIA_URL+'img/blank.png';
+                return STATIC_URL+'img/blank.png';
             }
         }
     }
-    
+
     var cast_style = new OpenLayers.Style(CAST_STYLE, {context : cast_context });
     var cast_hover_style = new OpenLayers.Style(CAST_HOVER_STYLE, {context : cast_hover_context});
-    
+
     var cast_stylemap = new OpenLayers.StyleMap({
         'default' : cast_style,
         'select' : cast_hover_style,
@@ -464,7 +464,7 @@ self.init = function(div) {
         'hover' : event_hover_style
     });
 
-    // itinerary 
+    // itinerary
     var itin_context = {
         getStroke: function(feature){
             var max = 10;
@@ -477,12 +477,12 @@ self.init = function(div) {
                 return mapValue(stroke, 0, 200 ,2,max);
             }
         },
- 
+
         getColor: function(feature) {
             return '#C09E2A';
         }
     }
-    
+
     var itin_style = new OpenLayers.Style(ITINERARY_STYLE, {context: itin_context});
     var itin_select_style = new OpenLayers.Style(ITINERARY_HOVER_STYLE);
     var itin_hover_style = new OpenLayers.Style(ITINERARY_HOVER_STYLE);
@@ -517,24 +517,24 @@ self.init = function(div) {
     });
 
     self.osmLayer = new OpenLayers.Layer.OSM(
-        "Open Street Map", 
-        "", 
+        "Open Street Map",
+        "",
         {zoomOffset: 8, resolutions: [611.496226171875, 305.7481130859375, 152.87405654296876, 76.43702827148438, 38.21851413574219, 19.109257067871095, 9.554628533935547, 4.777314266967774, 2.388657133483887,1.1943285667419434, 0.597164283]}
     );
-    
-    self.tmsOverlay = new OpenLayers.Layer.TMS( 'TMS Overlay', '',{  
-        // url: '', serviceVersion: '.', layername: '.', 
-        type: 'png', 
-        getURL: self.overlay_getTileURL, 
+
+    self.tmsOverlay = new OpenLayers.Layer.TMS( 'TMS Overlay', '',{
+        // url: '', serviceVersion: '.', layername: '.',
+        type: 'png',
+        getURL: self.overlay_getTileURL,
         alpha: true,
-        visibility: false, 
+        visibility: false,
         isBaseLayer: false
     });
 
     if (OpenLayers.Util.alphaHack() == false) { self.tmsOverlay.setOpacity(1.0); }
 
     self.addCastPoint = null;
-    self.addCastLayer = new OpenLayers.Layer.Vector('Add Cast', { 
+    self.addCastLayer = new OpenLayers.Layer.Vector('Add Cast', {
         styleMap: cast_stylemap,
         isBaseLayer: false,
     });
@@ -543,7 +543,7 @@ self.init = function(div) {
         'sketchstarted' : function(){
             if ( self.addCastPoint ) {
                 self.addCastPoint.destroy();
-            } 
+            }
         },
         'featureadded' : function(evt) {
             var feature = evt.feature;
@@ -551,7 +551,7 @@ self.init = function(div) {
             var ll = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y);
         }
     });
-    
+
     // "hidden" style
     self.openCastLayer= new OpenLayers.Layer.Vector('Open Cast', {
         styleMap: new OpenLayers.StyleMap({
@@ -582,12 +582,12 @@ self.init = function(div) {
     });
 
     self.boundryLayer = new OpenLayers.Layer.Vector('Boundry', {
-        styleMap: new OpenLayers.StyleMap(BOUNDRY_STYLE),   
-        isBaseLayer: false 
+        styleMap: new OpenLayers.StyleMap(BOUNDRY_STYLE),
+        isBaseLayer: false
     });
 
     // CONTROLS
-    
+
     self.addCastControl = new OpenLayers.Control.DrawFeature(self.addCastLayer, OpenLayers.Handler.Point);
 
     var highlight_control = {
@@ -597,14 +597,14 @@ self.init = function(div) {
         eventListeners: {
 
             beforefeaturehighlighted: function (evt){
-                          
-                   //set up tooltip                       
+
+                   //set up tooltip
                    $('#main-map').tooltip({
                     track: true,
                     delay: 0,
-                    showURL: false, 
+                    showURL: false,
                     bodyHandler:function() {
-                       //console.log(this); 
+                       //console.log(this);
                         return '<br />';
                     }
                     });
@@ -613,24 +613,24 @@ self.init = function(div) {
 
             featurehighlighted: function(evt) {
                 var html = '';
-            
+
                 if ( evt.feature.cluster ) {
                     var features = evt.feature.cluster;
                     var num_features = features.length;
-                   
+
                      if (num_features > 6){
 
                         var short_features = features.slice(0,5);
 
-                        // create a fake placeholder feature to render the 
+                        // create a fake placeholder feature to render the
                         // "more casts" box
-                        
+
                         short_features[5] = { 'attributes' : {
                             'placeholder' : true,
                             'num_left' : num_features - 5,
                         }};
-                        
-                        html = render_to_string('castClusterPopup.js.html', 
+
+                        html = render_to_string('castClusterPopup.js.html',
                             {
                                 'features' : short_features,
                             });
@@ -641,12 +641,12 @@ self.init = function(div) {
                     }
                 }
                 else {
-                    var layer = evt.feature.layer.name; 
-                    var obj = evt.feature.attributes; 
+                    var layer = evt.feature.layer.name;
+                    var obj = evt.feature.attributes;
                     var tooltip_data = {
                         body: obj,
                         tooltip: true
-                    }                        
+                    }
 
                     switch(layer) {
                         case 'Casts':
@@ -657,13 +657,13 @@ self.init = function(div) {
                             break;
                         case 'Events':
                             var same_day = is_same_day(obj.start_date, obj.end_date);
-                            tooltip_data.same = same_day;      
+                            tooltip_data.same = same_day;
                             html = render_to_string('eventPopup.js.html',tooltip_data);
-                            break;   
+                            break;
                     }
                 }
 
-                $('#tooltip .body').html(html);                 
+                $('#tooltip .body').html(html);
                 format_date($('.date', '#tooltip'), false);
             },
 
@@ -683,33 +683,33 @@ self.init = function(div) {
         highlight_control
     );
 
-    self.selectCast = new OpenLayers.Control.SelectFeature(self.castLayer, { 
+    self.selectCast = new OpenLayers.Control.SelectFeature(self.castLayer, {
           clickout: true,
           onSelect: function(feature){
             self.clearPopups();
 
             if ( feature.cluster ) {
                 var features = feature.cluster;
-                 
+
                 var num_features = features.length;
-                if (num_features > 6){ 
+                if (num_features > 6){
                     var scrolling = true;
                 }
                 else{
                     var scrolling = false;
                }
-                
+
                 var html = render_to_string('castClusterPopup.js.html', {
                     'features': features,
-                    'scrolling': scrolling  
+                    'scrolling': scrolling
                 });
 
                 var lonlat = feature.geometry.getBounds().getCenterLonLat();
-                var popup = new OpenLayers.Popup.FramedCloud('cast_cluster', 
+                var popup = new OpenLayers.Popup.FramedCloud('cast_cluster',
                     lonlat, null, html, null, true, self.clearPopups);
 
                 self.map.addPopup(popup);
-                refresh_custom_scroll();                
+                refresh_custom_scroll();
                 $('#' + popup.id).addClass('official');
             }
             else {
@@ -720,7 +720,7 @@ self.init = function(div) {
                 var html = render_to_string('castPopup.js.html', cast_data);
 
                 var lonlat = feature.geometry.getBounds().getCenterLonLat();
-                var popup = new OpenLayers.Popup.FramedCloud('cast_popup_' + cast.id, 
+                var popup = new OpenLayers.Popup.FramedCloud('cast_popup_' + cast.id,
                     lonlat, null, html, null, true, self.clearPopups);
 
                 self.map.addPopup(popup);
@@ -732,7 +732,7 @@ self.init = function(div) {
                     $('#' + popup.id).addClass('community');
                 }
             }
-        }, 
+        },
         onUnselect: function(feature){
             self.clearPopups();
         }
@@ -744,13 +744,13 @@ self.init = function(div) {
             var lonlat = feature.geometry.getBounds().getCenterLonLat();
             var event_data = {
                 body : event
-            }                
-            
+            }
+
             var same_day = is_same_day(event.start_date, event.end_date);
-            event_data.same = same_day;      
+            event_data.same = same_day;
             var html = render_to_string('eventPopup.js.html', event_data);
 
-            var popup = new OpenLayers.Popup.FramedCloud('event_popup_' + event.id, 
+            var popup = new OpenLayers.Popup.FramedCloud('event_popup_' + event.id,
                 lonlat, null, html, null, true, self.clearPopups);
 
             self.clearPopups();
@@ -758,7 +758,7 @@ self.init = function(div) {
 
             format_date($('.date', '#' + popup.id), false);
             $('#' + popup.id).addClass('event');
-        }, 
+        },
         onUnselect: function(feature){
             self.clearPopups();
         }
@@ -767,7 +767,7 @@ self.init = function(div) {
     self.selectItinerary = new OpenLayers.Control.SelectFeature(self.itineraryLayer, {
         onSelect: function(feature, evt){
             var itin = feature.attributes;
-            
+
             // 'this' is the select feature control or something. I have no idea. thanks firebug!
             var pixel = this.handlers.feature.down;
             var lonlat = self.map.getLonLatFromPixel(pixel);
@@ -777,13 +777,13 @@ self.init = function(div) {
             }
 
             var html = render_to_string('itinPopup.js.html',itinerary_data);
-            var popup = new OpenLayers.Popup.FramedCloud('itinerary_popup_' + itin.id, 
+            var popup = new OpenLayers.Popup.FramedCloud('itinerary_popup_' + itin.id,
                 lonlat, null, html, null, true, self.clearPopups);
 
             self.clearPopups();
             self.map.addPopup(popup);
             $('#' + popup.id).addClass('itinerary');
-        }, 
+        },
         onUnselect: function(e){
             self.clearPopups();
         }
@@ -804,7 +804,7 @@ self.init = function(div) {
     self.selectEvent.activate();
     self.selectItinerary.activate();
 
-   
+
     var map_center = defaults['center'];
     self.setCenter(map_center[0], map_center[1]);
     self.map.zoomTo(defaults['zoom']);
@@ -828,10 +828,10 @@ self.osmLayerSwitcher = function(on){
         self.map.setBaseLayer(self.gterrainLayer);
         fix_openlayers_zoombar();
         //self.baseLayerSwitcher();
-    }    
+    }
 }
 
-self.tmsOverlayVisible = function(on) {   
+self.tmsOverlayVisible = function(on) {
     if(on){
         self.map.setBaseLayer(self.osmLayer);
         fix_openlayers_zoombar();
@@ -840,7 +840,7 @@ self.tmsOverlayVisible = function(on) {
         self.map.setBaseLayer(self.gterrainLayer);
         fix_openlayers_zoombar();
         //self.baseLayerSwitcher();
-    }    
+    }
 
     //self.tmsOverlay.setVisibility(on);
 }
@@ -866,7 +866,7 @@ self.renderFeatures = function(features) {
 
     var events = self.geojson_format.read(features['events']);
     self.eventLayer.addFeatures(events)
-        
+
     var itins = self.geojson_format.read(features['itineraries']);
     self.itineraryLayer.addFeatures(itins)
 }
@@ -935,7 +935,7 @@ self.overlay_getTileURL = function(bounds) {
                 }
 }
 
-self.getBounds = function(str) { 
+self.getBounds = function(str) {
     var bounds = self.map.calculateBounds();
     bounds.transform(self.projection, self.displayProjection);
 
@@ -944,7 +944,7 @@ self.getBounds = function(str) {
         str += bounds.left + ',';
         str += bounds.bottom + ',';
         str += bounds.right + ',';
-        str += bounds.top;  
+        str += bounds.top;
         return str;
     }
     else {
