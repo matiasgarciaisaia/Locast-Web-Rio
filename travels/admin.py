@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from locast.admin import UserActivityAdmin, FlagAdmin
 
-from travels import models 
+from travels import models
 
 from modeltranslation.admin import TranslationAdmin
 
@@ -28,7 +28,7 @@ class MapAdmin(admin.OSMGeoAdmin):
     default_lat = settings.DEFAULT_LAT
 
     # because of the way that the site switches base layers
-    default_zoom = settings.DEFAULT_ZOOM + 6 
+    default_zoom = settings.DEFAULT_ZOOM + 6
 
 
 class TagSelect(widgets.FilteredSelectMultiple):
@@ -59,7 +59,7 @@ class LinkedMediaInline(MediaInline):
     fields = ('url',)
 
 
-class CastAdmin(MapAdmin): 
+class CastAdmin(MapAdmin):
 
     inlines = [VideoMediaInline, ImageMediaInline, LinkedMediaInline]
 
@@ -154,7 +154,7 @@ class EventAdmin(MapAdmin, TranslationAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('body', 'author', 'created')
 
-    
+
 class TravelsUserAdmin(admin.ModelAdmin):
     list_display = ('display_name', 'email', 'first_name', 'last_name', 'username', 'is_staff', 'date_joined')
 
@@ -187,3 +187,4 @@ admin.site.register(models.VideoMedia, VideoMediaAdmin)
 admin.site.register(models.ImageMedia, ImageMediaAdmin)
 admin.site.register(models.LinkedMedia, LinkedMediaAdmin)
 
+admin.site.register(models.Settings, MapAdmin)

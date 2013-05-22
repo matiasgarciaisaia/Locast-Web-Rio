@@ -42,6 +42,11 @@ class Boundry(modelbases.Boundry): pass
 
 # MAIN MODELS
 
+class Settings(ModelBase, interfaces.Locatable):
+    project_title = models.CharField("Project's title, displayed on initial splash screen", max_length=256, blank=True, default="Welcome to UNICEF's Youth Led Digital Mapping")
+    project_descrition = models.TextField("Project's description, a more detailed paragraph describing the project", blank=True, default="This project explores tools to help youth build impactful, communicative digital maps using mobile and web technologies. A phone application allows youth to produce a realtime portrait of their community through geo-located photos and videos, organized in thematic maps.")
+    window_title = models.CharField("Window title, it appears on the browsers top bar or tab, so it should be short and to the point", max_length=256, blank=True, default="UNICEF's Youth Led Digital Mapping")
+
 class TravelsUserManager(GeoManager,
         managers.LocastUserManager,
         managers.FacebookUserManager): pass
