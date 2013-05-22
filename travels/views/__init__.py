@@ -142,7 +142,12 @@ def travels_js(request):
 
 
 def templates_js(request):
-    template_dir = settings.STATIC_ROOT + 'js/templates/'
+    root = settings.STATIC_ROOT
+
+    if settings.STATIC_ROOT == '':
+        root = settings.DEV_STATIC_ROOT
+
+    template_dir = root + 'js/templates/'
 
     template_files = [
         'castAddForm.js.html',
