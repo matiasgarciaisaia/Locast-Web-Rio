@@ -22,10 +22,12 @@ class MapAdmin(admin.OSMGeoAdmin):
         js = ('js/admin_jquery_hack.js',
               'js/jquery.tooltip.min.js')
 
+    project_settings = models.Settings.objects.all()[0]
+
     extra_js = [GMAP.api_url + GMAP.key]
     map_template = 'admin/map_admin.django.html'
-    default_lon = settings.DEFAULT_LON
-    default_lat = settings.DEFAULT_LAT
+    default_lon = project_settings.location.x
+    default_lat = project_settings.location.y
 
     # because of the way that the site switches base layers
     default_zoom = settings.DEFAULT_ZOOM + 6

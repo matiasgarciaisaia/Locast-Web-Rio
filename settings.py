@@ -115,7 +115,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    'locast.context_processors.settings_variables'
+    'locast.context_processors.settings_variables',
+    'travels.settings_context_processor.project_settings',
 )
 
 # List of callables that know how to import templates from various sources.

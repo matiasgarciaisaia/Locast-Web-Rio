@@ -16,7 +16,7 @@ SEARCH_API_URL = '{% url "search_api" %}';
 
 MAP_DEFAULTS = {
     zoom: {{DEFAULT_ZOOM}},
-    center: [{{ DEFAULT_LON }}, {{ DEFAULT_LAT }}],
+    center: [{{ project_settings.location.x }}, {{ project_settings.location.y }}],
 }
 
 MAP_BOUNDRY = {{boundry|safe}};
