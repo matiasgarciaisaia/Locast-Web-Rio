@@ -3,6 +3,11 @@ from django.contrib import admin
 
 from travels import models
 
+# Enable admin defined settings
+if models.Settings.objects.count() == 0:
+    s = models.Settings.objects.create()
+    s.save()
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -34,7 +39,3 @@ urlpatterns += patterns('locast.auth.views',
 urlpatterns += patterns('',
     url(r'^api/', include('travels.api.urls')),
 )
-
-if models.Settings.objects.count() == 0:
-    s = models.Settings.objects.create()
-    s.save()
