@@ -6,6 +6,8 @@ from travels import models
 # Enable admin defined settings
 if models.Settings.objects.count() == 0:
     s = models.Settings.objects.create()
+    # Default location to 0, 0
+    s.set_location(0, 0)
     s.save()
 
 admin.autodiscover()
