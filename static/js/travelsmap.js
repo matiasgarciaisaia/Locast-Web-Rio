@@ -263,35 +263,15 @@ self.init = function(div) {
                 var style = get_cluster_icon_style(feature.cluster);
 
                 return STATIC_URL + 'img/castCluster.png';
-
-                /*switch(style){
-                    case 'official':
-                    return MEDIA_URL + 'img/castClusterBlue.png';
-                    break;
-                    case 'community':
-                    return MEDIA_URL + 'img/castClusterRed.png';
-                    break;
-                    case 'both':
-                    return MEDIA_URL + 'img/castClusterMixed.png';
-                    break;
-                }*/
             }
             else {
                 var official = feature.attributes.official;
-                var featured = feature.attributes.featured;
-                var promotional = feature.attributes.promotional;
 
                 if (official) {
                     return STATIC_URL+'img/castMarker.png';
-                    /*if (featured) { return MEDIA_URL+'img/castBlueFeatured.png'; }
-                    if (promotional) { return MEDIA_URL+'img/castBluePromotional.png'; }
-                    else { return MEDIA_URL+'img/castBluePuck.png'; }*/
                 }
                 else {
                     return STATIC_URL+'img/castMarker.png';
-                    /*if (featured) { return MEDIA_URL+'img/castRedFeatured.png'; }
-                    if (promotional) { return MEDIA_URL+'img/castRedPromotional.png'; }
-                    else { return MEDIA_URL+'img/castRedPuck.png'; }*/
                 }
             }
         },
@@ -418,20 +398,12 @@ self.init = function(div) {
             }
             else {
                 var official = feature.attributes.official;
-                var featured = feature.attributes.featured;
-                var promotional = feature.attributes.promotional;
 
                 if (official) {
                     return STATIC_URL+'img/castMarkerHover.png';
-                    /*if (featured) { return MEDIA_URL+'img/castBlueFeatured.png'; }
-                    if (promotional) { return MEDIA_URL+'img/castBluePromotional.png'; }
-                    else { return MEDIA_URL+'img/castBluePuck.png'; }*/
                 }
                 else {
                     return STATIC_URL+'img/castMarkerHover.png';
-                    /*if (featured) { return MEDIA_URL+'img/castRedFeatured.png'; }
-                    if (promotional) { return MEDIA_URL+'img/castRedPromotional.png'; }
-                    else { return MEDIA_URL+'img/castRedPuck.png'; }*/
                 }
             }
         },

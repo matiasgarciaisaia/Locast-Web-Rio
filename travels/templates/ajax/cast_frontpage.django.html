@@ -22,12 +22,6 @@
         </div>
     </div>
     {% endif %}
-    {% if cast.is_featured %}
-    <p class="featured-badge">{% trans "featured" %}</p>
-    {% endif %}
-    {% if cast.is_promotional %}
-    <p class="promotional-badge">{% trans "promotional" %}</p>
-    {% endif %}
     {% if allowed_edit %}
     <div class="cast-edit-tools cleared">
         <a href="#" class="delete-cast" id="delete-cast_{{cast.id}}">{% trans "Delete Cast" %}</a>
