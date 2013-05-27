@@ -1,5 +1,5 @@
-from locast.api import * 
-from locast.api import qstranslate, exceptions 
+from locast.api import *
+from locast.api import qstranslate, exceptions
 
 from django.contrib.gis.geos import Polygon
 from django.db.models import Q
@@ -9,8 +9,10 @@ from locast.api import cache
 
 from travels import cache_control, models
 from travels.api.cast import CastAPI
+from time import time
 
 def get_geofeatures(request):
+    t_start = time()
 
     cache_key = _generate_cache_key(request)
     cache_val = cache.get(cache_key, cache_control.GEOFEATURES_CACHE_GROUP)
@@ -19,11 +21,11 @@ def get_geofeatures(request):
 
     bounds_param = get_param(request.GET, 'within')
     query = request.GET.copy()
-    
+
     if bounds_param:
         pnts = bounds_param.split(',')
 
-        bbox = (float(pnts[0]), float(pnts[1]), 
+        bbox = (float(pnts[0]), float(pnts[1]),
                 float(pnts[2]), float(pnts[3]))
 
         poly = Polygon.from_bbox(bbox)
@@ -39,15 +41,27 @@ def get_geofeatures(request):
     cast_base_query = models.Cast.get_privacy_q(request) & base_query
 
     q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
+
     try:
         casts = q.filter(query).select_related('author')
     except qstranslate.InvalidParameterException, e:
         raise exceptions.APIBadRequest(e.message)
 
+    t_filter = time()
+
     cast_arr = []
+
+    t_total_serialization = 0
+
     for c in casts:
         if c.location:
-            cast_arr.append(geojson_serialize(c, c.location, request))
+            t_0 = time()
+            s = geojson_serialize(c, c.location, request)
+            t_total_serialization += (time() - t_0)
+
+            cast_arr.append(s)
+
+    t_final_cast = time()
 
     #event within bounds
     events = models.Event.objects.filter(base_query)
@@ -74,6 +88,12 @@ def get_geofeatures(request):
     features_dict['itineraries'] = dict(type='FeatureCollection', features=itin_arr)
 
     cache.set(_generate_cache_key(request), features_dict, cache_control.GEOFEATURES_CACHE_GROUP)
+
+    t_final = time()
+
+    print "Total time %f" %(t_final - t_start)
+    print "Time append location %f" %(t_final_cast - t_filter)
+    print "Time spent in serializing %f" %(t_total_serialization)
 
     return APIResponseOK(content=features_dict)
 

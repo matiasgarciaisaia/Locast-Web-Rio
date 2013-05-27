@@ -239,16 +239,14 @@ class Cast(ModelBase,
         d['id'] = self.id
         d['title'] = self.title
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
-
-        d['featured'] = self.is_featured
-        d['promotional'] = self.is_promotional
+        d['featured'] = False
+        d['promotional'] = False
         d['official'] = self.author.is_staff
 
         if self.preview_image:
             d['preview_image'] = self.preview_image
 
         d['favorites'] = 0
-
         return d
 
     @property

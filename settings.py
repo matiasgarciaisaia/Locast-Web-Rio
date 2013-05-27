@@ -132,8 +132,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'locast.middleware.LocastMiddleware',
 )
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'urls'
 
@@ -162,6 +165,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'modeltranslation',
     'travels',
+    #'debug_toolbar',
 )
 
 MODELTRANSLATION_TRANSLATION_REGISTRY = 'travels.translation'
