@@ -235,18 +235,53 @@ class Cast(ModelBase,
         return d
 
     def geojson_properties(self, request):
+        from time import time
+        t_start = time()
+
+        t = time()
+
         d = {}
         d['id'] = self.id
+
+        print "Time id %f" %(time() - t)
+
+        t = time()
+
         d['title'] = self.title
+
+        print "Time title %f" %(time() - t)
+
+        t = time()
+
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
+
+        print "Time author %f" %(time() - t)
+
+        t = time()
+
         d['featured'] = False
+
+        print "Time featured %f" %(time() - t)
+
+        t = time()
+
         d['promotional'] = False
+
+        print "Time promotional %f" %(time() - t)
+
+        t = time()
+
         d['official'] = self.author.is_staff
 
-        if self.preview_image:
-            d['preview_image'] = self.preview_image
+        print "Time official %f" %(time() - t)
 
-        d['favorites'] = 0
+        if self.preview_image:
+            t = time()
+            d['preview_image'] = self.preview_image
+            print "Time image %f" %(time() - t)
+
+        print "Total geojson_properties %f" %(time() - t_start)
+
         return d
 
     @property
