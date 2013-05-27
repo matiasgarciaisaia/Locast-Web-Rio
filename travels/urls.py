@@ -25,7 +25,6 @@ urlpatterns += patterns('travels.views',
 urlpatterns += patterns('travels.views',
     url(r'^travels.js', 'travels_js', name='travels_js'),
     url(r'^templates.js$', 'templates_js', name='templates_js'),
-    url(r'^fblogin/$', 'facebook_login', name='facebook_login'),
     url(r'^iphone_welcome.json$', 'iphone_welcome', name='iphone_welcome'),
 )
 

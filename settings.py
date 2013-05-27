@@ -105,7 +105,6 @@ SECRET_KEY = ''
 AUTHENTICATION_BACKENDS = (
     'locast.auth.backends.LocastEmailBackend',
     'locast.auth.backends.LocastUsernameBackend',
-    'locast.auth.backends.FacebookUserBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -193,14 +192,10 @@ DEFAULT_ZOOM = 0
 
 GOOGLE_MAPS_KEY = ''
 
-FACEBOOK_APP_ID = ''
-FACEBOOK_APP_SECRET = ''
-
 # Allows arbitrary settings variables to be exposed to templates
 CONTEXT_VARIABLES = (
     'GOOGLE_MAPS_KEY',
     'GOOGLE_ANALYTICS_ID',
-    'FACEBOOK_APP_ID',
     'FLOWPLAYER_SWF',
     'DEFAULT_LON',
     'DEFAULT_LAT',

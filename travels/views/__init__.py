@@ -1,5 +1,4 @@
 import codecs
-import facebook
 import settings
 from django.utils import simplejson
 import sys
@@ -66,69 +65,6 @@ def register(request):
         form = forms.RegisterForm()
 
     return render_to_response('registration/register.django.html', locals(), context_instance = RequestContext(request))
-
-
-def facebook_login(request,
-        redirect_field_name = REDIRECT_FIELD_NAME):
-
-    redirect_to = request.REQUEST.get(redirect_field_name, '')
-
-    # START of code taken from django.auth.views.login
-
-    # Light security check -- make sure redirect_to isn't garbage.
-    if not redirect_to or ' ' in redirect_to:
-        redirect_to = settings.LOGIN_REDIRECT_URL
-
-    # Heavier security check -- redirects to http://example.com should
-    # not be allowed, but things like /view/?param=http://example.com
-    # should be allowed. This regex checks if there is a '//' *before* a
-    # question mark.
-
-    elif '//' in redirect_to and re.match(r'[^\?]*//', redirect_to):
-        redirect_to = settings.LOGIN_REDIRECT_URL
-
-    # END of code from django.auth.views.login
-
-    user = authenticate(request=request)
-
-    # new user from facebook
-    if not user:
-
-        # load data from the profile to put into facebook
-        # how to get more data:
-        # http://developers.facebook.com/docs/authentication/permissions
-
-        fb_info = facebook.get_user_from_cookie(request.COOKIES,
-            settings.FACEBOOK_APP_ID, settings.FACEBOOK_APP_SECRET)
-
-        if fb_info:
-            graph = facebook.GraphAPI(fb_info['access_token'])
-            profile = graph.get_object('me')
-
-            user, created = models.TravelsUser.objects.get_or_create(facebook_id=profile['id'])
-            if not created:
-                # TODO: error
-                pass
-
-            user.set_unusable_password()
-
-            user.username = 'fb_' + str(user.id)
-            user.first_name=profile['first_name']
-            user.last_name=profile['last_name']
-
-            user.save()
-
-            models.UserActivity.objects.create_activity(user, user, 'joined')
-
-            user = authenticate(request=request)
-
-    if user and user.is_active:
-        login(request, user)
-        return HttpResponseRedirect(redirect_to)
-
-    else:
-        return HttpResponse(content='Invalid facebook credentials', status=400, mimetype='text/plain')
-
 
 def travels_js(request):
     boundry_obj = models.Boundry.objects.get_default_boundry()

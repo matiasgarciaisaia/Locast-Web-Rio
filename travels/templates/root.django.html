@@ -37,7 +37,6 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/mustache.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/sammy.js"></script>
 
-    <script src="http://connect.facebook.net/en_US/all.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key={{GOOGLE_MAPS_KEY}}"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/OpenLayers.js"></script>
 
@@ -54,21 +53,6 @@
 <body class="{% block body-class %}{% endblock %}">
 {% block body %}
 {% endblock %}
-<div id="fb-root"></div>
-<script>
-FB.init({appId: '{{FACEBOOK_APP_ID}}', status: true, cookie: true, xfbml: true});
-// perhpas we should subscribe to the session change,
-// and then logout the user
-FB.Event.subscribe('auth.login', function(response) {
-    if (response.session) {
-        // New user logged in
-        window.location.replace('{% url "facebook_login" %}?next=' + get_next());
-    }
-});
-
-FB.Event.subscribe('auth.logout', function(response) {
-    facebook_logout();
-});
 
 {% if request.user.is_authenticated %}
     TRAVELS_USER = {{ request.user.id }};

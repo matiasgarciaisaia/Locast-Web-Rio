@@ -35,13 +35,13 @@ var active_user_id = null;
 var initial_view = {
     activate : function(context) {
         //$('#map-cast-list-title .title').html(gettext('Casts On Map'));
-         
+
         $('#map-cast-list-title')
             .add('#map-title')
             .add('#map-info-container')
             .add('#map-controls-container')
             .add('#add-cast-button-container')
-            .add('#tooltip') 
+            .add('#tooltip')
             .add('#map-layer-switcher')
             .add('#map-list')
             .add('#search-bar')
@@ -49,44 +49,44 @@ var initial_view = {
 
         $('#intro-page-container').fadeIn();
 
-        $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+gettext('All Casts')+'</h4><div class="arrow right"></div></div>'); 
+        $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+gettext('All Casts')+'</h4><div class="arrow right"></div></div>');
     },
     deactivate : function() {
-                
+
         $('#map-cast-list-title')
-        .add('#map-title') 
+        .add('#map-title')
         .add('#map-controls-container')
-        .add('#map-layer-switcher') 
+        .add('#map-layer-switcher')
         .add('#search-bar')
         .fadeIn();
 
         $('#intro-page-container').fadeOut();
     }
 }
- 
+
 /*************
  * ITINERARY *
  *************/
 
-var itinerary_single_view = {}; 
+var itinerary_single_view = {};
 
 itinerary_single_view['activate'] = function(context) {
     var id = context.params['id'];
-    
-    
+
+
     $('#add-cast-button-container').show();
 
     //clear tag so it is not added to the itinerary query
-    if(TAG_FILTER){clear_current_tag();} 
+    if(TAG_FILTER){clear_current_tag();}
 
     //check if the map has already been filtered for this itinerary
-    var reload_map = (id == ITIN_ID_FILTER ? false : true );     
-   
+    var reload_map = (id == ITIN_ID_FILTER ? false : true );
+
      context.load(ITINERARY_API_URL + id + '/').then(function(itin) {
         // setup map
         highlightItinerary(itin.id);
         main_map.clearPopups();
-        
+
         // show only casts in this itinerary
         ITIN_ID_FILTER = itin.id;
         AUTHOR_FILTER = '';
@@ -103,7 +103,7 @@ itinerary_single_view['activate'] = function(context) {
         // RENDER it
         //var html = render_to_string('mapItinInfo.js.html', itin);
         //$('#current-map').html(html);
-        
+
         $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+itin.title+'</h4><div class="arrow right"></div></div>');
 
         // DHTML
@@ -114,7 +114,7 @@ itinerary_single_view['activate'] = function(context) {
             desc.toggle(100,function() {
                 toggle.text((toggle.text()=='[+]')?'[-]':'[+]');
                 //refresh_custom_scroll($('#current-map'));
-            }); 
+            });
             return false;
         });
 
@@ -123,17 +123,17 @@ itinerary_single_view['activate'] = function(context) {
 
         // close nav list if it is open
         close_nav_list();
-        
+
         // fade in
         //$('#itinerary-container').fadeIn();
-    });  
+    });
 }
 
-itinerary_single_view['deactivate'] = function() { 
+itinerary_single_view['deactivate'] = function() {
 
     $('#add-cast-button-container').hide();
 
-        
+
 }
 
 function clear_open_itinerary() {
@@ -154,9 +154,9 @@ function clear_open_itinerary() {
 function cast_comment_refresh(cast_id) {
     // refresh the comments
     $.ajax({
-        url: CAST_API_URL + cast_id + '/comments/', 
+        url: CAST_API_URL + cast_id + '/comments/',
         type: 'GET',
-        success: function(data) { 
+        success: function(data) {
             var comment_data = {
                 comments: data
             }
@@ -182,7 +182,7 @@ function cast_comment_refresh(cast_id) {
                         _parent.html('<p class="locast-help">' + gettext('flagged') + '</p>');
                     }
                 });
-                
+
                 return false;
             });
         }
@@ -206,7 +206,7 @@ function cast_fade_in() {
         .add('#map-info-container')
         .add('#map-controls-container')
         .add('#add-cast-button-container')
-        .add('#tooltip') 
+        .add('#tooltip')
         .add('#map-layer-switcher')
         .add('#map-list')
         .add('#search-bar')
@@ -214,18 +214,18 @@ function cast_fade_in() {
 
     //close nave lists
     //close_nav_list();
-    
+
     $('#comments-minimize').click(function(){
         $('.cast-comments').toggleClass('closed', 100);
         var text = $(this).text();
         text = (text == gettext('Show Comments'))?gettext('Hide Comments'):gettext('Show Comments') ;
-        $(this).text(text);  
+        $(this).text(text);
         return false;
-    });   
+    });
 
     if (ITIN_ID_FILTER) {
         $('#itinerary-info').fadeOut();
-    } 
+    }
 }
 
 // This is a separate function in order to allow editing / comment posting
@@ -262,15 +262,15 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
 
             $('#flag-yes-cast_' + cast_id).click(function() {
                 $.ajax({
-                    url: cast_url + 'flag/', 
+                    url: cast_url + 'flag/',
                     type: 'POST',
-                    success: function(result) { 
+                    success: function(result) {
                         $('#flag-cast_' + cast_id).parent().html('<h6 class="flagged">flagged</h6>');
                     }
                 });
                 return false;
             });
-            
+
             $('#flag-no-cast_' + cast_id).click(function() {
                 $('#flag-confirm-cast_' + cast_id).html('');
                 return false;
@@ -290,7 +290,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
     $('#delete-cast_' + cast_id).click(function() {
         var delete_prompt = $(".delete-cast-prompt");
         delete_prompt.fadeIn();
-       
+
         $('.delete', delete_prompt).click(function(){
                 $.ajax({
                     url: cast_url,
@@ -314,27 +314,27 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
     var comment_form = $('#content-form-cast_' + cast_id)
     comment_form.submit(function(event) {
         var data = form_to_json(comment_form);
-        
+
         $.ajax({
-            url: cast_url + 'comments/', 
+            url: cast_url + 'comments/',
             data: data,
             contentType: 'application/json; charset=utf-8',
             type: 'POST',
-            success: function(cast) { 
+            success: function(cast) {
                 comment_form[0].reset();
                 cast_comment_refresh(cast_id);
             }
         });
-            
+
         event.returnValue = false;
         return false;
     });
-    
+
     //activate title updating
     var title_form = $('#title-form-cast_' + cast_id);
 
     $('.cast-info .edit-toggle', '#open-cast_' + cast_id).click(function (){
-        $('.cast-title',   '#open-cast_' + cast_id).fadeOut(0);   
+        $('.cast-title',   '#open-cast_' + cast_id).fadeOut(0);
         title_form.fadeIn();
         on_resize();
         return false;
@@ -357,7 +357,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
         event.returnValue = false;
         return false;
     });
-        
+
     //activate description updating
     var desc_form = $('#description-form-cast_' + cast_id);
 
@@ -444,13 +444,13 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
     // activate tag updating
     var tag_form = $('#tag-form-cast_' + cast_id)
     tag_form.submit(update_tags);
-    
+
     //dhtml
     $('.cast-tags .edit-toggle', '#open-cast_' + cast_id ).click(function(){
         $(this).fadeOut(0);
         tag_form.fadeIn();
         on_resize();
-    });  
+    });
 
     $('.delete-tag', '#tag-list-cast_' + cast_id).click(function() {
         $(this).parent().remove();
@@ -470,22 +470,22 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
         html += '<a href="#" class="locast-button"  id="change-location-finish-cast_' + cast_id + '">'+gettext('Save New Location')+'</a>';
         html += '</div>';
 
-        $('#change-location-container').html(html);       
+        $('#change-location-container').html(html);
 
         $('#change-location-cancel-cast_' + cast_id).click(function(){
             main_map.addCastControl.deactivate();
-            
+
             if ( main_map.addCastPoint ){
-                main_map.addCastPoint.destroy();	
+                main_map.addCastPoint.destroy();
                 main_map.addCastPoint = null;
             }
 
             $('#change-location-container')
             .add('#map-controls-container')
             .fadeOut();
-                
+
             $('#content-details').fadeIn();
-            
+
             return false;
         });
 
@@ -514,34 +514,29 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
                     frontpage_app.setLocation('#!cast/' + cast.id + '/');
                 }
             });
-            
+
             return false;
         });
-        
-        return false; 
+
+        return false;
     });
 
-    // active facebok like button
-    // http://fbexchange.net/questions/19/how-can-i-use-jquery-to-dynamically-load-serverfbml-content-into-my-iframe-app-pa
-    var fb = $('#facebook-share-cast_' + cast_id)[0];
-    FB.XFBML.parse(fb);
-
-    // activate the link poster 
+    // activate the link poster
     var link_form = $('#link-post-form-cast_' + cast_id);
     link_form.submit(function(event) {
         var data = form_to_json(link_form);
 
         $.ajax({
-            url: media_url, 
+            url: media_url,
             data: data,
             contentType: 'application/json; charset=utf-8',
             type: 'POST',
-            success: function(media) { 
+            success: function(media) {
                 link_form[0].reset();
                 cast_info_refresh(cast_id);
             }
         });
-            
+
         event.returnValue = false;
         return false;
     });
@@ -594,7 +589,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
     $('.web-stream.file', media_list_context).flowplayer(FLOWPLAYER_SWF);
 
     // activate the cast gallery
-    
+
     $(media_list_context).xfade({
         speed:600,
         interval:10000,
@@ -610,9 +605,9 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
         var delete_prompt = $('.delete-media-prompt');
         var media_id = $(this).attr('id').split('_')[1];
         var m_delete_url = media_url + media_id + '/';
-        
+
         delete_prompt.fadeIn();
-       
+
          $('.delete' , delete_prompt).click(function(){
                 $.ajax({
                     url: m_delete_url,
@@ -623,7 +618,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
                 });
                 return false;
         });
-            
+
         $('.cancel', delete_prompt).click(function(){
             delete_prompt.fadeOut();
             media_id = '';
@@ -671,28 +666,28 @@ var cast_marker_id = null;
 var last_marker_x = 0;
 var last_marker_y = 0;
 
-var cast_position_update = function(){  
+var cast_position_update = function(){
     //get the element marking the position of the cast on the map
     var elem = $(document.getElementById(cast_marker_id));
 
     //if the element is off the screen its offset is null
     if(elem.offset() == null){return;}
-    
+
     var cast =  $('#content-details .casts');
     var cast_offset_x = parseInt(cast.css('padding-left'));
     var cast_offset_y = parseInt(cast.css('padding-top'));
-    
+
     var indicator = $('#content-details .indicator');
     var indicator_offset_x = parseInt(indicator.css('left'));
     var indicator_offset_y = parseInt(indicator.css('top'));
- 
+
     //subtract the change in the element position from the open cast's top and left padding
     var dx =(last_marker_x-elem.offset().left);
     var dy = (last_marker_y-elem.offset().top) ;
 
     last_marker_x = elem.offset().left;
-    last_marker_y = elem.offset().top; 
-    
+    last_marker_y = elem.offset().top;
+
     //update open cast padding
     cast.css('padding-left',cast_offset_x - dx).css('padding-top', cast_offset_y - dy);
     indicator.css('left',indicator_offset_x - dx ).css('top',indicator_offset_y - dy)
@@ -766,14 +761,14 @@ cast_info_refresh(context.params['id'], function(cast_id) {
     if ( elem && elem.offset() ) {
         // offset from left of window
         var xpad = 134;
-        // offset from top of window 
+        // offset from top of window
         var ypad = 240;
         //init these values to calculate on window resize
         last_marker_x = xpad;
         last_marker_y = ypad;
         var dx = elem.offset().left - xpad;
         var dy = elem.offset().top - ypad;
-         
+
     }
 
     if ( dx != 0 && dy != 0 ) {
@@ -785,36 +780,36 @@ cast_info_refresh(context.params['id'], function(cast_id) {
         CAST_FADE_IN = true;
         main_map.map.pan(dx, dy);
     }
-    else { 
+    else {
         cast_fade_in();
     }
 
     // set up close button
     $('#close-cast_' + cast_id).click(function() {
-        goto_previous();            
+        goto_previous();
         return false;
     });
 
     // attach handler to reposition open cast on window resize
-    $(window).resize(cast_position_update); 
-    
+    $(window).resize(cast_position_update);
+
 });
 }
 
 cast_single_view['deactivate'] = function() {
     $('#content-details').fadeOut();
     $('#content-details').html('');
-     
+
     $('#map-cast-list-title')
-        .add('#map-title') 
-        .add('#map-controls-container') 
+        .add('#map-title')
+        .add('#map-controls-container')
         .add('#search-bar')
-        .add('#map-layer-switcher')  
+        .add('#map-layer-switcher')
         .fadeIn(function(){
             //in case window has been resized while cast was open
             on_resize();
         });
-    
+
     $('#add-cast-button-container').hide();
 
     var viewIsList = $('#view-switch-list').hasClass('selected');
@@ -830,7 +825,7 @@ cast_single_view['deactivate'] = function() {
 
     // this clears the invisible feature that was added
     main_map.openCastLayer.removeAllFeatures();
-    
+
     //remove handler to adjust open cast position on resize
     $(window).unbind('resize',cast_position_update);
 }
@@ -864,7 +859,7 @@ var event_single_view = {activate : function(context) {
         var html = render_to_string('eventOpen.js.html', event);
         $('#content-details').html(html);
 
-        // urlize 
+        // urlize
         $('.content', '#open-event_' + id).urlize('');
 
         // setup a gcal link
@@ -876,32 +871,32 @@ var event_single_view = {activate : function(context) {
         gcal_href += '&details=' + event.description+' (source: '+FULL_BASE_URL+')' ;
         gcal_href += '&location='+event.location[1]+','+event.location[0]+'&trp=false&sprop=&sprop=name:';
         $('.gcalendar-link', '#open-event_' + id).attr('href', gcal_href);
-              
+
         // scroll bars
         //refresh_custom_scroll($('#content-details'));
 
-        // dates 
+        // dates
         var same_day = is_same_day($('.event-start-date', '#open-event_' + id).attr('title'),$('.event-end-date', '#open-event_' + id).attr('title'));
-        
+
         if (same_day){
             $('.date-range', '#open-event_' + id).addClass('hidden');
-        } 
-        
+        }
+
         format_date($('.date', '#open-event_' + id), false);
 
         $('#content-details').fadeIn();
 
         $('#map-cast-list-title')
-            .add('#map-controls-container') 
-            .add('#map-info-container')      
+            .add('#map-controls-container')
+            .add('#map-info-container')
             .add('#map-title')
             .add('#user-profile-info')
-            .add('#content-lists')     
+            .add('#content-lists')
             .add('#map-filters')
         .fadeOut();
 
        //close nave lists
-       close_nav_list();   
+       close_nav_list();
 
        if (ITIN_ID_FILTER) {
            $('#itinerary-info').fadeOut();
@@ -914,10 +909,10 @@ deactivate : function() {
     $('#content-details').fadeOut();
 
     $('#map-cast-list-title')
-        .add('#map-controls-container') 
+        .add('#map-controls-container')
         .add('#map-title')
         .add('#search-bar')
-        .add('#map-info-container')  
+        .add('#map-info-container')
         .fadeIn(function(){
             //in case window was resized while event was open
             on_resize();
@@ -943,15 +938,15 @@ var user_single_view = {
 activate : function(context) {
 var user_id = context.params['id'];
 active_user_id = user_id;
-context.load(USER_API_URL + user_id + '/').then(function(user) { 
-    
+context.load(USER_API_URL + user_id + '/').then(function(user) {
+
     // load the info
     var html = render_to_string('userOpen.js.html', user);
     $('#user-profile-info').html(html);
 
     // set up close button
     $('#close-user_' + user_id).click(function() {
-        clear_open_user();            
+        clear_open_user();
         return false;
     });
 
@@ -960,7 +955,7 @@ context.load(USER_API_URL + user_id + '/').then(function(user) {
     //refresh_custom_scroll($('#user-profile-info'));
 
     // set up created / favorited filters
-    
+
     var created_button = $('#created-button-user_' + user_id);
     var favorited_button = $('#favorited-button-user_' + user_id);
 
@@ -972,12 +967,12 @@ context.load(USER_API_URL + user_id + '/').then(function(user) {
             if ( action == 'created' ) {
                 AUTHOR_FILTER = 'author=' + user_id;
                 $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+ gettext('Casts Created by')+' '+user.display_name+'</h4><div class="arrow right"></div></div>');
-                //$('#map-cast-list-title .title').html(gettext('Created Casts'));    
+                //$('#map-cast-list-title .title').html(gettext('Created Casts'));
             }
             else if ( action == 'favorited' ) {
                 AUTHOR_FILTER = 'favorited_by=' + user_id;
                 $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+gettext('Casts Favorited by')+' '+user.display_name+'</h4><div class="arrow right"></div></div>');
-                //$('#map-cast-list-title .title').html(gettext('Favorited Casts'));         
+                //$('#map-cast-list-title .title').html(gettext('Favorited Casts'));
             }
 
             // clear the itinerary filter
@@ -1013,13 +1008,13 @@ context.load(USER_API_URL + user_id + '/').then(function(user) {
                     created_button.addClass('selected');
                     check_author_filter();
                     break;
-                  
+
                 case 'favorited_by=' + user_id:
                     created_button.removeClass('selected');
                     favorited_button.addClass('selected');
                     check_author_filter();
                     break;
-       
+
                 default:
                     check_author_filter();
             }
@@ -1029,14 +1024,14 @@ context.load(USER_API_URL + user_id + '/').then(function(user) {
         }
     };
 
-    // In case of returning to view from cast or event: check if filter has been set. 
+    // In case of returning to view from cast or event: check if filter has been set.
     // Otherwise, set filter.
     check_previous_filter();
-      
+
 });
 },
 
-deactivate : function() { 
+deactivate : function() {
     $('#user-profile-info').fadeOut();
 }
 }
@@ -1059,8 +1054,8 @@ function clear_open_user() {
 
 tag_view = {}
 tag_view['activate'] = function(context) {
-     
-    if(ITIN_ID_FILTER){clear_open_itinerary();} 
+
+    if(ITIN_ID_FILTER){clear_open_itinerary();}
     TAG_FILTER = context.params['tag'];
     $('#current-map').html('<div id="map-list-dropdown" class="cleared"><h4>'+ gettext('Casts Tagged')+' '+TAG_FILTER+'</h4><div class="arrow right"></div></div>');
     map_refresh();

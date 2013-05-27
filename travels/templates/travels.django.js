@@ -61,8 +61,6 @@ $.ajaxSetup({
     dataType: 'json'
 });
 
-// TODO: refactor this and facebook and current_path
-// maybe find a different way to do current_path
 function update_auth_redirects() {
     var next = get_next();
     $('#logout-link').attr('href', '{% url "logout"%}?next=' + next);
@@ -71,17 +69,6 @@ function update_auth_redirects() {
 
 function get_next() {
     return BASE_URL + '/' + location.hash;
-}
-
-function facebook_logout() {
-    if ( FB.getSession() == null ) {
-        window.location.replace('{% url "logout" %}?next=' + get_next());
-    }
-    else {
-        FB.logout(function(response) {
-            window.location.replace('{% url "logout" %}?next=' + get_next());
-        });
-    }
 }
 
 // var templates is defined in templates.js
