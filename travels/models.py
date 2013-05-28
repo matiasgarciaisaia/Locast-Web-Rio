@@ -241,8 +241,8 @@ class Cast(ModelBase,
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
         d['official'] = self.author.is_staff
 
-        if self.preview_image:
-            d['preview_image'] = self.preview_image
+        if self.prefetch_optimized_preview_image:
+            d['preview_image'] = self.prefetch_optimized_preview_image()
 
         return d
 
@@ -254,24 +254,36 @@ class Cast(ModelBase,
     def is_promotional(self):
         return (not self.get_tag_by_name('_promotional') == None)
 
-    @property
-    def preview_image(self):
-        if len(self.imagemedia):
-            image = self.imagemedia[0].content
+    # Use this method instead of 'preview_image' when you know the related media has been
+    # prefetched
+    def prefetch_optimized_preview_image(self):
+        images = [i for i in self.media_set.all() if i.content_type_model == 'imagemedia']
+        videos = [v for v in self.media_set.all() if v.content_type_model == 'videomedia']
+        links = [l for l in self.media_set.all() if l.content_type_model == 'linkedmedia']
+
+        return self.preview_image_from_given_media(images, videos, links)
+
+    def preview_image_from_given_media(self, images, videos, links):
+        if len(images):
+            image = images[0].content
             if image and image.file:
                 return image.thumbnail.url
 
-        elif len(self.videomedia):
-            vid = self.videomedia[0].content
+        elif len(videos):
+            vid = videos[0].content
             if vid and vid.screenshot:
                 return vid.screenshot.url
 
-        elif len(self.linkedmedia):
-            vid = self.linkedmedia[0].content
+        elif len(links):
+            vid = links[0].content
             if vid and vid.screenshot:
                 return vid.screenshot
 
         return None
+
+    @property
+    def preview_image(self):
+        return self.preview_image_from_given_media(self.imagemedia, self.videomedia, self.linkedmedia)
 
     @property
     def videomedia(self):

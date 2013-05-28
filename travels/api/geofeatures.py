@@ -43,7 +43,7 @@ def get_geofeatures(request):
     q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
 
     try:
-        casts = q.filter(query).select_related('author')
+        casts = q.filter(query).select_related('author').prefetch_related('media_set')
     except qstranslate.InvalidParameterException, e:
         raise exceptions.APIBadRequest(e.message)
 
@@ -94,6 +94,10 @@ def get_geofeatures(request):
     print "Total time %f" %(t_final - t_start)
     print "Time append location %f" %(t_final_cast - t_filter)
     print "Time spent in serializing %f" %(t_total_serialization)
+
+    from django.db import connection
+    for query in connection.queries:
+        print query['sql']
 
     return APIResponseOK(content=features_dict)
 
