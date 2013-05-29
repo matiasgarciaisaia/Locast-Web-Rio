@@ -53,7 +53,8 @@
     {% get_available_languages as languages %}
     {% for lang in languages %}
     <a href="{% url 'set_language' %}?language={{ lang.0 }}&next={{ request.path }}" id="lang-{{ lang.0 }}" class="language-select">
-        {{lang.1}}
+        {% get_language_info for lang.0 as li %}
+        {{li.name_local|capfirst}}
     </a>
     {% endfor %}
 </div>
