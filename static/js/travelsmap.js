@@ -106,6 +106,9 @@ BOUNDRY_STYLE = {
     strokeDashstyle: 'solid'
 }
 
+// Introducing the UnicefGIS object as a transitional facade
+unicef_gis = new UnicefGIS();
+
 // allow styling of the zoombar
 function fix_openlayers_zoombar() {
     $('#map-controls').children().each(function(index) {
@@ -230,10 +233,10 @@ self.init = function(div) {
     strategy.threshold = CLUSTER_THRESHOLD;
 
     var CAST_ICON = {
-            width: 25,
-            height: 25,
-            xOffset: -12,
-            yOffset: -12,
+            width: 22,
+            height: 31,
+            xOffset: -11,
+            yOffset: -15,
             bWidth:35,
             bHeight: 21,
             bxOffset: 0,
@@ -258,22 +261,10 @@ self.init = function(div) {
 
     var cast_context = {
         getIcon: function(feature) {
-
-            if ( feature.cluster ) {
-                var style = get_cluster_icon_style(feature.cluster);
-
+            if ( feature.cluster )
                 return STATIC_URL + 'img/castCluster.png';
-            }
-            else {
-                var official = feature.attributes.official;
-
-                if (official) {
-                    return STATIC_URL+'img/castMarker.png';
-                }
-                else {
-                    return STATIC_URL+'img/castMarker.png';
-                }
-            }
+            else
+                return unicef_gis.iconMarker(feature);
         },
 
         getLabel: function(feature) {
@@ -378,34 +369,10 @@ self.init = function(div) {
 
     var cast_hover_context = {
         getIcon: function(feature) {
-            if ( feature.cluster ) {
-                var style = get_cluster_icon_style(feature.cluster);
-
-
+            if ( feature.cluster )
                 return STATIC_URL + 'img/castClusterHover.png';
-
-                /*switch(style){
-                    case 'official':
-                    return MEDIA_URL + 'img/castClusterBlue.png';
-                    break;
-                    case 'community':
-                    return MEDIA_URL + 'img/castClusterRed.png';
-                    break;
-                    case 'both':
-                    return MEDIA_URL + 'img/castClusterMixed.png';
-                    break;
-                }*/
-            }
-            else {
-                var official = feature.attributes.official;
-
-                if (official) {
-                    return STATIC_URL+'img/castMarkerHover.png';
-                }
-                else {
-                    return STATIC_URL+'img/castMarkerHover.png';
-                }
-            }
+            else
+                return unicef_gis.iconMarker(feature);
         },
         getBackground: function(feature) {
             if( feature.cluster ) {

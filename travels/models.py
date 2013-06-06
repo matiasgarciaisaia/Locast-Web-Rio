@@ -240,6 +240,7 @@ class Cast(ModelBase,
         d['title'] = self.title
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
         d['official'] = self.author.is_staff
+        d['urgency_level'] = 0
 
         if self.prefetch_optimized_preview_image:
             d['preview_image'] = self.prefetch_optimized_preview_image()
