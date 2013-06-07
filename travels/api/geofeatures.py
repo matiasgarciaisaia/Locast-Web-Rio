@@ -12,8 +12,6 @@ from travels.api.cast import CastAPI
 from time import time
 
 def get_geofeatures(request):
-    t_start = time()
-
     cache_key = _generate_cache_key(request)
     cache_val = cache.get(cache_key, cache_control.GEOFEATURES_CACHE_GROUP)
     if cache_val:
@@ -43,25 +41,16 @@ def get_geofeatures(request):
     q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
 
     try:
-        casts = q.filter(query).select_related('author').prefetch_related('media_set')
+        casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags')
     except qstranslate.InvalidParameterException, e:
         raise exceptions.APIBadRequest(e.message)
 
-    t_filter = time()
-
     cast_arr = []
-
-    t_total_serialization = 0
 
     for c in casts:
         if c.location:
-            t_0 = time()
             s = geojson_serialize(c, c.location, request)
-            t_total_serialization += (time() - t_0)
-
             cast_arr.append(s)
-
-    t_final_cast = time()
 
     #event within bounds
     events = models.Event.objects.filter(base_query)
@@ -88,12 +77,6 @@ def get_geofeatures(request):
     features_dict['itineraries'] = dict(type='FeatureCollection', features=itin_arr)
 
     cache.set(_generate_cache_key(request), features_dict, cache_control.GEOFEATURES_CACHE_GROUP)
-
-    t_final = time()
-
-    print "Total time %f" %(t_final - t_start)
-    print "Time append location %f" %(t_final_cast - t_filter)
-    print "Time spent in serializing %f" %(t_total_serialization)
 
     from django.db import connection
     for query in connection.queries:

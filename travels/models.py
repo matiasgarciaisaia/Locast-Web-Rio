@@ -21,7 +21,8 @@ from sorl.thumbnail import get_thumbnail
 
 # DEPENDENCIES
 
-class Tag(interfaces.Tag): pass
+class Tag(interfaces.Tag):
+    urgency_score = models.IntegerField("Urgency Score", blank=False, default=0)
 
 class Comment(interfaces.Comment,
         interfaces.Flaggable):
@@ -240,12 +241,17 @@ class Cast(ModelBase,
         d['title'] = self.title
         d['author'] = {'id' : self.author.id, 'display_name' : self.author.display_name }
         d['official'] = self.author.is_staff
-        d['urgency_level'] = 0
+        d['urgency_level'] = self.urgency_level()
 
         if self.prefetch_optimized_preview_image:
             d['preview_image'] = self.prefetch_optimized_preview_image()
 
         return d
+
+    def urgency_level(self):
+        urgency_score = sum([tag.urgency_score for tag in self.tags.all()])
+        return urgency_score / 50
+
 
     @property
     def is_featured(self):
