@@ -56,9 +56,11 @@
 {% endblock %}
 
 {% if request.user.is_authenticated %}
+    <script>
     TRAVELS_USER = {{ request.user.id }};
+    </script>
 {% endif %}
-</script>
+
 </body>
 </html>
 
