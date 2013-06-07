@@ -26,9 +26,9 @@ blockquote, q {quotes:"" "";}
 a img {border:none;}
 :focus {outline:0;}
 
-/* 
+/*
  *
- * EasyClearing http://www.positioniseverything.net/easyclearing.html 
+ * EasyClearing http://www.positioniseverything.net/easyclearing.html
  *
  * */
 
@@ -38,16 +38,16 @@ a img {border:none;}
 .locast-list-item:after,
 .cast-content:after,
 .cast-sharing-tools:after
-{ 
- content: ".";  
- display: block; 
- height: 0; 
- clear: both; 
- visibility: hidden; 
+{
+ content: ".";
+ display: block;
+ height: 0;
+ clear: both;
+ visibility: hidden;
 }
 
 #content-details form:after {
-    display: inline-block; 
+    display: inline-block;
 }
 
 .cleared,
@@ -83,7 +83,7 @@ a img {border:none;}
 
 .image-frame{
     overflow:hidden;
-    background:url('../img/castPlaceholder.png') no-repeat transparent -30px 0px; 
+    background:url('../img/castPlaceholder.png') no-repeat transparent -30px 0px;
     position:relative;
 }
 
@@ -213,16 +213,16 @@ a.edit-toggle{
 }
 
 #mel-credit{
-    color:#fff;  
+    color:#fff;
 }
 
 #mel-credit a{
     color:#fff;
-    font-weight:bold; 
+    font-weight:bold;
 }
 
 
-/* colors.css 
+/* colors.css
  *
  * unicef blue: #0099ff;
  *
@@ -278,7 +278,7 @@ h4 .title:hover,
 
 a.author:hover,
 a .author:hover{
-    text-decoration:underline; 
+    text-decoration:underline;
 }
 
 #intro-map-list li:hover,
@@ -326,7 +326,7 @@ a .author:hover{
 a.delete-media,
 .delete-media-prompt h4,
 .cast-edit-tools a{
-    color:#fff; 
+    color:#fff;
 }
 
 .media-nav:hover {
@@ -383,7 +383,7 @@ a.delete-media,
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
     -o-border-radius:6px;
-    border-radius:6px; 
+    border-radius:6px;
 }
 
 #no-media-message,
@@ -419,7 +419,7 @@ a.delete-media,
 }
 
 #no-media-message{
-    background:#ccc; 
+    background:#ccc;
 }
 
 #comments-minimize{
@@ -532,9 +532,9 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 .video-icon{
     background-image:url('../img/play.png');
-    background-repeat:no-repeat; 
+    background-repeat:no-repeat;
     width:80px;
-    height:80px; 
+    height:80px;
 }
 
 .arrow{
@@ -567,14 +567,14 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
    position:relative;
    height:100% !important;
    width:100% !important;
-   padding:10px; 
-   border:1px #fff solid; 
+   padding:10px;
+   border:1px #fff solid;
 }
 
 #flowplayer-close{
    position:absolute;
    left:-28px;
-   top:4px; 
+   top:4px;
 }
 
 #fancybox-close{
@@ -603,11 +603,11 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #fancybox-content{
     border:none !important;
-    background:transparent; 
+    background:transparent;
 }
 
 
-/* layout.css 
+/* layout.css
  *
  * z-index range : 1000 - 6000
  *
@@ -676,7 +676,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #add-cast-button-container{
     display:none;
-    position:absolute; 
+    position:absolute;
     margin-right:auto;
     margin-left:auto;
     z-index:5000;
@@ -701,7 +701,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 }
 
 #login-container,
-#login-alert{ 
+#login-alert{
     position:absolute;
     z-index:5000;
     top:0;
@@ -728,7 +728,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     position:absolute;
     z-index:5000;
     top:0;
-    left:0; 
+    left:0;
     cursor:pointer;
 }
 
@@ -747,7 +747,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #search-results{
     display:none;
-    width:200px; 
+    width:200px;
     top:40px;
 }
 
@@ -757,7 +757,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     color:#fff;
     font-weight:bold;
     position:absolute;
-    bottom:0px; 
+    bottom:0px;
     right:250px;
     z-index:5500;
     overflow:hidden;
@@ -822,7 +822,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     width:700px;
     margin-bottom:200px;
     margin-top:40px;
-    padding:16px 16px 32px 16px; 
+    padding:16px 16px 32px 16px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -833,7 +833,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #intro-page-content .sub-head{
     margin-bottom:16px;
-    width:650px; 
+    width:650px;
 }
 
 #intro-page-content .map-list-header{
@@ -851,22 +851,21 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 
 #current-map{
  padding:8px 16px;
+ float:left;
 }
 
 #view-switcher{
-    position:absolute;   
-    top:0px;
-    right:-102px;
+    float:left;
 }
 
- #view-switcher a{ 
+ #view-switcher a{
     padding-top:9px;
     padding-bottom:9px;
     float:left;
     border:1px solid #003960;
     color:#003960;
 }
- 
+
 #view-switcher a.selected,
 #view-switcher a:hover{
     color:#fff;
@@ -933,9 +932,9 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     height:100px;
 }
 
-#map-cast-list .cast .image-frame{ 
-    position:relative; 
-    width:100px; 
+#map-cast-list .cast .image-frame{
+    position:relative;
+    width:100px;
     height:100px;
 }
 
@@ -954,7 +953,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 .simplePagerNav a,
 .pager a{
     color:#ccc;
-    margin-right:4px;    
+    margin-right:4px;
     text-align:center;
     display:inline-block;
 }
@@ -1129,11 +1128,11 @@ a#logout-link{
 
 .locast-open-cast .cast-header{
     position:relative;
-    width:100%; 
+    width:100%;
 }
 
 .locast-open-cast .cast-header .title{
-    position:relative; 
+    position:relative;
 }
 
 .locast-open-cast .cast-header .title a.edit-toggle{
@@ -1164,8 +1163,8 @@ a#logout-link{
 
 .locast-open-cast .cast-header .cast-edit-tools a{
     float:left;
-    margin: 0 12px 0 0; 
-} 
+    margin: 0 12px 0 0;
+}
 
 .locast-open-cast .cast-header .cast-actions{
     display:none;
@@ -1173,7 +1172,7 @@ a#logout-link{
     color:#fff;
     top:-16px;
     right:0px;
-    padding:4px 0px 4px 16px;   
+    padding:4px 0px 4px 16px;
 }
 
 .locast-open-cast .cast-header .cast-actions a{
@@ -1206,7 +1205,7 @@ a#logout-link{
     width:220px;
     margin-top:100px;
     margin-left:auto;
-    margin-right:auto; 
+    margin-right:auto;
 }
 
 .locast-open-cast .cast-content .delete-media-prompt .delete-alert a.locast-button{
@@ -1223,12 +1222,12 @@ a#logout-link{
     width:100%;
     height:100%;
     margin-top:-8px;
-    margin-left:-8px; 
+    margin-left:-8px;
 }
 
 .locast-open-cast .cast-content .add-media-cast{
     display:none;
-    position:absolute; 
+    position:absolute;
     z-index:2000;
     width:300px;
     padding:8px;
@@ -1250,7 +1249,7 @@ a#logout-link{
     display:none;
     position:absolute;
     top:0px;
-    left:0px;   
+    left:0px;
 }
 
 .locast-open-cast .cast-content .cast-media .media-list li:first-child {
@@ -1275,7 +1274,7 @@ a#logout-link{
 .locast-open-cast .cast-media .locast-button{
     position:absolute;
     width:150px;
-    z-index:1550; 
+    z-index:1550;
     top:44px;
     left:16px;
 }
@@ -1303,7 +1302,7 @@ a#logout-link{
      width:96%;
     margin-left: 2%;
     margin-right:2%;
-    padding-top:140px; 
+    padding-top:140px;
     height:160px;
 
 }
@@ -1313,7 +1312,7 @@ a#logout-link{
     margin-left: 2%;
     margin-right:2%;
     background-image:none;
-    background-color:#ccc; 
+    background-color:#ccc;
     height:300px;
 }
 
@@ -1325,7 +1324,7 @@ a#logout-link{
 .locast-open-cast .cast-content .cast-media .image-frame img.portrait{
     position:relative;
     width:300px;
-    left:140px; 
+    left:140px;
 }
 
 .locast-open-cast .cast-content .cast-media .image-frame.no-media .title{
@@ -1338,7 +1337,7 @@ a#logout-link{
     top:226px;
     height:64px;
     width:100%;
-    padding:4px 14px 8px 8px; 
+    padding:4px 14px 8px 8px;
     padding-right:40px;
     z-index:1000;
     position:absolute;
@@ -1377,7 +1376,7 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-content .cast-description a.delete-tag{
-    position:absolute; 
+    position:absolute;
     top:-11px;
     right:-10px;
 }
@@ -1407,7 +1406,7 @@ a#logout-link{
     width:200px;
     max-height:75%;
     overflow:auto;
-    z-index:5500;    
+    z-index:5500;
 }
 
 .locast-open-cast .cast-content .cast-comments.closed{
@@ -1459,7 +1458,7 @@ a#logout-link{
 
 #content-details form.cast-title-edit{
     display:none;
-    border-top:none; 
+    border-top:none;
 }
 
 #content-details  form.cast-description-edit{
@@ -1467,7 +1466,7 @@ a#logout-link{
 }
 
 #content-details form.cast-title-edit input.title-input{
-    background-color:transparent; 
+    background-color:transparent;
     width:500px;
 }
 
@@ -1538,7 +1537,7 @@ a#logout-link{
 #language-selector{
     position:absolute;
     top:16px;
-    left:280px;  
+    left:280px;
 }
 
 #language-selector a{
@@ -1563,49 +1562,49 @@ a#logout-link{
     border: 1px #000 solid;
     -moz-user-select: none;
     -khtml-user-select: none;
-    user-select: none;    
+    user-select: none;
     -moz-box-shadow: inset 0px 1px 0px #78C4F6; /* FF3.5+ */
     -webkit-box-shadow: inset 0px 1px 0px #78C4F6; /* Saf3.0+, Chrome */
-    box-shadow: inset 0px 1px 0px #78C4F6; /* Opera 10.5, IE9 */  
+    box-shadow: inset 0px 1px 0px #78C4F6; /* Opera 10.5, IE9 */
     background-color: #0099ff;
     background-image: -moz-linear-gradient(top, #0099ff, #0090ef); /* FF3.6 */
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0099ff),color-stop(1, #0090ef)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient(#0099ff, #0090ef); /* Chrome 10+, Saf6 */
     background-image: linear-gradient(top, #0099ff, #0090ef);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0099ff', EndColorStr='#0090ef'); /* IE6–IE9 */ 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0099ff', EndColorStr='#0090ef'); /* IE6–IE9 */
 }
 
 .locast-button:hover {
     -moz-box-shadow: 0px 2px 2px #3F3E37; /* FF3.5+ */
     -webkit-box-shadow: 0px 2px 2px #3F3E37; /* Saf3.0+, Chrome */
     box-shadow: 0px 2px 2px #3F3E37; /* Opera 10.5, IE9 */
-    color:#fff;   
+    color:#fff;
     background-color: #0090ef;
     background-image: -moz-linear-gradient(top, #0090ef, #0099ff); /* FF3.6 */
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0090ef),color-stop(1, #0099ff)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient(#0090ef, #0099ff); /* Chrome 10+, Saf6 */
     background-image: linear-gradient(top, #0090ef, #0099ff);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0090ef', EndColorStr='#0099ff'); /* IE6–IE9 */ 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0090ef', EndColorStr='#0099ff'); /* IE6–IE9 */
 
 }
 
 .locast-button.selected,
 .locast-button:active {
     color:#fff;
-    border: 1px #fff solid; 
+    border: 1px #fff solid;
     -moz-box-shadow: inset 0px 0px 2px #000; /* FF3.5+ */
     -webkit-box-shadow:inset 0px 0px 2px #000; /* Saf3.0+, Chrome */
-    box-shadow: inset 0px 0px 2px #000; /* Opera 10.5, IE9 */ 
+    box-shadow: inset 0px 0px 2px #000; /* Opera 10.5, IE9 */
     background-color: #0090ef;
     background-image: -moz-linear-gradient(top, #0069B2, #0099ff); /* FF3.6 */
     background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0069B2),color-stop(1, #0099ff)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient(#0069B2, #0099ff); /* Chrome 10+, Saf6 */
     background-image: linear-gradient(top, #0069B2, #0099ff);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0069B2', EndColorStr='#0099ff'); /* IE6–IE9 */ 
-} 
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0069B2', EndColorStr='#0099ff'); /* IE6–IE9 */
+}
 
 form input.locast-button{
-    color:#FFF !important; 
+    color:#FFF !important;
     height:24px !important;
     font-size:10px;
     //padding:8px 8px !important;
@@ -1649,7 +1648,7 @@ form input.locast-button{
 }
 
 .popup-content.cluster .clustered-cast{
-    float:left; 
+    float:left;
     width:100px;
     height:110px;
     margin-right:6px;
@@ -1663,7 +1662,7 @@ form input.locast-button{
 
 .popup-content .image-frame{
     width:auto;
-    clear:both; 
+    clear:both;
     height:80px;
     margin-bottom:4px;
 }
@@ -1675,10 +1674,10 @@ form input.locast-button{
 }
 
 .popup-content .image-frame img{
-    max-width:120%; 
+    max-width:120%;
 }
 
-/* olPopup.css 
+/* olPopup.css
  *
  * hacky and gross
  *
@@ -1700,17 +1699,17 @@ form input.locast-button{
 
 #main-map .olPopup div div {
     display:none;
-} 
+}
 
 #main-map .olPopup div {
-    overflow:visible !important; 
+    overflow:visible !important;
 }
 
 #main-map .olPopup .popup-content .image-frame{
     display:block !important;
     overflow:hidden !important;
     top:0 !important;
-    left:0 !important; 
+    left:0 !important;
 }
 
 #main-map .olPopup.event div {
@@ -1777,7 +1776,7 @@ form input.locast-button{
     line-height:1;
 }
 
-#map-controls{  
+#map-controls{
     position:relative;
     top:-13px !important;
     left:-5px ;
@@ -1867,14 +1866,14 @@ form input.locast-button{
     height:26px;
     background-repeat: no-repeat;
     background-color:#FFF !important;
-     border: 1px #fff solid; 
+     border: 1px #fff solid;
      -moz-box-shadow: 0px 0px 8px #fff;  /* FF3.5+ */
     -webkit-box-shadow: 0px 0px 8px #fff; /* Saf3.0+, Chrome */
     box-shadow: 0px 0px 8px #fff; /* Opera 10.5, IE9 */
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
     -o-border-radius:6px;
-    border-radius:6px; 
+    border-radius:6px;
 }
 
 /* registration.css */
