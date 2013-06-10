@@ -302,7 +302,7 @@ class CastAPI(rest.ResourceView):
         q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
 
         try:
-            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')
+            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')[:10]
         except qstranslate.InvalidParameterException, e:
             raise exceptions.APIBadRequest(e.message)
 
