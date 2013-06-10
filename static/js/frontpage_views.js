@@ -34,8 +34,6 @@ var active_user_id = null;
 
 var initial_view = {
     activate : function(context) {
-        //$('#map-cast-list-title .title').html(gettext('Casts On Map'));
-
         $('#map-cast-list-title')
             .add('#map-title')
             .add('#map-info-container')
@@ -45,6 +43,7 @@ var initial_view = {
             .add('#map-layer-switcher')
             .add('#map-list')
             .add('#search-bar')
+            .add('#urgency-rank-view')
             .fadeOut();
 
         $('#intro-page-container').fadeIn();

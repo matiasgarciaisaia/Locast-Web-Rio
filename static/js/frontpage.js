@@ -21,6 +21,7 @@ $(function() {
 
     // async call
     map_cast_list_refresh();
+    urgency_rank_refresh();
 
     // sync call. This turns off the loader box on callback
     map_refresh(true);
@@ -56,24 +57,12 @@ function on_resize() {
 $(window).resize(on_resize);
 
 function map_cast_list_height() {
-    /*var height = $(window).height()
-        - $('#map-cast-list-title').height() -2
-        - parseInt( $('#map-cast-list-title').css('margin-top'))
-        - parseInt( $('#map-cast-list-title').css('padding-top'))
-        - parseInt( $('#map-cast-list-title').css('padding-bottom'))
-        - parseInt( $('#map-cast-list-title').css('padding-top'));
-
-    $('#map-cast-list .locast-list').add('#map-cast-list').height(height);
-    refresh_custom_scroll();*/
-
     var height = $(window).height - parseInt( $('#footer').height());
     $('#map-info-container').height(height);
 }
 
 function activateDHTML(){
-
     activate_search_bar();
-
 
     // map reset button
     $('#map-reset').click(function() {
@@ -82,28 +71,44 @@ function activateDHTML(){
     });
 
     //view switcher
-    //
-
     $('#map-info-container').click(function(e){
             if($(e.target).is('#map-cast-list-title a')||$(e.target).is('#map-cast-list-title li')){
                 return;
             }
-                $('#view-switch-map').addClass('selected');
-                $('#view-switch-list').removeClass('selected');
-                $('#map-info-container').fadeOut(100);
-    });
 
-    $('#view-switcher a').click(function(e){
-        var isMap = $(this).hasClass('map');
-        if(isMap){
             $('#view-switch-map').addClass('selected');
             $('#view-switch-list').removeClass('selected');
             $('#map-info-container').fadeOut(100);
-        }else{
+    });
+
+    //TODO: refactor this to something more MVCish or MVVMish
+    $('#view-switcher a').click(function(e){
+        var isMap = $(this).hasClass('map');
+        var isList = $(this).hasClass('list');
+        var isRank = !isMap && !isList;
+
+        if (isMap) {
+            $('#view-switch-map').addClass('selected');
+        } else {
             $('#view-switch-map').removeClass('selected');
+        }
+
+        if (isList) {
             $('#view-switch-list').addClass('selected');
             $('#map-info-container').fadeIn(100);
+        } else {
+            $('#view-switch-list').removeClass('selected');
+            $('#map-info-container').fadeOut(100);
         }
+
+        if (isRank) {
+            $('#view-switch-urgency-rank').addClass('selected');
+            $('#urgency-rank-view').fadeIn(100);
+        } else {
+            $('#view-switch-urgency-rank').removeClass('selected');
+            $('#urgency-rank-view').fadeOut(100);
+        }
+
         return false;
     });
 
@@ -282,6 +287,10 @@ function map_refresh_cb(data) {
 
     MAP_REFRESH_ACTIVE = false;
     check_map_loader();
+}
+
+function urgency_rank_refresh() {
+
 }
 
 var map_cast_list_page = 1;

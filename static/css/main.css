@@ -410,6 +410,16 @@ a.delete-media,
      background-color:transparent !important;
 }
 
+#urgency-rank-view {
+    height: 100%;
+    width: 300px;
+    position:absolute;
+    /* WTF?! */
+    z-index: 5000;
+    right: 0px;
+    display: none;
+}
+
 #map-list li{
     border-bottom: 1px solid #fff;
 }

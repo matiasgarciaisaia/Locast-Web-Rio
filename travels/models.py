@@ -248,6 +248,14 @@ class Cast(ModelBase,
 
         return d
 
+    def urgency_rank_serialize(self, request):
+        d = {}
+        d['id'] = self.id
+        d['title'] = self.title
+        d['urgency_level'] = self.urgency_level()
+
+        return d
+
     def urgency_level(self):
         urgency_score = sum([tag.urgency_score for tag in self.tags.all()])
         return urgency_score / 50

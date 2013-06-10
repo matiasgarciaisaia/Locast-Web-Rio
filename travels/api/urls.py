@@ -3,6 +3,8 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('travels.api',
 
     # CAST
+    url(r'^cast/urgency_rank/', 'cast.CastAPI', name='cast_urgency_rank', kwargs={'method':'urgency_rank'}),
+
     url(r'^cast/(?P<cast_id>\d+)/media/(?P<media_id>\d+)/$', 'cast.CastAPI', name='cast_media_api_single', kwargs={'method':'media_content'}),
     url(r'^cast/(?P<cast_id>\d+)/media/$', 'cast.CastAPI', name='cast_media_api', kwargs={'method':'media'}),
 
@@ -10,7 +12,7 @@ urlpatterns = patterns('travels.api',
     url(r'^cast/(?P<cast_id>\d+)/comments/(?P<comment_id>\d+)/flag/$', 'cast.CastAPI', name='cast_comments_api_single', kwargs={'method':'comments_flag'}),
     url(r'^cast/(?P<cast_id>\d+)/comments/(?P<comment_id>\d+)/$', 'cast.CastAPI', name='cast_comments_api_single', kwargs={'method':'comments'}),
     url(r'^cast/(?P<cast_id>\d+)/comments/$', 'cast.CastAPI', name='cast_comments_api', kwargs={'method':'comments'}),
-    
+
     url(r'^cast/(?P<cast_id>\d+)/favorite/$', 'cast.CastAPI', kwargs={'method':'favorite'}),
     url(r'^cast/(?P<cast_id>\d+)/flag/$', 'cast.CastAPI', kwargs={'method':'flag'}),
 

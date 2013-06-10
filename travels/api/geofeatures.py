@@ -78,10 +78,6 @@ def get_geofeatures(request):
 
     cache.set(_generate_cache_key(request), features_dict, cache_control.GEOFEATURES_CACHE_GROUP)
 
-    from django.db import connection
-    for query in connection.queries:
-        print query['sql']
-
     return APIResponseOK(content=features_dict)
 
 # Should vary on the authenticated user and the query string

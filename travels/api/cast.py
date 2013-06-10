@@ -15,6 +15,8 @@ from travels.models import Itinerary
 
 from locast.api import comment as comment_api
 
+from django.db.models import Sum
+
 
 class CastAPI(rest.ResourceView):
 
@@ -60,20 +62,20 @@ class CastAPI(rest.ResourceView):
 
             if not cast.allowed_access(request.user):
                 raise exceptions.APIForbidden
-                
+
             if format == '.json':
                 cast_dict = api_serialize(cast, request)
                 return APIResponseOK(content=cast_dict, total=1)
-                
+
             if format == '.html':
                 is_flagged = cast.is_flagged_by(request.user)
                 is_favorited = cast.is_favorited_by(request.user)
                 allowed_edit = cast.allowed_edit(request.user)
-                    
+
                 content = render_to_string('ajax/cast_frontpage.django.html', locals(), context_instance = RequestContext(request))
                 resp = HttpResponse(content=content)
                 return resp
-            
+
             else:
                 raise exceptions.APIBadRequest('Invalid response format')
 
@@ -181,12 +183,12 @@ class CastAPI(rest.ResourceView):
     def post_media(request, cast_id):
         data = get_json(request.raw_post_data)
         cast = get_object(models.Cast, cast_id)
-        
+
         if not cast.allowed_edit(request.user):
             raise exceptions.APIForbidden
 
         if 'content_type' in data:
-	    content_type = data['content_type'] 
+	    content_type = data['content_type']
 	    del data['content_type']
         else:
             raise exceptions.APIBadRequest('missing "content_type"')
@@ -197,7 +199,7 @@ class CastAPI(rest.ResourceView):
         form_model = None
         if content_type == 'videomedia':
             form_model = forms.VideoMediaForm
-            
+
         elif content_type == 'imagemedia':
             form_model = forms.ImageMediaForm
 
@@ -238,7 +240,7 @@ class CastAPI(rest.ResourceView):
 
         if not cast.allowed_access(request.user):
             raise exceptions.APIForbidden
-            
+
         media_dict = api_serialize(media, request)
         return APIResponseOK(content=media_dict, total=1)
 
@@ -270,7 +272,7 @@ class CastAPI(rest.ResourceView):
         else:
             # create_file_from_data currently is only part of videocontent.
             # so this won't currently work with imagecontent.
-            # see: locast.models.modelbases, line 332 
+            # see: locast.models.modelbases, line 332
             media.content.create_file_from_data(request.raw_post_data, mime_type)
 
         if not mime_type:
@@ -282,7 +284,7 @@ class CastAPI(rest.ResourceView):
         media.content.mime_type = mime_type
         media.content.content_state = models.Media.STATE_COMPLETE
         media.content.save()
-        
+
         # if not content_type:
         #    raise exceptions.APIBadRequest('No content_type specified')
 
@@ -290,6 +292,23 @@ class CastAPI(rest.ResourceView):
 
         return APIResponseOK(content=api_serialize(media, request))
 
+    @require_http_auth
+    def get_urgency_rank(request):
+        query = request.GET.copy()
+        base_query = Q()
+
+        cast_base_query = models.Cast.get_privacy_q(request) & base_query
+
+        q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
+
+        try:
+            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')
+        except qstranslate.InvalidParameterException, e:
+            raise exceptions.APIBadRequest(e.message)
+
+        cast_arr = [c.urgency_rank_serialize(request) for c in casts]
+
+        return APIResponseOK(content=cast_arr)
 
     @optional_http_auth
     def get_comments(request, cast_id, comment_id=None):
@@ -418,16 +437,16 @@ def cast_from_post(request, cast = None):
     if 'created' in data: del data['created']
 
     # Maps privacy names to values
-    if 'privacy' in data: 
+    if 'privacy' in data:
         data['privacy'] = models.Cast.get_privacy_value(data['privacy'])
 
     cast = form_validate(forms.CastAPIForm, data, instance = cast)
 
     # Necessary to do because of model_translation quirkyness.
     if 'title' in data and not cast.title:
-        cast.title = data['title'] 
+        cast.title = data['title']
     if 'description' in data and not cast.description:
-        cast.description = data['description'] 
+        cast.description = data['description']
 
     if not tags == None:
         # Clear all tags
