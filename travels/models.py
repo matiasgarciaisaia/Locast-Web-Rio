@@ -7,6 +7,7 @@ import urlparse
 from django.core import cache
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Sum
 from django.contrib.gis.db import models as gismodels
 from django.contrib.gis.db.models.manager import GeoManager
 from django.utils import simplejson
@@ -311,6 +312,10 @@ class Cast(ModelBase,
     @property
     def linkedmedia(self):
         return self.media_set.filter(content_type_model='linkedmedia')
+
+    @staticmethod
+    def urgency_rank():
+        return Cast.objects.select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')[:10]
 
 
 class Media(modelbases.LocastContent,

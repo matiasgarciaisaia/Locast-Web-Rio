@@ -93,6 +93,13 @@
 <div id="urgency-rank-view">
     <div style="padding:11px;background:white;width:300px;height:100%;">
         <h3>Urgency Rank</h3>
+
+        {% for c in urgency_rank_casts %}
+            <div>
+                {{c.title}}
+            </div>
+            <br/>
+        {% endfor %}
     </div>
 </div>
 

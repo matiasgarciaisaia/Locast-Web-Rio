@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from locast import get_model
 
 from travels import forms, models
+from travels.models import Cast
 
 
 def frontpage(request):
@@ -22,6 +23,8 @@ def frontpage(request):
 
     login_form = AuthenticationForm(request)
     register_form = forms.RegisterForm()
+
+    urgency_rank_casts = Cast.urgency_rank()
 
     return render_to_response('frontpage.django.html', locals(), context_instance = RequestContext(request))
 

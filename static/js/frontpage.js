@@ -21,7 +21,6 @@ $(function() {
 
     // async call
     map_cast_list_refresh();
-    urgency_rank_refresh();
 
     // sync call. This turns off the loader box on callback
     map_refresh(true);
@@ -287,10 +286,6 @@ function map_refresh_cb(data) {
 
     MAP_REFRESH_ACTIVE = false;
     check_map_loader();
-}
-
-function urgency_rank_refresh() {
-
 }
 
 var map_cast_list_page = 1;
