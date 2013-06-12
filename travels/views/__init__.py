@@ -24,7 +24,9 @@ def frontpage(request):
     login_form = AuthenticationForm(request)
     register_form = forms.RegisterForm()
 
-    urgency_rank_casts = Cast.urgency_rank()
+    urgency_rank = Cast.urgency_rank()
+
+    urgency_rank_casts = zip(range(1,11), urgency_rank)
 
     return render_to_response('frontpage.django.html', locals(), context_instance = RequestContext(request))
 

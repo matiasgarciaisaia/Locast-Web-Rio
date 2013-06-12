@@ -420,6 +420,35 @@ a.delete-media,
     display: none;
 }
 
+.urgency-rank-item {
+}
+
+.urgency-rank-item-image {
+    float:left;
+    border: 1px #777777 solid;
+}
+
+.urgency-rank-item-info {
+    float:left;
+    padding-left: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    width:225px;
+}
+
+.urgency-rank-tag {
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #DDDDDD;
+    border-color: #DDDDDD;
+    margin-right: 5px;
+    font-size: 11px;
+    color:#555555;
+    padding:1px;
+}
+
 #map-list li{
     border-bottom: 1px solid #fff;
 }
@@ -766,9 +795,9 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     padding-right:60px;
     color:#fff;
     font-weight:bold;
-    position:absolute;
+    position:fixed;
     bottom:0px;
-    right:250px;
+    right:350px;
     z-index:5500;
     overflow:hidden;
 }

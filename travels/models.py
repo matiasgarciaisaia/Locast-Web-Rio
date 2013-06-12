@@ -315,7 +315,7 @@ class Cast(ModelBase,
 
     @staticmethod
     def urgency_rank():
-        return Cast.objects.select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')[:10]
+        return Cast.objects.prefetch_related('itinerary_set').select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')[:10]
 
 
 class Media(modelbases.LocastContent,
