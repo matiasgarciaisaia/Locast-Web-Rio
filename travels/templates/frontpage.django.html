@@ -94,27 +94,29 @@
     <div style="padding:11px;background:white;padding-top:22px;">
         <h3 style="margin-bottom:20px;margin-top:50px;">{% trans "Urgency Rank"%}</h3>
         {% for index, cast in urgency_rank_casts %}
-            <div class="urgency-rank-item">
-                <img class="urgency-rank-item-image" height="42" width="42" src="{{cast.prefetch_optimized_preview_image}}"></img>
-                <div class="urgency-rank-item-info">
-                    <div style="margin-bottom:5px;">
-                        <span>{{index}}  {{cast.title}}</span>
-                        <span style="font-size:10px;font-weight:normal;">{{cast.created|date:"M j, Y"}}</span>
+            <a href="#!cast/{{cast.id}}/">
+                <div class="urgency-rank-item">
+                    <img class="urgency-rank-item-image" height="42" width="42" src="{{cast.prefetch_optimized_preview_image}}"></img>
+                    <div class="urgency-rank-item-info">
+                        <div style="margin-bottom:5px;">
+                            <span>{{index}}  {{cast.title}}</span>
+                            <span style="font-size:10px;font-weight:normal;">{{cast.created|date:"M j, Y"}}</span>
+                        </div>
+                        {% with cast.itinerary_set.all|first as category %}
+                            <span style="color:gray;font-weight:normal;font-size:12px;">
+                                {% trans category.title %} &rarr;
+                            </span>
+                        {% endwith %}
+                        {% for tag in cast.tags.all %}
+                            <span class="urgency-rank-tag">
+                                {{ tag.name }}
+                            </span>
+                        {% endfor %}
                     </div>
-                    {% with cast.itinerary_set.all|first as category %}
-                        <span style="color:gray;font-weight:normal;font-size:12px;">
-                            {% trans category.title %} &rarr;
-                        </span>
-                    {% endwith %}
-                    {% for tag in cast.tags.all %}
-                        <span class="urgency-rank-tag">
-                            {{ tag.name }}
-                        </span>
-                    {% endfor %}
+                    <div style="clear: both;"></div>
                 </div>
-                <div style="clear: both;"></div>
-            </div>
-            <hr style="border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+            </a>
+            <hr style="margin:0; border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
         {% endfor %}
     </div>
 </div>
