@@ -183,6 +183,10 @@ function activateDHTML(){
     $('#cast-list-sort a').click(function() {
         $(this).siblings('.selected').removeClass('selected');
         $(this).addClass('selected');
+
+        $('#view-switch-urgency-rank').addClass('selected');
+        $('#map-info-container').fadeIn(100);
+
         map_cast_list_refresh();
     });
 

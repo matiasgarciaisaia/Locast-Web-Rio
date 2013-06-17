@@ -417,7 +417,7 @@ a.delete-media,
     /* WTF?! */
     z-index: 5000;
     right: 0px;
-    display: none;
+    /*display: none;*/
 }
 
 .urgency-rank-item {

@@ -430,6 +430,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
             success: function(cast) {
                 tag_form[0].reset();
                 cast_info_refresh(cast_id);
+                goto_previous_refresh_page();
             }
         });
 
@@ -719,6 +720,25 @@ var goto_previous = function(){
         frontpage_app.setLocation('#!');
     }
 }
+
+//if any filters are set then load the filter
+var goto_previous_refresh_page = function(){
+    if (TAG_FILTER){
+        window.location = '#!tag/'+TAG_FILTER+'/';
+    }
+    if (ITIN_ID_FILTER) {
+        window.location = '#!itinerary/'+ITIN_ID_FILTER+'/';
+    }
+    if (AUTHOR_FILTER){
+        window.location = '#!user/'+active_user_id+'/';
+    }
+    if(!AUTHOR_FILTER && !ITIN_ID_FILTER && !TAG_FILTER){
+        window.location = '#!';
+    }
+
+    window.location.reload(true);
+}
+
 
 
 var cast_single_view = {};
