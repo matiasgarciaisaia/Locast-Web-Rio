@@ -57,6 +57,7 @@ var initial_view = {
         .add('#map-controls-container')
         .add('#map-layer-switcher')
         .add('#search-bar')
+        .add('#urgency-rank-view')
         .fadeIn();
 
         $('#intro-page-container').fadeOut();
