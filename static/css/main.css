@@ -720,6 +720,10 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     padding:8px 4px 0 16px;
 }
 
+#map-key {
+    background-image: url('../img/map-key.png');
+}
+
 #add-cast-button-container{
     display:none;
     position:absolute;
