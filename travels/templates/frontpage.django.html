@@ -51,7 +51,7 @@
     <div id="view-switcher">
         <a href="" id="view-switch-map" class="map selected locast-button">{% trans "Map" %}</a>
         <a href="" id="view-switch-list" class="list locast-button">{% trans "List" %}</a>
-        <a href="" id="view-switch-urgency-rank" class="urgency-rank locast-button">{% trans "Urgency Rank" %}</a>
+        <a href="" id="view-switch-urgency-rank" style="display:none;" class="urgency-rank locast-button">{% trans "Urgency Rank" %}</a>
     </div>
 
 </div>
@@ -91,7 +91,7 @@
 </div>
 
 <div id="urgency-rank-view" style="bottom:50px;overflow-y:scroll;height:100%;background-color:white;">
-    <div style="padding:11px;background:white;padding-top:22px;">
+    <div style="padding:11px;background:white;padding-top:12px;">
         <h3 style="margin-bottom:20px;margin-top:50px;">{% trans "Urgency Rank (Top 10)"%}</h3>
         {% for index, cast in urgency_rank_casts %}
             <a href="#!cast/{{cast.id}}/">
@@ -118,6 +118,7 @@
             </a>
             <hr style="margin:0; border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
         {% endfor %}
+        <div style="height:45px"></div>
     </div>
 </div>
 

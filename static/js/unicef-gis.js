@@ -26,5 +26,8 @@ Report.prototype.iconMarker = function() {
 function UnicefGIS() {}
 
 UnicefGIS.prototype.iconMarker = function(feature) {
-  return (new Report(feature)).iconMarker();
+  var marker = (new Report(feature)).iconMarker()
+
+  if (marker) return marker;
+  return UNICEF_GIS_CONSTANTS.static_url + 'img/pins/green.png';
 }

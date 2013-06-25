@@ -415,8 +415,9 @@ a.delete-media,
     width: 300px;
     position:absolute;
     /* WTF?! */
-    z-index: 5000;
+    z-index: 4999;
     right: 0px;
+    top: 0px;
     /*display: none;*/
 }
 
@@ -725,9 +726,9 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     margin-right:auto;
     margin-left:auto;
     z-index:5000;
-    right:0px;
+    left:0px;
     bottom:100px;
-    padding:4px 20px 4px 4px;
+    padding:4px 4px 4px 4px;
 }
 
 #cast-add-container{
@@ -735,10 +736,11 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     cursor:move;
     position:absolute;
     z-index:5000;
-    width:200px;
+    width:275px;
     right:0px;
     top:0px;
     padding:16px;
+    height: 100%;
 }
 
 #cast-add-container textarea{
@@ -775,6 +777,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     top:0;
     left:0;
     cursor:pointer;
+    width: 100%;
 }
 
 #search-bar{
@@ -784,10 +787,10 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
 #search-bar,
 #search-results{
     position:absolute;
-    padding:8px 32px 8px 16px;
-    z-index:5000;
+    padding:8px 12px 7px 12px;
+    z-index:5001;
     top:0;
-    right:20px;
+    right:0;
 }
 
 #search-results{
@@ -1110,7 +1113,7 @@ a#logout-link{
 /* search.css */
 
 #search-bar input{
-    width:200px;
+    width:269px;
 }
 
 #search-results #results-container a{

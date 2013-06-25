@@ -95,17 +95,11 @@ function activateDHTML(){
         if (isList) {
             $('#view-switch-list').addClass('selected');
             $('#map-info-container').fadeIn(100);
+            $('#urgency-rank-view').fadeOut(100);
         } else {
             $('#view-switch-list').removeClass('selected');
             $('#map-info-container').fadeOut(100);
-        }
-
-        if (isRank) {
-            $('#view-switch-urgency-rank').addClass('selected');
             $('#urgency-rank-view').fadeIn(100);
-        } else {
-            $('#view-switch-urgency-rank').removeClass('selected');
-            $('#urgency-rank-view').fadeOut(100);
         }
 
         return false;
@@ -184,7 +178,6 @@ function activateDHTML(){
         $(this).siblings('.selected').removeClass('selected');
         $(this).addClass('selected');
 
-        $('#view-switch-urgency-rank').addClass('selected');
         $('#map-info-container').fadeIn(100);
 
         map_cast_list_refresh();
