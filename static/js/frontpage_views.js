@@ -231,7 +231,7 @@ function cast_fade_in() {
 // This is a separate function in order to allow editing / comment posting
 // to refresh the "window"
 
-function cast_info_refresh(cast_id, callback) {
+function cast_info_refresh(cast_id, should_refresh, callback) {
 $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: function(cast_html) {
     var cast_url = CAST_API_URL + cast_id + '/';
     var media_url = cast_url + 'media/';
@@ -656,7 +656,7 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
 
     // CALLBACK
     if ( callback ) {
-        callback(cast_id, cast_html);
+        callback(cast_id, cast_html, should_refresh);
     }
 }});
 }
@@ -745,7 +745,10 @@ var goto_previous_refresh_page = function(){
 var cast_single_view = {};
 
 cast_single_view['activate'] = function(context) {
-cast_info_refresh(context.params['id'], function(cast_id) {
+
+var should_refresh = context.params['should_refresh'];
+
+cast_info_refresh(context.params['id'], should_refresh, function(cast_id, cast_html, should_refresh) {
 
     var loc_arr = $('#' + 'location-cast_' + cast_id).html().split(',');
 
@@ -791,6 +794,9 @@ cast_info_refresh(context.params['id'], function(cast_id) {
 
     }
 
+    if ($('#urgency-rank-view'))
+        $('#urgency-rank-view').fadeOut(100);
+
     if ( dx != 0 && dy != 0 ) {
         // pan the map, and then fade the cast in.
 
@@ -806,7 +812,11 @@ cast_info_refresh(context.params['id'], function(cast_id) {
 
     // set up close button
     $('#close-cast_' + cast_id).click(function() {
-        goto_previous();
+        if (should_refresh)
+            goto_previous_refresh_page();
+        else
+            goto_previous();
+
         return false;
     });
 
@@ -831,6 +841,10 @@ cast_single_view['deactivate'] = function() {
         });
 
     $('#add-cast-button-container').hide();
+
+    if ($('#view-switch-urgency-rank').hasClass('selected')) {
+        $('#urgency-rank-view').fadeIn(100);
+    }
 
     var viewIsList = $('#view-switch-list').hasClass('selected');
     if(viewIsList){

@@ -82,11 +82,23 @@ function activateDHTML(){
 
     //TODO: refactor this to something more MVCish or MVVMish
     $('#view-switcher a').click(function(e){
-        var isMap = $(this).hasClass('map');
-        var isList = $(this).hasClass('list');
-        var isRank = !isMap && !isList;
+        var switcher = $(this);
 
-        if (isMap) {
+        var isMap = switcher.hasClass('map');
+        var isList = switcher.hasClass('list');
+        var isRank = switcher.hasClass('urgency-rank');
+
+        if (isRank) {
+            if (switcher.hasClass('selected')) {
+                switcher.removeClass('selected');
+                $('#urgency-rank-view').fadeOut(100);
+            } else {
+                switcher.addClass('selected');
+                $('#urgency-rank-view').fadeIn(100);
+            }
+        }
+
+        /*if (isMap) {
             $('#view-switch-map').addClass('selected');
         } else {
             $('#view-switch-map').removeClass('selected');
@@ -100,7 +112,7 @@ function activateDHTML(){
             $('#view-switch-list').removeClass('selected');
             $('#map-info-container').fadeOut(100);
             $('#urgency-rank-view').fadeIn(100);
-        }
+        }*/
 
         return false;
     });
@@ -770,8 +782,8 @@ function cast_add_form_clear() {
             .fadeIn(200);
     }
 
-    if($('#view-switch-list').hasClass('selected')){
-        $('#map-info-container').fadeIn(200);
+    if($('#view-switch-urgency-rank').hasClass('selected')){
+        $('#urgency-rank-view').fadeIn(200);
     }
 
     $('#content-lists')
@@ -810,7 +822,7 @@ function cast_add_form_submit(e) {
             success: function(cast) {
                 cast_add_form_clear();
                 map_refresh();
-                frontpage_app.setLocation('#!cast/' + cast.id + '/');
+                frontpage_app.setLocation('#!cast/' + cast.id + '/?should_refresh=true');
             }
         });
     }
