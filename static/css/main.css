@@ -696,7 +696,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     position:absolute;
     z-index:1500;
     left:0;
-    bottom:150px;
+    top:160px;
 }
 
 #change-location-container{
@@ -714,7 +714,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     position:absolute;
     z-index:1400;
     width:60px;
-    bottom:385px;
+    top:74px;
     text-align:right;
     left:-21px;
     padding:8px 4px 0 16px;
@@ -1810,7 +1810,7 @@ form input.locast-button{
 
 #map-controls-container{
     background-image:url('../img/transGreyAlt.png') !important;
-    height:230px !important;
+    height:295px !important;
     width:55px !important;
     padding: 0 0  0 10px;
     margin-left:-10px;
