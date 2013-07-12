@@ -1960,3 +1960,7 @@ form input.locast-button{
     font-weight:bold;
     font-style:italic;
 }
+
+#id_email, #id_first_name, #id_last_name, #id_password, #id_password_verify {
+    width:200px;
+}

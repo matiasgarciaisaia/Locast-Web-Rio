@@ -64,7 +64,11 @@ def register(request):
 
             models.UserActivity.objects.create_activity(u, u, 'joined')
 
-            return HttpResponseRedirect(settings.FULL_BASE_URL)
+            # Auto login the new user and redirect her to the home
+            user = authenticate(username=u.username, password=request.POST['password'])
+            login(request, user)
+
+            return HttpResponseRedirect('/')
 
     elif request.method == 'GET':
         form = forms.RegisterForm()
