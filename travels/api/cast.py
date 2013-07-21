@@ -292,7 +292,7 @@ class CastAPI(rest.ResourceView):
 
         return APIResponseOK(content=api_serialize(media, request))
 
-    @require_http_auth
+    @optional_http_auth
     def get_urgency_rank(request, itin_id=None):
         query = request.GET.copy()
         base_query = Q()
