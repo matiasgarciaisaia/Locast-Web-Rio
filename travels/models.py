@@ -19,6 +19,8 @@ from locast.models import ModelBase
 
 from sorl.thumbnail import get_thumbnail
 
+from datetime import datetime
+
 
 # DEPENDENCIES
 
@@ -249,11 +251,25 @@ class Cast(ModelBase,
 
         return d
 
-    def urgency_rank_serialize(self, request):
+    def urgency_rank_serialize(self, request, rank=0):
         d = {}
         d['id'] = self.id
         d['title'] = self.title
         d['urgency_level'] = self.urgency_level()
+
+        d['thumbnail'] = self.prefetch_optimized_preview_image()
+        d['rank'] = rank
+
+        d['created'] = self.created.strftime("%b %d, %Y")
+
+        categories = self.itinerary_set.all()
+
+        if len(categories) > 0:
+            d['category'] = categories[0].title
+        else:
+            d['category'] = 'None'
+
+        d['tags'] = [tag.name for tag in self.tags.all()]
 
         return d
 

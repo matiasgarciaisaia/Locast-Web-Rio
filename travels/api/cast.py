@@ -293,7 +293,7 @@ class CastAPI(rest.ResourceView):
         return APIResponseOK(content=api_serialize(media, request))
 
     @require_http_auth
-    def get_urgency_rank(request):
+    def get_urgency_rank(request, itin_id=None):
         query = request.GET.copy()
         base_query = Q()
 
@@ -302,11 +302,11 @@ class CastAPI(rest.ResourceView):
         q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
 
         try:
-            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).order_by('-urgency_score')[:10]
+            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').prefetch_related('itinerary_set').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).filter(itinerary__id=itin_id).order_by('-urgency_score')[:10]
         except qstranslate.InvalidParameterException, e:
             raise exceptions.APIBadRequest(e.message)
 
-        cast_arr = [c.urgency_rank_serialize(request) for c in casts]
+        cast_arr = [c.urgency_rank_serialize(request, ind + 1) for ind,c in enumerate(casts)]
 
         return APIResponseOK(content=cast_arr)
 

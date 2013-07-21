@@ -98,22 +98,6 @@ function activateDHTML(){
             }
         }
 
-        /*if (isMap) {
-            $('#view-switch-map').addClass('selected');
-        } else {
-            $('#view-switch-map').removeClass('selected');
-        }
-
-        if (isList) {
-            $('#view-switch-list').addClass('selected');
-            $('#map-info-container').fadeIn(100);
-            $('#urgency-rank-view').fadeOut(100);
-        } else {
-            $('#view-switch-list').removeClass('selected');
-            $('#map-info-container').fadeOut(100);
-            $('#urgency-rank-view').fadeIn(100);
-        }*/
-
         return false;
     });
 
@@ -283,6 +267,13 @@ function map_refresh(disable_async) {
     // only on an asynchronous call.
     if ( async ) {
         map_cast_list_refresh();
+    }
+
+    if (angular) {
+        urgency_rank_scope = angular.element($('#urgency-rank-controlled')).scope();
+
+        if (urgency_rank_scope)
+            urgency_rank_scope.update(query);
     }
 }
 

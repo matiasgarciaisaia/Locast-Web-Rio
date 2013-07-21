@@ -3,7 +3,8 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('travels.api',
 
     # CAST
-    url(r'^cast/urgency_rank/', 'cast.CastAPI', name='cast_urgency_rank', kwargs={'method':'urgency_rank'}),
+    url(r'^cast/urgency_rank/(?P<itin_id>\d+).json', 'cast.CastAPI', name='cast_urgency_rank', kwargs={'method':'urgency_rank'}),
+    url(r'^cast/urgency_rank.json', 'cast.CastAPI', name='cast_urgency_rank', kwargs={'method':'urgency_rank'}),
 
     url(r'^cast/(?P<cast_id>\d+)/media/(?P<media_id>\d+)/$', 'cast.CastAPI', name='cast_media_api_single', kwargs={'method':'media_content'}),
     url(r'^cast/(?P<cast_id>\d+)/media/$', 'cast.CastAPI', name='cast_media_api', kwargs={'method':'media'}),

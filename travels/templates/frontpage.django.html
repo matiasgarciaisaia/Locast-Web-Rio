@@ -90,7 +90,35 @@
 
 </div>
 
-{% include "urgency_rank/urgency_rank.django.html" %}
+<div ng-app id="urgency-rank-view" style="bottom:50px;overflow-y:scroll;height:100%;background-color:white;">
+    <div id="urgency-rank-controlled" ng-controller="UrgencyRankController" style="padding:11px;background:white;padding-top:12px;">
+        <h3 style="margin-bottom:20px;margin-top:50px;">{% trans "Urgency Rank (Top 10)" %}</h3>
+        {% verbatim %}
+        <div ng-repeat="cast in casts">
+            <a ng-href="#!cast/{{cast.id}}/">
+                <div class="urgency-rank-item">
+                    <img class="urgency-rank-item-image" height="42" width="42" ng-src="{{cast.thumbnail}}"></img>
+                    <div class="urgency-rank-item-info">
+                        <div style="margin-bottom:5px;">
+                            <span>{{cast.rank}} {{cast.title}}</span>
+                            <span style="font-size:10px;font-weight:normal;">{{cast.created}}</span>
+                        </div>
+                        <span style="color:gray;font-weight:normal;font-size:12px;">
+                            {{ cast.category }} &rarr;
+                        </span>
+                        <span ng-repeat="tag in cast.tags" class="urgency-rank-tag">
+                            {{ tag }}
+                        </span>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </a>
+            <hr style="margin:0; border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);" />
+        </div>
+        {% endverbatim %}
+        <div style="height:45px"></div>
+    </div>
+</div>
 
 <div id="map-controls-container" style="height:295px;">
     <div id="map-controls"></div>
