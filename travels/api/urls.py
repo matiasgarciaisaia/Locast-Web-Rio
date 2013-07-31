@@ -48,4 +48,6 @@ urlpatterns = patterns('travels.api',
     # get_features
     url(r'^geofeatures/$', 'geofeatures.get_geofeatures', name='geofeatures_api'),
 
+    url(r'^tags/$', 'tag.TagAPI', kwargs={'method':'all'}),
+
 )
