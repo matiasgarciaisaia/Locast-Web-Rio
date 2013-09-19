@@ -37,6 +37,9 @@ urlpatterns = patterns('travels.api',
     url(r'^itinerary/(?P<itin_id>\d+)/$', 'itinerary.ItineraryAPI', name='itinerary_api_single'),
     url(r'^itinerary/$', 'itinerary.ItineraryAPI', name='itinerary_api'),
 
+    # SYNC
+    url(r'^sync_spike/$', 'sync.SyncAPI', kwargs={'method':'spike'}),
+
     # EVENT
     url(r'^event/(?P<event_id>\d+)/geofeature/$', 'event.EventAPI', kwargs={'method':'geofeature'}),
     url(r'^event/(?P<event_id>\d+)/$', 'event.EventAPI', name='event_api_single'),

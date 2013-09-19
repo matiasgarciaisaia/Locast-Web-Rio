@@ -204,6 +204,12 @@ class Cast(ModelBase,
         interfaces.Locatable,
         interfaces.Taggable):
 
+    attempts = models.IntegerField(null=True, default=0)
+    cell_image = models.TextField(blank=True)
+    cell_timestamp = models.CharField(max_length=32, blank=True)
+    guid = models.CharField(max_length=64, blank=True)
+    cell_revision = models.CharField(max_length=64, blank=True)
+
     @models.permalink
     def get_api_uri(self):
         return ('cast_api_single', [str(self.id)])
