@@ -181,6 +181,9 @@ class CastAPI(rest.ResourceView):
 
     @require_http_auth
     def post_media(request, cast_id):
+        import sys
+        print >> sys.stderr, request
+
         data = get_json(request.raw_post_data)
         cast = get_object(models.Cast, cast_id)
 
