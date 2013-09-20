@@ -42,12 +42,17 @@ class SyncAPI(rest.ResourceView):
         try: 
             cast = Cast.objects.prefetch_related('media_set').get(guid=obj['_id'])
 
-            if (cast.prefetch_optimized_preview_image()):
-                return HttpResponse(status=200)
-            else:
-                sync_media(author, cast, request)
-                add_to_itinerary(cast, itinerary)
+            image_syncd = (cast.prefetch_optimized_preview_image() == None)
+            itinerary_syncd = cast.itinerary_set.all().count() > 0
 
+            if image_syncd and itinerary_syncd:
+                return HttpResponse(status=200)
+            
+            if not image_syncd:
+                sync_media(author, cast, request)
+            
+            if not itinerary_syncd:
+                add_to_itinerary(cast, itinerary)
         except Cast.DoesNotExist:
             print >> sys.stderr, "Cast didn't exist, creating it"
             cast = Cast(title=obj['title'], title_en=obj['title'], guid=obj['_id'], author_id=author.id, cell_image=obj['imageUri'], cell_timestamp=obj['timestamp'], cell_revision=obj['_rev'], attempts=obj['attempts'])
