@@ -15,18 +15,20 @@ from travels.models import TravelsUser
 from travels.models import Tag
 
 class SyncAPI(rest.ResourceView):
-    @optional_http_auth
+    @require_http_auth
     def post_spike(request):
+        print >> sys.stderr, request
         print >> sys.stderr, request.POST['parameters']
 
         obj = json.loads(request.POST['parameters'])
 
         # For this proof of concept, we'll use the admin user as author of the itinerary and cast
-        try:
-            author = TravelsUser.objects.get(email="unicef.gis.program@gmail.com")
-        except TravelsUser.DoesNotExist:
-            print >> sys.stderr, "Admin user does not exist"
-            return HttpResponse(status=500)
+        #try:
+        #    author = TravelsUser.objects.get(email="unicef.gis.program@gmail.com")
+        #except TravelsUser.DoesNotExist:
+        #    print >> sys.stderr, "Admin user does not exist"
+        #    return HttpResponse(status=500)
+        author = request.user
 
         # We'll store uploaded reports to a default category 'Just uploaded'.
         # Here, we take care of creating it before continuing
@@ -42,7 +44,7 @@ class SyncAPI(rest.ResourceView):
         try: 
             cast = Cast.objects.prefetch_related('media_set').get(guid=obj['_id'])
 
-            image_syncd = (cast.prefetch_optimized_preview_image() == None)
+            image_syncd = (cast.prefetch_optimized_preview_image() != None)
             itinerary_syncd = cast.itinerary_set.all().count() > 0
 
             if image_syncd and itinerary_syncd:
@@ -60,8 +62,8 @@ class SyncAPI(rest.ResourceView):
             cast.set_location(obj['longitude'], obj['latitude'])
             cast.save()            
             
-            #Tags
-            cast.set_tags(','.join(obj['tags']))
+            #Tags            
+            cast.set_tags(','.join(obj.get('tags', [])))
             cast.save()    
 
             sync_media(author, cast, request)        
