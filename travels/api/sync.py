@@ -22,22 +22,9 @@ class SyncAPI(rest.ResourceView):
 
         obj = json.loads(request.POST['parameters'])
 
-        # For this proof of concept, we'll use the admin user as author of the itinerary and cast
-        #try:
-        #    author = TravelsUser.objects.get(email="unicef.gis.program@gmail.com")
-        #except TravelsUser.DoesNotExist:
-        #    print >> sys.stderr, "Admin user does not exist"
-        #    return HttpResponse(status=500)
         author = request.user
 
-        # We'll store uploaded reports to a default category 'Just uploaded'.
-        # Here, we take care of creating it before continuing
-        try:
-            itinerary = Itinerary.objects.get(title="Just uploaded")
-        except Itinerary.DoesNotExist:
-            print >> sys.stderr, "-Just uploaded- category didn't exist, creating it"
-            itinerary = Itinerary(title="Just uploaded", author_id=author.id)
-            itinerary.save()
+        itinerary = ensure_just_uploaded_itinerary(author)
 
         # Now we check whether the cast already exists. If that's the case, we return OK without
         # doing anything else, since this endpoint intends to be idempotent.
@@ -55,19 +42,11 @@ class SyncAPI(rest.ResourceView):
             
             if not itinerary_syncd:
                 add_to_itinerary(cast, itinerary)
+
         except Cast.DoesNotExist:
             print >> sys.stderr, "Cast didn't exist, creating it"
-            cast = Cast(title=obj['title'], title_en=obj['title'], guid=obj['_id'], author_id=author.id, cell_image=obj['imageUri'], cell_timestamp=obj['timestamp'], cell_revision=obj['_rev'], attempts=obj['attempts'])
+            create_cast(obj, author, itinerary, request)
 
-            cast.set_location(obj['longitude'], obj['latitude'])
-            cast.save()            
-            
-            #Tags            
-            cast.set_tags(','.join(obj.get('tags', [])))
-            cast.save()    
-
-            sync_media(author, cast, request)        
-            add_to_itinerary(cast, itinerary)            
         except Exception:
             print >> sys.stderr, sys.exc_info()[0]
             print >> traceback.print_exc()
@@ -102,5 +81,40 @@ def sync_media(author, cast, request):
 def add_to_itinerary(cast, itinerary):
     #Itinerary             
     itinerary.related_casts.add(cast)
+
+def ensure_just_uploaded_itinerary(author):
+    # We'll store uploaded reports to a default category 'Just uploaded'.
+    # Here, we take care of creating it before continuing
+    try:
+        itinerary = Itinerary.objects.get(title="Just uploaded")
+    except Itinerary.DoesNotExist:
+        print >> sys.stderr, "-Just uploaded- category didn't exist, creating it"
+        itinerary = Itinerary(title="Just uploaded", author_id=author.id)
+        itinerary.save()
+
+    return itinerary
+
+def create_cast(json_dict, author, itinerary, request):
+    title = json_dict['title']
+    guid = json_dict['_id']
+    cell_image = json_dict['imageUri']
+    cell_timestamp = json_dict['timestamp']
+    cell_revision = json_dict['_rev']
+    attempts = json_dict['attempts']
+    post_to_twitter = json_dict.get('postToTwitter', False)
+    post_to_facebook = json_dict.get('postToFacebook', False)
+
+    cast = Cast(title=title, title_en=title, guid=guid, author_id=author.id, cell_image=cell_image, cell_timestamp=cell_timestamp, cell_revision=cell_revision, attempts=attempts, post_to_twitter=post_to_twitter, post_to_facebook=post_to_facebook)
+
+    cast.set_location(json_dict['longitude'], json_dict['latitude'])
+    cast.save()            
+    
+    #Tags            
+    cast.set_tags(','.join(json_dict.get('tags', [])))
+    cast.save()    
+
+    sync_media(author, cast, request)        
+    add_to_itinerary(cast, itinerary)            
+
 
 

@@ -209,6 +209,8 @@ class Cast(ModelBase,
     cell_timestamp = models.CharField(max_length=32, blank=True)
     guid = models.CharField(max_length=64, blank=True)
     cell_revision = models.CharField(max_length=64, blank=True)
+    post_to_twitter = models.BooleanField(default=False)
+    post_to_facebook = models.BooleanField(default=False)
 
     @models.permalink
     def get_api_uri(self):
