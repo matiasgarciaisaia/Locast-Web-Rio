@@ -96,6 +96,8 @@ class TravelsUser(modelbases.LocastUser,
 
     hometown = models.CharField(max_length=128, null=True, blank=True)
 
+    can_post_to_social_networks = models.BooleanField(default=False)
+
 
 class Itinerary(ModelBase,
         interfaces.Authorable,

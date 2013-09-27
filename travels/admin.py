@@ -158,7 +158,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class TravelsUserAdmin(admin.ModelAdmin):
-    list_display = ('display_name', 'email', 'first_name', 'last_name', 'username', 'is_staff', 'date_joined')
+    list_display = ('display_name', 'email', 'first_name', 'last_name', 'username', 'is_staff', 'date_joined', 'can_post_to_social_networks')
 
 
 class VideoMediaAdmin(MapAdmin):
