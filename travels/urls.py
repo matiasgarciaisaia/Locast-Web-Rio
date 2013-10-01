@@ -3,6 +3,9 @@ from django.contrib import admin
 
 from travels import models
 
+from django.conf.urls.static import static
+import settings
+
 # Enable admin defined settings
 if models.Settings.objects.count() == 0:
     s = models.Settings.objects.create()
@@ -20,6 +23,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('travels.views',
     url(r'^$', 'frontpage', name='frontpage'),
     url(r'^register/$', 'register', name='register'),
+    url(r'^my_account/$', 'my_account', name='my_account'),
 )
 
 urlpatterns += patterns('travels.views',
@@ -40,3 +44,10 @@ urlpatterns += patterns('locast.auth.views',
 urlpatterns += patterns('',
     url(r'^api/', include('travels.api.urls')),
 )
+
+urlpatterns += patterns('',
+    url('', include('social.apps.django_app.urls', namespace='social')),
+)
+
+#Uncomment in dev env
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

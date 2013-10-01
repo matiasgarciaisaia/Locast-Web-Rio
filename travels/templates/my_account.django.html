@@ -1,0 +1,77 @@
+{% extends "basev2.django.html" %}
+{% load i18n %}
+
+{% block main %}
+	<div id="main">
+		<div class="title">My account</div>
+		<br/>
+
+		<form method="post" action="{% url 'social:disconnect' "facebook" %}" id="disconnect-facebook">{% csrf_token %}</form>
+		<form method="post" action="{% url 'social:disconnect' "twitter" %}" id="disconnect-twitter">{% csrf_token %}</form>
+
+		<form>
+			<label>Email</label>
+			<br/>
+			<input type="text" placeholder="Email"></input>
+			<br/>
+			<label>Name</label>
+			<br/>
+			<input type="text" placeholder="Name"></input>
+			<br/>
+			<label>Last name</label>
+			<br/>
+			<input type="text" placeholder="Last name"></input>
+			<br/>
+			<label>Password</label>
+			<br/>
+			<input type="password" placeholder="Password"></input>
+			<br/>			
+			<label>Confirm password</label>
+			<br/>
+			<input type="password" placeholder="Confirm password"></input>
+			<br/>		
+
+			<div class="subtitle">Facebook credentials</div>
+			
+			{% if facebook_username %}
+				Connected to Facebook account <i>{{ facebook_username }}</i>
+				<br/>			    
+				<a id="disconnect-facebook-anchor" href="">Disconnect</a>
+				<script type="text/javascript">
+			      $(function () {
+			          $(document).on('click', '#disconnect-facebook-anchor', function (e) {
+			              e.preventDefault();
+			              $('#disconnect-facebook').submit();
+			          });
+			      });
+			    </script>
+
+			{% else %}
+				<a href="{% url 'social:begin' "facebook" %}">Connect with Facebook</a> 				
+			{% endif%}
+
+			<br />
+
+			<div class="subtitle">Twitter credentials</div>
+
+			{% if twitter_username %}
+				Connected to Twitter account <i>{{ twitter_username }}</i>
+				<br/>			    
+				<a id="disconnect-twitter-anchor" href="">Disconnect</a>
+				<script type="text/javascript">
+			      $(function () {
+			          $(document).on('click', '#disconnect-twitter-anchor', function (e) {
+			              e.preventDefault();
+			              $('#disconnect-twitter').submit();
+			          });
+			      });
+			    </script>
+			{% else %}
+				<a href="{% url 'social:begin' "twitter" %}">Connect with Twitter</a> 				
+			{% endif%}			
+			<br />
+
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>	
+{% endblock main %}
