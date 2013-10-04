@@ -18,7 +18,6 @@ class SyncAPI(rest.ResourceView):
     @require_http_auth
     def post_spike(request):
         print >> sys.stderr, request
-        print >> sys.stderr, request.POST['parameters']
 
         obj = json.loads(request.POST['parameters'])
 

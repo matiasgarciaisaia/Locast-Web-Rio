@@ -19,31 +19,15 @@ from social.apps.django_app.default.models import UserSocialAuth
 from travels import forms, models
 from travels.models import Cast
 
+import travels.social_networks as socials
+
 @require_http_auth
 def my_account(request):
     #DRY Refactor (also at my_account template...)
-    try:
-        facebook_user = request.user.social_auth.get(provider='facebook')
-        details = facebook_user.extra_data
+    social_networks = socials.SocialNetworks(request.user)
 
-        facebook_username = details.get('username', None)
-
-        if not facebook_username:
-            facebook_username = details.get('name', None)
-    except UserSocialAuth.DoesNotExist:
-        facebook_user = None
-
-    try:
-        twitter_user = request.user.social_auth.get(provider='twitter')
-        details = twitter_user.extra_data
-
-        twitter_username = details.get('screen_name', None)
-
-        if twitter_username:
-            twitter_username = '@' + twitter_username
-
-    except UserSocialAuth.DoesNotExist:
-        twitter_user = None
+    facebook_username = social_networks.facebook_username()
+    twitter_username = social_networks.twitter_username()
 
     return render_to_response('my_account.django.html', locals(), context_instance = RequestContext(request))
 

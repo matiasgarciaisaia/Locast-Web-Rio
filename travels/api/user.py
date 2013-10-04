@@ -4,6 +4,10 @@ from locast.auth.decorators import optional_http_auth, require_http_auth
 
 from travels.models import TravelsUser
 
+import requests
+
+import travels.social_networks as socials
+
 class UserAPI(rest.ResourceView):
 
     ruleset = {
@@ -42,4 +46,24 @@ class UserAPI(rest.ResourceView):
     @require_http_auth
     def get_me(request):
         return APIResponseOK(content=api_serialize(request.user))
+
+    @require_http_auth
+    def get_share_on_facebook(request):
+        social_networks = socials.SocialNetworks(request.user)
+
+        user_facebook_id = social_networks.facebook_user_id()
+        access_token = social_networks.facebook_access_token()
+
+        payload = {'access_token': access_token, 'fb:explicitly_shared': 'true', 'website': 'http://www.google.com'}
+
+        r = requests.post('https://graph.facebook.com/' + user_facebook_id + '/unicef-gis:share_a_report', data=payload)
+
+        import sys
+        print >> sys.stderr, r.json()
+
+        return APIResponseOK()
+
+
+
+
 

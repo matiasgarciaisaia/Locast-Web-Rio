@@ -70,6 +70,8 @@ class RegisterForm(forms.Form):
         u.profile = cleaned_data.get('profile')
         u.personal_url = cleaned_data.get('personal_url')
 
+        u.can_post_to_social_networks = False
+
         u.save()
 
         # lc stands for locast!!

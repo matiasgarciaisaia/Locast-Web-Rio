@@ -27,6 +27,7 @@ urlpatterns = patterns('travels.api',
     url(r'^user/(?P<user_id>\d+)/$', 'user.UserAPI', name='user_api_single'),
     url(r'^user/me$', 'user.UserAPI', kwargs={'method':'me'}),
     url(r'^user/$', 'user.UserAPI', name='user_api'),
+    url(r'^user/share_on_facebook$', 'user.UserAPI', kwargs={'method':'share_on_facebook'}, name='share_on_facebook'),
 
     # ITINERARY
     url(r'^itinerary/(?P<itin_id>\d+)/favorite/$', 'itinerary.ItineraryAPI', kwargs={'method':'favorite'}),
