@@ -87,4 +87,6 @@ GOOGLE_MAPS_API_KEY = ''
 FACEBOOK_APP_ID = ''
 FACEBOOK_APP_SECRET = ''
 
+PLACEHOLDER_PATH = MEDIA_ROOT + "castPlaceholder.png"
+
 POSTGIS_TEMPLATE = 'template_postgis2'
