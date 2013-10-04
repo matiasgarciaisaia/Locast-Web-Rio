@@ -156,7 +156,10 @@ class Itinerary(ModelBase,
 
     @property
     def thumbnail(self):
-        return get_thumbnail(self.preview_image, '600', quality=75)
+        try:
+            return get_thumbnail(self.preview_image, '600', quality=75)
+        except: 
+            return get_thumbnail(settings.PLACEHOLDER_PATH, '600', quality=75)
 
 
 class Event(ModelBase,
@@ -407,11 +410,17 @@ class ImageMedia(Media,
 
     @property
     def thumbnail(self):
-        return get_thumbnail(self.file, '150', quality=75)
+        try:
+            return get_thumbnail(self.file, '150', quality=75)
+        except: 
+            return get_thumbnail(settings.PLACEHOLDER_PATH, '150', quality=75)
 
     @property
     def medium_file(self):
-        return get_thumbnail(self.file, '600', quality=75)
+        try:
+            return get_thumbnail(self.file, '600', quality=75)
+        except: 
+            return get_thumbnail(settings.PLACEHOLDER_PATH, '600', quality=75)
 
     def process(self):
         pass
