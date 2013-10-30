@@ -455,7 +455,12 @@ def cast_from_post(request, cast = None):
         # Clear all tags
         if tags == "":
             cast.tags.all().delete()
-        tags = tags.lower()
+       
+        if type(tags) == list:
+            tags = [t.lower() for t in tags]
+        else:
+            tags = tags.lower()
+
         cast.set_tags(tags)
 
     if location:

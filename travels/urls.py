@@ -1,13 +1,12 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
-
+from django.contrib.gis.geos import Point
 from travels import models
 
 # Enable admin defined settings
 if models.Settings.objects.count() == 0:
-    s = models.Settings.objects.create()
-    # Default location to 0, 0
-    s.set_location(0, 0)
+    p = Point(0,0)
+    s = models.Settings(location=p, project_title = 'UNICEF GIS')
     s.save()
 
 admin.autodiscover()

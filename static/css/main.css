@@ -1964,3 +1964,7 @@ form input.locast-button{
 #id_email, #id_first_name, #id_last_name, #id_password, #id_password_verify {
     width:200px;
 }
+
+.olLayerGooglePoweredBy.gmnoprint {
+    z-index: 0 !important;
+}
