@@ -103,8 +103,11 @@ ADMIN_MEDIA_PREFIX = ''
 SECRET_KEY = ''
 
 AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
     'locast.auth.backends.LocastEmailBackend',
     'locast.auth.backends.LocastUsernameBackend',
+    'social.backends.twitter.TwitterOAuth',    
+    'social.backends.facebook.FacebookOAuth2',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -115,6 +118,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
     'locast.context_processors.settings_variables',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
     'travels.settings_context_processor.project_settings',
 )
 
@@ -128,12 +133,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'locast.middleware.LocastMiddleware',
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -164,6 +170,7 @@ INSTALLED_APPS = (
     'south',
     'sorl.thumbnail',
     'modeltranslation',
+    'social.apps.django_app.default',
     'travels',
     #'debug_toolbar',
 )
@@ -184,10 +191,35 @@ USER_ACTIONS = (
     'commented',
 )
 
-DEFAULT_PRIVACY = 2
+SOCIAL_AUTH_USER_MODEL = USER_MODEL
 
-#MAX_VIDEO_SIZE = 100000kb
-#MAX_IMAGE_SIZE = 1000kb
+SOCIAL_AUTH_LOGIN_URL = '/my_account/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/my_account/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/my_account/'
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/my_account/'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['publish_actions', 'email']
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [('username', 'username'), ('name', 'name')]
+
+SOCIAL_AUTH_TWITTER_EXTRA_DATA = [('screen_name', 'screen_name')]
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+)
+
+# OAuth keys, fill them on settings_local
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+
+SOCIAL_AUTH_TWITTER_KEY = ''
+SOCIAL_AUTH_TWITTER_SECRET = ''
+
+DEFAULT_PRIVACY = 2
 
 # settings_local
 DEFAULT_LON = 0.0

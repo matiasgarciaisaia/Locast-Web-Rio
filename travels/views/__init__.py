@@ -12,9 +12,24 @@ from django.template.loader import render_to_string
 
 from locast import get_model
 
+from locast.auth.decorators import require_http_auth, optional_http_auth
+
+from social.apps.django_app.default.models import UserSocialAuth
+
 from travels import forms, models
 from travels.models import Cast
 
+import travels.social_networks as socials
+
+@require_http_auth
+def my_account(request):
+    #DRY Refactor (also at my_account template...)
+    social_networks = socials.SocialNetworks(request.user)
+
+    facebook_username = social_networks.facebook_username()
+    twitter_username = social_networks.twitter_username()
+
+    return render_to_response('my_account.django.html', locals(), context_instance = RequestContext(request))
 
 def frontpage(request):
     fragment = request.GET.get('_escaped_fragment_')

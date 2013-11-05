@@ -60,7 +60,12 @@
     {% endfor %}
 </div>
 
-<div style="" id="user-profile-info"></div>
+{% if request.user.is_authenticated %}
+    <div style="color:white;" id="user-profile-info">
+        <a href="{% url 'my_account' %}">{% trans "My account" %}</a>
+    </div>
+{% endif %}
+
 </div><!-- end footer -->
 
 {% endblock body %}

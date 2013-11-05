@@ -815,13 +815,6 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     overflow:hidden;
 }
 
-#user-profile-info{
-    display:none !important;
-    position:absolute;
-    right:0px;
-    top:300px;
-    z-index:5000;
-}
 
 #intro-page-container{
     display:none;
@@ -1580,16 +1573,30 @@ a#logout-link{
     color:#fff;
     font-weight:bold;
     padding:2px 8px;
-    border-right:1px solid white;
+    
     position:absolute;
     top:16px;
     left:210px;
 }
 
+#user-profile-info{
+    border-right:1px solid white;
+    position:absolute;
+    top:16px;
+    left:270px;
+}
+
+#user-profile-info a{
+    display:inline-block;
+    padding:2px 8px;
+    margin-right:8px;
+    color:#fff;
+}
+
 #language-selector{
     position:absolute;
     top:16px;
-    left:280px;
+    left:365px;
 }
 
 #language-selector a{
