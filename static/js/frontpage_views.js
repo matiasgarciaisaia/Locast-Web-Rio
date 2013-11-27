@@ -811,7 +811,10 @@ cast_info_refresh(context.params['id'], should_refresh, function(cast_id, cast_h
     }
 
     // set up close button
-    $('#close-cast_' + cast_id).click(function() {
+    $('.close-cast').click(function() {
+        if (should_refresh == 'undefined')
+            return false;
+
         if (should_refresh)
             goto_previous_refresh_page();
         else

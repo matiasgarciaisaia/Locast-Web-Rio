@@ -4,3 +4,4 @@ sorl-thumbnail==11.05.2
 django>=1.4
 python-social-auth
 requests
+celery==3.1

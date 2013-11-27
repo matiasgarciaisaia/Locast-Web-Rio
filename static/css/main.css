@@ -1142,9 +1142,16 @@ a#logout-link{
     height:160%;
     left:0;
     top:0;
-    background-image:url('../img/closeIconFilled.png');
-    background-repeat: no-repeat;
-    background-position: 159px 45px;
+}
+
+.close-cast-popup {
+    float:right;
+    background-image: url('../img/icon_close.png');
+    background-size: cover;
+    border: none;
+    width: 24px;
+    height: 25px;
+    cursor: pointer;
 }
 
 .cast-location{
@@ -1168,7 +1175,7 @@ a#logout-link{
 }
 
 .locast-open-cast{
-    padding:16px;
+    padding: 16px;
 }
 
 .locast-open-cast .cast-header{
@@ -1178,13 +1185,14 @@ a#logout-link{
 
 .locast-open-cast .cast-header .title{
     position:relative;
+    color: black;
+    font-size: 18pt;
 }
 
-.locast-open-cast .cast-header .title a.edit-toggle{
-    position:absolute;
-    width:100px;
-    right:-120px;
-    top:4px;
+.regular-link {
+    font-size:8pt;
+    text-decoration: underline;
+    color: blue;
 }
 
 .locast-open-cast .cast-header .author{
@@ -1193,22 +1201,29 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-header .cast-date{
-    position:absolute;
-    bottom:4px;
-    right:4px;
+    font-weight: normal;
+    font-size: 8pt;
+}
+
+.cast-ruler {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d2d2d2;
 }
 
 .locast-open-cast .cast-header .cast-edit-tools{
-    margin-bottom:16px;
-    padding:16px 8px 4px 8px;
-    position:relative;
-    top:-16px;
-    display:inline-block;
+    padding:4px 0px 4px 8px;
+    margin-top:8px;
 }
 
 .locast-open-cast .cast-header .cast-edit-tools a{
     float:left;
     margin: 0 12px 0 0;
+}
+
+.cast-author {
+    font-size: 8pt;
+    font-weight: normal;
 }
 
 .locast-open-cast .cast-header .cast-actions{
@@ -1281,20 +1296,51 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-content .cast-media{
-    width:600px;
-    height:300px;
-    margin: 8px 0 16px 0 ;
-    position:relative;
-    left:-16px;
+    width:500px;
+    height:250px;
+    margin-top: 8px;
 }
 
 .locast-open-cast .cast-content .cast-media .media-list li{
-    display:block;
-    width:600px;
-    display:none;
+    width:568px;
     position:absolute;
     top:0px;
     left:0px;
+}
+
+.twitter-share-button {
+    float:left;
+}
+
+.fb-share-button {
+    height: 16px;
+    margin-top: 8px;
+}
+
+.social-buttons {
+    display: inline-block;
+    margin-top: 8px;
+} 
+
+.facebook_share_button {
+    background-image: url('../img/facebook_share_button.png');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    cursor: pointer;
+    margin-right: 8px;
+    float:left;
+}
+
+.twitter_share_button {
+    background-image: url('../img/twitter_share_button.png');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 8px;
 }
 
 .locast-open-cast .cast-content .cast-media .media-list li:first-child {
@@ -1312,8 +1358,8 @@ a#logout-link{
 .locast-open-cast .cast-content .content .delete-media{
     position:absolute;
     z-index:1550;
-    top:274px;
-    right:32px;
+    right:0px;
+    top:0px;
 }
 
 .locast-open-cast .cast-media .locast-button{
@@ -1353,18 +1399,11 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-content .cast-media .image-frame{
-    width:96%;
-    margin-left: 2%;
-    margin-right:2%;
     background-image:none;
     background-color:#ccc;
-    height:300px;
+    height:250px;
 }
 
-.locast-open-cast .cast-content .cast-media .image-frame img{
-    top:-15%;
-    width:110%;
-}
 
 .locast-open-cast .cast-content .cast-media .image-frame img.portrait{
     position:relative;
@@ -1402,12 +1441,12 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-content .cast-description{
-    width:530px;
+    width:568px;
+    margin-top:32px;
 }
 
 .locast-open-cast .cast-content .cast-description .cast-tags{
-    display:inline-block;
-    margin-bottom:16px;
+    margin-bottom:8px;
 }
 
 .locast-open-cast .cast-content .cast-description .cast-tags .edit-toggle{
@@ -1427,11 +1466,15 @@ a#logout-link{
 }
 
 .locast-open-cast .cast-content .cast-description .edit-toggle{
-    margin-top:12px;
+    margin-top:8px;
 }
 
 .locast-open-cast .cast-content .cast-description .cast-itineraries{
-    margin-top:16px;
+    margin-top:8px;
+}
+
+.cast-itinerary-edit-button {
+    margin-bottom: 0px;
 }
 
 .locast-open-cast .cast-content .cast-description .cast-itineraries li{
@@ -1494,7 +1537,6 @@ a#logout-link{
 }
 
 #content-details form{
-    margin-bottom:16px;
 }
 
 #content-details  form.tag-edit{

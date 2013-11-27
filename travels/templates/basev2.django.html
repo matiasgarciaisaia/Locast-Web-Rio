@@ -5,12 +5,32 @@
     <link type="text/css" href="{{STATIC_URL}}css/application.css" rel="stylesheet" media="screen, projection" />
 {% endblock style %}
 
-{% block body %}
-<div id="header">
+{% block body-class %}
+	full-width
+{% endblock %}
 
+{% block body %}
+<div class="wrapper">
+	<div class='header'>      
+      <a href="/">
+	     <img src='{{STATIC_URL}}img/unicef_logo.png'/>
+      </a>
+  	</div>
+  	<div class='sub-header'>
+        <div class='left'>
+          <h1>
+            {% block header %} {% endblock header %}
+          </h1>
+          <p>{% block subheader %} {% endblock subheader %}</p>
+        </div>
+        {% block actionbar %}{% endblock actionbar %}
+  	</div>
+
+  	<div class='content'>
+	  	{% block content %}
+		{% endblock content %}
+  	</div>  	
 </div>
 
-{% block main %}
-{% endblock main %}
-
+	
 {% endblock body %}

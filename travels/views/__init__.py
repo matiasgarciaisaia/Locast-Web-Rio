@@ -23,12 +23,20 @@ import travels.social_networks as socials
 
 @require_http_auth
 def my_account(request):
-    #DRY Refactor (also at my_account template...)
     social_networks = socials.SocialNetworks(request.user)
 
     facebook_username = social_networks.facebook_username()
     twitter_username = social_networks.twitter_username()
 
+    if request.method == 'POST':
+        form = forms.MyAccountForm(request.POST, instance=request.user)
+
+        if form.is_valid():            
+            form.save()
+            return render_to_response('my_account.django.html', locals(), context_instance = RequestContext(request))
+    else:
+        form = forms.MyAccountForm(instance=request.user)
+    
     return render_to_response('my_account.django.html', locals(), context_instance = RequestContext(request))
 
 def frontpage(request):

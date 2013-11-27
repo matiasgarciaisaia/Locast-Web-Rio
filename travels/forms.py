@@ -12,7 +12,6 @@ class CastAPIForm(forms.ModelForm):
         model = models.Cast
         fields = ('author', 'title', 'description', 'privacy')
 
-
 class VideoMediaForm(forms.ModelForm):
     class Meta: 
         model = models.VideoMedia
@@ -94,4 +93,51 @@ class RegisterForm(forms.Form):
     personal_url = forms.URLField(required=False, label=_('Your Website'))
 
     user_image = forms.ImageField(required=False, label=_('Profile Picture'))
+
+class MyAccountForm(forms.ModelForm):
+    class Meta:
+        model = models.TravelsUser
+        fields = ('email', 'first_name', 'last_name')
+
+    def save(self):
+        cleaned_data = self.cleaned_data
+        
+        self.instance.email = cleaned_data.get('email')
+
+        self.instance.first_name = cleaned_data.get('first_name')
+        self.instance.last_name = cleaned_data.get('last_name')
+
+        self.instance.set_password(cleaned_data.get('password'))
+        
+        self.instance.save()
+        return self.instance
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+
+        import sys
+        print >> sys.stderr, str(cleaned_data)
+
+
+        password = cleaned_data.get('password')
+        password_verify = cleaned_data.get('password_verify')
+
+        if not password == password_verify:
+            msg = _('Passwords did not match!')
+            self._errors['password'] = self.error_class([msg])
+
+            del self.cleaned_data['password']
+            del self.cleaned_data['password_verify']
+
+        if 'email' in self.cleaned_data:
+            users_with_email = models.TravelsUser.objects.filter(email=self.cleaned_data['email'])
+
+            if len(users_with_email) and users_with_email[0].id != self.instance.id:
+                self._errors['email'] = self.error_class([_('email has already been registered!')])
+                
+        return cleaned_data
+
+    password = forms.CharField(widget=forms.PasswordInput(render_value=False), label=_('Password'), required=False)
+    password_verify = forms.CharField(widget=forms.PasswordInput(render_value=False), label=_('Verify Password'), required=False)
+
 

@@ -224,6 +224,9 @@ class Cast(ModelBase,
     def get_absolute_url(self):
         return reverse('frontpage') + '#!cast/' + str(self.id) + '/'
 
+    def absolute_url_with_host(self):
+        return settings.FULL_BASE_URL + self.get_absolute_url()
+
     class Meta:
         verbose_name = _('cast')
 

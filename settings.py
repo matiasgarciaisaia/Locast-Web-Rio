@@ -116,11 +116,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
+    'django.core.context_processors.csrf',
     'django.contrib.messages.context_processors.messages',
     'locast.context_processors.settings_variables',
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
     'travels.settings_context_processor.project_settings',
+    'travels.settings_context_processor.settings_variables',
 )
 
 # List of callables that know how to import templates from various sources.

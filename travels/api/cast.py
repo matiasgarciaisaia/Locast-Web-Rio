@@ -117,8 +117,7 @@ class CastAPI(rest.ResourceView):
 
 
     @require_http_auth
-    def post(request, cast_id=None, itin_id=None):
-
+    def post(request, cast_id=None, itin_id=None):        
         if cast_id:
             raise exceptions.APIBadRequest('Attempting to post with a cast id specified')
 
@@ -139,7 +138,6 @@ class CastAPI(rest.ResourceView):
 
     @require_http_auth
     def put(request, cast_id, itin_id=None):
-
         if itin_id: check_itinerary(cast_id, itin_id)
         cast = get_object(models.Cast, cast_id)
 

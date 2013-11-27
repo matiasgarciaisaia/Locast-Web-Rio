@@ -733,7 +733,7 @@ self.init = function(div) {
     self.gstreetLayer.events.on({moveend: self.baseLayerSwitcher});
     self.gterrainLayer.events.on({moveend: self.baseLayerSwitcher});
 
-    self.map.addLayers([self.gterrainLayer, self.gstreetLayer, self.osmLayer, self.gsatelliteLayer]);
+    self.map.addLayers([self.osmLayer, self.gterrainLayer, self.gstreetLayer, self.gsatelliteLayer]);
     self.map.addLayers([self.tmsOverlay, self.itineraryLayer, self.castLayer, self.eventLayer, self.boundryLayer, self.addCastLayer, self.openCastLayer]);
 
     self.map.addControls([self.addCastControl, self.highlightCtrl, self.selectCast, self.selectEvent, self.selectItinerary]);

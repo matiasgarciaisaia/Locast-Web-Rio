@@ -1,4 +1,4 @@
-
+from social.apps.django_app.default.models import UserSocialAuth
 
 class SocialNetworks:
 	def __init__(self, user):
@@ -28,6 +28,20 @@ class SocialNetworks:
     	
 		return twitter_username
 
+	def twitter_access_token(self):
+		return self.get_from_twitter_auth_token('oauth_token')
+
+	def twitter_token_secret(self):
+		return self.get_from_twitter_auth_token('oauth_token_secret')
+
+	def get_from_twitter_auth_token(self, field_name):
+		whole_access_token = self.get_from_extra_data('twitter', 'access_token')
+
+		if whole_access_token:
+			return whole_access_token.get(field_name, None)
+		else:
+			return whole_access_token
+
 	def get_from_extra_data(self, provider, field_name):
 		field = None
 
@@ -43,5 +57,7 @@ class SocialNetworks:
 
 	def provider_user(self, provider):
 		return self.user.social_auth.get(provider=provider)
+
+
 
 

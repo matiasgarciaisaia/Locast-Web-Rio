@@ -14,11 +14,17 @@ from travels.models import Cast
 from travels.models import TravelsUser
 from travels.models import Tag
 
-class SyncAPI(rest.ResourceView):
-    @require_http_auth
-    def post_spike(request):
-        print >> sys.stderr, request
+from django.views.decorators.csrf import csrf_exempt
 
+import travels.social_networks as socials
+
+from travels.tasks import post_to_facebook
+from travels.tasks import post_to_twitter
+
+@csrf_exempt
+class SyncAPI(rest.ResourceView):
+    @require_http_auth    
+    def post_spike(request):
         obj = json.loads(request.POST['parameters'])
 
         author = request.user
@@ -113,7 +119,25 @@ def create_cast(json_dict, author, itinerary, request):
     cast.save()    
 
     sync_media(author, cast, request)        
-    add_to_itinerary(cast, itinerary)            
+    add_to_itinerary(cast, itinerary)
 
+    if author.can_post_to_social_networks:
+        post_to_social_networks(cast, author, request)
+        
+def post_to_social_networks(cast, author, request):
+    cast_uri = request.build_absolute_uri(cast.get_absolute_url())   
+    thumbnail_uri = request.build_absolute_uri(cast.preview_image)     
+
+    social_networks = socials.SocialNetworks(author)
+
+    if cast.post_to_facebook:
+        user_facebook_id = social_networks.facebook_user_id()
+
+        if user_facebook_id:
+            access_token = social_networks.facebook_access_token()
+            post_to_facebook.delay(user_facebook_id, access_token, cast_uri, thumbnail_uri, cast.title)
+
+    if cast.post_to_twitter:
+        post_to_twitter.delay(author.id, cast.guid, cast_uri, social_networks.twitter_access_token(), social_networks.twitter_token_secret())
 
 
