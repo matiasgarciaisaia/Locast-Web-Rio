@@ -15,7 +15,7 @@
 {% block body %}
 
 <div id="search-bar">
-        {% block search %}{% endblock %}
+    {% block search %}{% endblock %}
 </div>
 
 <div id="search-results"></div>
@@ -42,12 +42,29 @@
     {% block main-content %}{% endblock %}
 </div>
 
+{% if VOY_BRANDING %}
+<div id="footer" class="footer-voy">
+{% else %}
 <div id="footer">
+{% endif %}
 
-    <a href="{{FULL_BASE_URL}}/#!"><div class="logo" id="unicef-logo"></div></a>
+    <a href="{{FULL_BASE_URL}}/#!">
+        {% if VOY_BRANDING %}
+            <div class="logo" id="voy-logo"></div>
+        {% else %}    
+            <div class="logo" id="unicef-logo"></div>
+        {% endif %}
+    </a>
 
-<a href="http://mobile.mit.edu" target="_blank"><div class="logo" id="mel-logo"></div></a>
-<p id="mel-credit"><a href="http://locast.mit.edu" target="_blank">Built on Locast</a> by the <a href="http://mobile.mit.edu" target="_blank">MIT Mobile Experience Lab </a></p>
+<a href="http://mobile.mit.edu" target="_blank">
+    {% if VOY_BRANDING %}
+        <div class="logo" id="mel-logo-black"></div>
+    {% else %}
+        <div class="logo" id="mel-logo"></div>
+    {% endif %}
+    
+</a>
+<p id="mel-credit"><a href="http://locast.mit.edu" target="_blank">Built on Locast</a><a href="http://mobile.mit.edu" target="_blank"> by the MIT Mobile Experience Lab </a></p>
 
 <a id="home-link" href="#!">{% trans "Home" %}</a>
 

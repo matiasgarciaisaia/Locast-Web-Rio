@@ -284,6 +284,17 @@ input.name {
 .left {
   float: left;
 }
+
+.header.voyHeader {
+  background-color: white;
+}
+
+.header.voyHeader img {
+  width:80px;
+  height:50px;
+  margin-top: -10px;
+}
+
 .header {
   *zoom: 1;
   background: #0099ff;

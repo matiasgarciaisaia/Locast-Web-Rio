@@ -700,7 +700,7 @@ var cast_container_size_update = function(){
     var height = $(window).height();
     var width = $(window).width();
     var castHeight = $('#content-details .casts').height();
-    $('#content-details .content-details-close').height(castHeight+150);
+    $('#content-details .content-details-close').height(castHeight + 150);
     $('#content-details').height(height-$('#footer').height()).width(width);
 }
 

@@ -230,6 +230,8 @@ DEFAULT_ZOOM = 0
 
 GOOGLE_MAPS_KEY = ''
 
+VOY_BRANDING = True
+
 # Allows arbitrary settings variables to be exposed to templates
 CONTEXT_VARIABLES = (
     'GOOGLE_MAPS_KEY',
@@ -239,7 +241,10 @@ CONTEXT_VARIABLES = (
     'DEFAULT_LAT',
     'DEFAULT_ZOOM',
     'PRODUCTION',
+    'VOY_BRANDING',
 )
+
+
 
 # import settings_local
 try: from settings_local import *

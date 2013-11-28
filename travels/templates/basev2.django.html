@@ -11,9 +11,19 @@
 
 {% block body %}
 <div class="wrapper">
-	<div class='header'>      
+  {% if VOY_BRANDING %}
+    <div class='header voyHeader'>      
+  {% else %}
+    <div class='header'>      
+  {% endif %}
+	
       <a href="/">
-	     <img src='{{STATIC_URL}}img/unicef_logo.png'/>
+        {% if VOY_BRANDING %}
+          <img src='{{STATIC_URL}}img/voyLogo.png'/>
+        {% else %}
+          <img src='{{STATIC_URL}}img/unicef_logo.png'/>
+        {% endif %}
+	       
       </a>
   	</div>
   	<div class='sub-header'>
