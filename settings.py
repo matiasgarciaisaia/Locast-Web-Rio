@@ -230,7 +230,7 @@ DEFAULT_ZOOM = 0
 
 GOOGLE_MAPS_KEY = ''
 
-VOY_BRANDING = True
+VOY_BRANDING = False
 
 # Allows arbitrary settings variables to be exposed to templates
 CONTEXT_VARIABLES = (

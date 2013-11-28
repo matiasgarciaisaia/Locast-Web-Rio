@@ -1608,17 +1608,16 @@ a#logout-link{
 }
 
 .logo{
-    display:block;
-    position:absolute;
-    top:6px;
+    float:left;
     background-repeat:no-repeat;
 }
 
 #unicef-logo{
     width:180px;
     height: 40px;
-    left:24px;
     background-image:url('../img/unicefLogo.png');
+    margin-top: 6px;
+    margin-left: 10px;
 }
 
 #voy-logo {
@@ -1627,63 +1626,71 @@ a#logout-link{
     left:24px;
     background-image:url('../img/voyLogo.png');
     background-size: contain;
+    margin-top: 5px;
+    margin-left: 25px;
 }
 
 #mel-logo{
-    width:60px;
+    width:40px;
     height: 40px;
-    top:3px;
-    right:0;
     background-image:url('../img/melLogoNoText.png');
     background-position:0 -12px;
+    float:right;
+    margin-top:3px;
+    margin-left:5px;
 }
 
 #mel-logo-black {
-    width:60px;
+    width:40px;
     height: 40px;
-    top:3px;
-    right:0;
     background-image:url('../img/mel-logo-black.png');
     background-size: contain;
+    float:right;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 
 #mel-credit{
-    position:absolute;
     line-height:1.1;
     width:180px;
     text-align:right;
-    bottom:11px;
-    right:70px;
+    float:right;
+    margin-top:14px;
+    margin-right:3px;
 }
 
 #home-link{
     color:#fff;
     font-weight:bold;
     padding:2px 8px;
-    
-    position:absolute;
-    top:16px;
-    left:210px;
+    float:left;
 }
 
-#user-profile-info{
+.footer-voy .navbar-link {
+    border-color: black;
+}
+
+#navbar {
+    margin-top:15px;
+}
+
+.navbar-link{
     border-right:1px solid white;
-    position:absolute;
-    top:16px;
-    left:270px;
+    float:left;
 }
 
-#user-profile-info a{
+.navbar-link a{
     display:inline-block;
     padding:2px 8px;
-    margin-right:8px;
     color:#fff;
 }
 
+.navbar-link:hover {
+     background-color:#FF0099;
+}
+
 #language-selector{
-    position:absolute;
-    top:16px;
-    left:365px;
+    float:right;
 }
 
 #language-selector a{

@@ -66,24 +66,29 @@
 </a>
 <p id="mel-credit"><a href="http://locast.mit.edu" target="_blank">Built on Locast</a><a href="http://mobile.mit.edu" target="_blank"> by the MIT Mobile Experience Lab </a></p>
 
-<a id="home-link" href="#!">{% trans "Home" %}</a>
+<div id="navbar">
+    <a id="home-link" class="navbar-link" href="#!">{% trans "Home" %}</a>
 
-<div id="language-selector">
-    {% get_available_languages as languages %}
-    {% for lang in languages %}
-    <a href="{% url 'set_language' %}?language={{ lang.0 }}&next={{ request.path }}" id="lang-{{ lang.0 }}" class="language-select">
-        {% get_language_info for lang.0 as li %}
-        {{li.name_local|capfirst}}
-    </a>
-    {% endfor %}
-</div>
+    {% if request.user.is_authenticated %}
+        <div style="color:white;" class="navbar-link" id="user-profile-info">
+            <a href="{% url 'my_account' %}">{% trans "My account" %}</a>
+        </div>
+    {% endif %}
 
-{% if request.user.is_authenticated %}
-    <div style="color:white;" id="user-profile-info">
-        <a href="{% url 'my_account' %}">{% trans "My account" %}</a>
+    <div style="color:white;border-right:none;" class="navbar-link" id="gallery">
+        <a href="{% url 'gallery' %}">{% trans "Gallery" %}</a>
     </div>
-{% endif %}
 
+    <div id="language-selector">
+        {% get_available_languages as languages %}
+        {% for lang in languages %}
+        <a href="{% url 'set_language' %}?language={{ lang.0 }}&next={{ request.path }}" id="lang-{{ lang.0 }}" class="language-select">
+            {% get_language_info for lang.0 as li %}
+            {{li.name_local|capfirst}}
+        </a>
+        {% endfor %}
+    </div>
+</div>
 </div><!-- end footer -->
 
 {% endblock body %}

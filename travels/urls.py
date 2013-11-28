@@ -23,6 +23,7 @@ urlpatterns += patterns('travels.views',
     url(r'^$', 'frontpage', name='frontpage'),
     url(r'^register/$', 'register', name='register'),
     url(r'^my_account/$', 'my_account', name='my_account'),
+    url(r'^gallery/$', 'gallery', name='gallery'),
 )
 
 urlpatterns += patterns('travels.views',

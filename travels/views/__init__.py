@@ -53,6 +53,8 @@ def frontpage(request):
 
     return render_to_response('frontpage.django.html', locals(), context_instance = RequestContext(request))
 
+def gallery(request):
+    return render_to_response('gallery.django.html', locals(), context_instance = RequestContext(request))
 
 def content_page(request, fragment):
     fragment = fragment.split('/');
