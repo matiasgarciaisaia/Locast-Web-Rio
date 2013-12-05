@@ -1,0 +1,37 @@
+{% extends "basev2.django.html" %}
+{% load i18n %}
+
+{% block script %}
+	<script src="{{STATIC_URL}}js/galleryModule.js"></script>	
+	<script src="{{STATIC_URL}}js/components.js"></script>	
+{% endblock %}
+
+{% block bodyattrs %}
+	ng-app='galleryModule' ng-controller='GalleryController'
+{% endblock %}
+
+{% block actionbar %}
+	<button onclick="window.location='/';" class='btn blue right'>
+		Back to Map
+	</button>
+
+	<div class="gallery-left-actions">
+		<div class='left gallery-left-actions-cat-combo'>Seeing reports from: </div>
+		<ugis:Categories:Combo 
+			class='left gallery-category-combo' 
+			selection-changed='setCategory(category)'>
+		</ugis:Categories:Combo>	
+	</div>
+{% endblock actionbar %}
+
+{% block content %}			
+	<ugis:Gallery 
+		items='items'
+		current-page='currentPage' 
+		next-page='nextPage()'
+		previous-page='previousPage()'
+		last-page='lastPage'
+		enable-controls='working'
+		>
+	</ugis:Gallery>		
+{% endblock content %}

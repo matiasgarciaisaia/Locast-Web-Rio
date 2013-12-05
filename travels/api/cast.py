@@ -99,7 +99,7 @@ class CastAPI(rest.ResourceView):
 
             objs = total = pg = None
             try:
-                objs = q.filter(query)
+                objs = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags')
 
                 # popularity magic!
                 if popularity_order:
@@ -303,7 +303,12 @@ class CastAPI(rest.ResourceView):
         q = qstranslate.QueryTranslator(models.Cast, CastAPI.ruleset, cast_base_query)
 
         try:
-            casts = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').prefetch_related('itinerary_set').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0).filter(itinerary__id=itin_id).order_by('-urgency_score')[:10]
+            pre_query = q.filter(query).select_related('author').prefetch_related('media_set').prefetch_related('tags').prefetch_related('itinerary_set').annotate(urgency_score=Sum('tags__urgency_score')).filter(urgency_score__gt=0)
+
+            if itin_id:
+                pre_query = pre_query.filter(itinerary__id=itin_id)
+
+            casts = pre_query.order_by('-urgency_score')[:10]
         except qstranslate.InvalidParameterException, e:
             raise exceptions.APIBadRequest(e.message)
 

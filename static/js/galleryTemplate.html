@@ -1,0 +1,25 @@
+<div ng-show='elementsToShow()' class='gallery clearfix'>
+	<div class='gallery-pager'>
+		<button ng-disabled="atFirstPage()" ng-click="previousPage()">&larr; {{previousPageCaption()}}</button>
+		<div class="gallery-current-page">Page {{currentPage()}}</div>
+		<button ng-disabled="atLastPage()" ng-click="nextPage()">{{nextPageCaption()}} &rarr;</button>
+	</div>
+	
+	<br/>
+
+	<div class='gallery-item' ng-repeat='item in items()'>
+		<img class='gallery-item-thumbnail' ng-src={{item.primary_image}}></img> 
+		<div class='gallery-item-info'>
+			<div class='gallery-item-title'>
+				<a href={{item.url}}>{{item.title}}</a>
+			</div>				
+			<div class='gallery-item-misc'>
+				{{item.created | date:'MMM d, yyyy'}} by {{item.author.display_name}}
+			</div>	
+		</div>		
+	</div>	
+</div>
+
+<div class='gallery-no-reports' ng-hide='elementsToShow()'>
+	There still aren't any reports in this category. Go ahead and start reporting!
+</div>

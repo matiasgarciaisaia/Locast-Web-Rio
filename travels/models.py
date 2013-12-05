@@ -252,6 +252,8 @@ class Cast(ModelBase,
         if self.preview_image:
             d['preview_image'] = self.preview_image
 
+        d['primary_image'] = self.prefetched_primary_image()
+
         return d
 
     def geojson_properties(self, request):
@@ -302,7 +304,7 @@ class Cast(ModelBase,
     def is_promotional(self):
         return (not self.get_tag_by_name('_promotional') == None)
 
-    # Use this method instead of 'preview_image' when you know the related media has been
+    # Use this methods instead of 'preview_image' when you know the related media has been
     # prefetched
     def prefetch_optimized_preview_image(self):
         images = [i for i in self.media_set.all() if i.content_type_model == 'imagemedia']
@@ -310,6 +312,16 @@ class Cast(ModelBase,
         links = [l for l in self.media_set.all() if l.content_type_model == 'linkedmedia']
 
         return self.preview_image_from_given_media(images, videos, links)
+
+    def prefetched_primary_image(self):
+        images = [i for i in self.media_set.all() if i.content_type_model == 'imagemedia']
+
+        if len(images):
+            image = images[0].content
+            if image and image.file:
+                return image.file.url
+
+        return None
 
     def preview_image_from_given_media(self, images, videos, links):
         if len(images):
@@ -410,6 +422,10 @@ class ImageMedia(Media,
             d['resources']['thumbnail'] = self.serialize_resource(self.thumbnail.url)
 
         return d
+
+    def primary_url(self):
+        if self.file:
+            self.serialize_resource(self.file.url)
 
     @property
     def thumbnail(self):

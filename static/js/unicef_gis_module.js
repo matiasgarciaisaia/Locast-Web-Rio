@@ -18,5 +18,7 @@ function UrgencyRankController($scope, $http) {
         $scope.casts = data;
       });
     }
+
+    $scope.$apply();
   }
 }
