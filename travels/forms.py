@@ -107,7 +107,11 @@ class MyAccountForm(forms.ModelForm):
         self.instance.first_name = cleaned_data.get('first_name')
         self.instance.last_name = cleaned_data.get('last_name')
 
-        self.instance.set_password(cleaned_data.get('password'))
+        password = cleaned_data.get('password')
+        password_verify = cleaned_data.get('password_verify')
+
+        if (password and len(password.strip())):
+            self.instance.set_password(cleaned_data.get('password'))
         
         self.instance.save()
         return self.instance

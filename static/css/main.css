@@ -2074,3 +2074,7 @@ form input.locast-button{
     height: 100px;
     background-color: red;
 }
+
+.static-form.login { 
+    margin-top:50px;
+}
