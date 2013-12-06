@@ -30,8 +30,8 @@ function postToFB(name, link, pic) {
     {
       method: 'feed',
       name: name,
-      link: UNICEF_GIS_CONSTANTS.full_base_url + link,
-      picture: UNICEF_GIS_CONSTANTS.full_base_url + pic,
+      link: window.location.origin + link,
+      picture: window.location.origin + pic,
       caption: UNICEF_GIS_CONSTANTS.app_name,
       description: UNICEF_GIS_CONSTANTS.project_description,
     },
