@@ -829,7 +829,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     position:fixed;
     bottom:0px;
     right:350px;
-    z-index:3000;
+    z-index:5000;
     overflow:hidden;
 }
 
