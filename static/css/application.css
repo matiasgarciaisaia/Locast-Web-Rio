@@ -706,6 +706,10 @@ label + ul.tagit {
   margin-top: 10px;
 }
 
+.gallery-pager-bottom {
+  clear:left;
+}
+
 .gallery-current-page {
   display:inline;
   font-weight: bold;

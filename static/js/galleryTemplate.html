@@ -7,16 +7,26 @@
 	
 	<br/>
 
-	<div class='gallery-item' ng-repeat='item in items()'>
-		<img class='gallery-item-thumbnail' ng-src={{item.primary_image}}></img> 
-		<div class='gallery-item-info'>
-			<div class='gallery-item-title'>
-				<a href={{item.url}}>{{item.title}}</a>
-			</div>				
-			<div class='gallery-item-misc'>
-				{{item.created | date:'MMM d, yyyy'}} by {{item.author.display_name}}
-			</div>	
-		</div>		
+	<div class="fullwidth left">
+		<div class='gallery-item' ng-repeat='item in items()'>
+			<img class='gallery-item-thumbnail' ng-src={{item.primary_image}}></img> 
+			<div class='gallery-item-info'>
+				<div class='gallery-item-title'>
+					<a href={{item.url}}>{{item.title}}</a>
+				</div>				
+				<div class='gallery-item-misc'>
+					{{item.created | date:'MMM d, yyyy'}} by {{item.author.display_name}}
+				</div>	
+			</div>		
+		</div>
+	</div>
+
+	<br/>
+
+	<div class='gallery-pager gallery-pager-bottom'>
+		<button ng-disabled="atFirstPage()" ng-click="previousPage()">&larr; {{previousPageCaption()}}</button>
+		<div class="gallery-current-page">Page {{currentPage()}}</div>
+		<button ng-disabled="atLastPage()" ng-click="nextPage()">{{nextPageCaption()}} &rarr;</button>
 	</div>	
 </div>
 

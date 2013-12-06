@@ -1409,12 +1409,11 @@ a#logout-link{
 }
 
 #no-media-message{
-     width:96%;
+    width:96%;
     margin-left: 2%;
     margin-right:2%;
     padding-top:140px;
-    height:160px;
-
+    height:130px;
 }
 
 .locast-open-cast .cast-content .cast-media .image-frame{
