@@ -35,7 +35,7 @@
 #
 # Setting `SCRIPT_NAME` here allows you to symlink/source this init script,
 # making it easy to run multiple processes on the system.
-SCRIPT_NAME="$(basename $0)"
+SCRIPT_NAME="celery"
 
 DEFAULT_PID_FILE="/var/run/celery/${SCRIPT_NAME}/%n.pid"
 DEFAULT_LOG_FILE="/var/log/celery/${SCRIPT_NAME}/%n.log"
