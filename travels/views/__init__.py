@@ -10,6 +10,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
+from django.views.decorators.csrf import csrf_exempt
+
 from locast import get_model
 
 from locast.auth.decorators import require_http_auth, optional_http_auth
@@ -74,7 +76,7 @@ def content_page(request, fragment):
 
     return render_to_response('cast_view.django.html', locals(), context_instance = RequestContext(request))
 
-
+@csrf_exempt
 def register(request):
     form = None
 
