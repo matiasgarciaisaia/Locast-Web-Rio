@@ -914,6 +914,7 @@ function create_uploader(container, content_type, url, callback) {
         // Flash settings
         urlstream_upload: true,
         flash_swf_url : MEDIA_URL + 'js/plupload/plupload.flash.swf',
+        headers : {'X-Requested-With' : 'XMLHttpRequest', 'X-CSRFToken' : getCookie('csrftoken')}, 
     });
 
     var upload_info = $('#' + uploader.settings.container).parent().find('.upload-info');

@@ -17,6 +17,8 @@ from locast.api import comment as comment_api
 
 from django.db.models import Sum
 
+from django.views.decorators.csrf import csrf_exempt
+
 
 class CastAPI(rest.ResourceView):
 
@@ -117,7 +119,7 @@ class CastAPI(rest.ResourceView):
 
 
     @require_http_auth
-    def post(request, cast_id=None, itin_id=None):        
+    def post(request, cast_id=None, itin_id=None): 
         if cast_id:
             raise exceptions.APIBadRequest('Attempting to post with a cast id specified')
 
@@ -179,9 +181,6 @@ class CastAPI(rest.ResourceView):
 
     @require_http_auth
     def post_media(request, cast_id):
-        import sys
-        print >> sys.stderr, request
-
         data = get_json(request.raw_post_data)
         cast = get_object(models.Cast, cast_id)
 
@@ -208,6 +207,7 @@ class CastAPI(rest.ResourceView):
             form_model = forms.LinkedMediaForm
 
         media = form_validate(form_model, data)
+
         cast.media_set.add(media)
 
         models.UserActivity.objects.create_activity(request.user, media, 'created')
@@ -216,7 +216,6 @@ class CastAPI(rest.ResourceView):
         # TODO investigate why this is needed
         # amar: This can be fixed by using media.content
         media = get_object(models.Media, media.id)
-
 
         return APIResponseCreated(content=api_serialize(media, request), location=media.get_api_uri())
 
@@ -244,7 +243,6 @@ class CastAPI(rest.ResourceView):
 
         media_dict = api_serialize(media, request)
         return APIResponseOK(content=media_dict, total=1)
-
 
     @require_http_auth
     def post_media_content(request, cast_id, media_id):
