@@ -50,7 +50,7 @@ class SocialNetworks:
 			details = provider_user.extra_data
 
 			field = details.get(field_name, None)       
-		except UserSocialAuth.DoesNotExist:
+		except Exception:
 		    provider_user = None
 
 		return field
