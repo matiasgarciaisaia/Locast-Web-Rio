@@ -349,8 +349,16 @@ $.ajax({ url: CAST_API_URL + cast_id + '.html/', dataType: 'html', success: func
             contentType: 'application/json; charset=utf-8',
             type: 'PUT',
             success: function(cast) {
-                title_form[0].reset();
                 cast_info_refresh(cast_id);
+
+                var query = get_cast_filter_query();
+
+                $.ajax({
+                    async: false,
+                    cache: false,
+                    url: FEATURES_API_URL + query,
+                    success: map_refresh_cb
+                })
             }
         });
 
