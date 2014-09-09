@@ -324,20 +324,20 @@ class Cast(ModelBase,
         return None
 
     def preview_image_from_given_media(self, images, videos, links):
-        if len(images):
-            image = images[0].content
-            if image and image.file:
-                return image.thumbnail.url
+        for image_base in images:
+          image = image_base.content
+          if image and image.file:
+            return image.thumbnail.url
 
-        elif len(videos):
-            vid = videos[0].content
-            if vid and vid.screenshot:
-                return vid.screenshot.url
+        for video_base in videos:
+          vid = video_base.content
+          if vid and vid.screenshot:
+            return vid.screenshot.url
 
-        elif len(links):
-            vid = links[0].content
-            if vid and vid.screenshot:
-                return vid.screenshot
+        for link_base in links:
+          vid = link_base.content
+          if vid and vid.screenshot:
+            return vid.screenshot
 
         return None
 
