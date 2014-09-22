@@ -318,7 +318,7 @@ class Cast(ModelBase,
 
         for image_base in images:
             image = image_base.content
-            if image and image.medium_file:
+            if image and image.file and image.medium_file:
                 return image.medium_file.url
 
         return None
