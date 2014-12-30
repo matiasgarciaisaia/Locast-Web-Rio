@@ -1339,7 +1339,7 @@ a#logout-link{
 .social-buttons {
     display: inline-block;
     margin-top: 8px;
-} 
+}
 
 .facebook_share_button {
     background-image: url('../img/facebook_share_button.png');
@@ -1598,12 +1598,12 @@ a#logout-link{
 }
 
 #footer.footer-voy {
-    background-color: white;
+    background-color: #00aba0;
     color:black;
 }
 
 #footer.footer-voy a {
-    color: black;
+    color: #ffffff;
 }
 
 .logo{
@@ -1621,11 +1621,10 @@ a#logout-link{
 
 #voy-logo {
     width:180px;
-    height: 40px;
+    height: 45px;
     left:24px;
-    background-image:url('../img/voyLogo.png');
-    background-size: contain;
-    margin-top: 5px;
+    background:url('../img/voyLogo.png') no-repeat;
+    margin-top: 7px;
     margin-left: 25px;
 }
 
@@ -1649,6 +1648,16 @@ a#logout-link{
     margin-left: 5px;
 }
 
+#mel-logo-white {
+    width:40px;
+    height: 40px;
+    background-image:url('../img/mel-logo-white.png');
+    background-size: contain;
+    float:right;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
 #mel-credit{
     line-height:1.1;
     width:180px;
@@ -1666,7 +1675,7 @@ a#logout-link{
 }
 
 .footer-voy .navbar-link {
-    border-color: black;
+    border-color: #ffffff;
 }
 
 #navbar {
@@ -2075,6 +2084,6 @@ form input.locast-button{
     background-color: red;
 }
 
-.static-form.login { 
+.static-form.login {
     margin-top:50px;
 }
