@@ -1,6 +1,6 @@
 {% extends "base.django.html" %}
 {% load i18n %}
-{% block body-class %}home{% endblock %}
+{% block body-class %}home{% if VOY_BRANDING %} voy{% endif %}{% endblock %}
 
 {% block search %}
         <form class="locast-search">
