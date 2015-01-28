@@ -1,27 +1,16 @@
 {% extends "root.django.html" %}
 {% load i18n %}
 
+{% block style %}
+<link type="text/css" href="{{STATIC_URL}}css/application.css" rel="stylesheet" media="screen, projection" />
+{% endblock style %}
+
 {% block body-class %}
 	full-width
 {% endblock %}
 
 {% block body %}
 <div class="wrapper">
-  {% if VOY_BRANDING %}
-    <div class='header voyHeader'>      
-  {% else %}
-    <div class='header'>      
-  {% endif %}
-	
-      <a href="/">
-        {% if VOY_BRANDING %}
-          <img src='{{STATIC_URL}}img/voyLogo.png'/>
-        {% else %}
-          <img src='{{STATIC_URL}}img/unicef_logo.png'/>
-        {% endif %}
-	       
-      </a>
-  	</div>
   	<div class='sub-header'>
         <div class='left'>
           <h1>
