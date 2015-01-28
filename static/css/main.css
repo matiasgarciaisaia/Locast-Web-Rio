@@ -872,7 +872,7 @@ a.locast-icon.large.favorite:hover{background-position:0px -18px;}
     overflow:auto;
 }
 
-#footer{
+body.home #footer{
     position:fixed;
     z-index:5000;
     top:0;
@@ -1597,15 +1597,6 @@ a#logout-link{
     height:50px;
 }
 
-#footer.footer-voy {
-    background-color: #00aba0;
-    color:black;
-}
-
-#footer.footer-voy a {
-    color: #ffffff;
-}
-
 .logo{
     float:left;
     background-repeat:no-repeat;
@@ -1679,7 +1670,12 @@ a#logout-link{
 }
 
 #navbar {
+    padding-top: 15px;
+}
+
+body.home #navbar {
     margin-top:15px;
+    padding: 0;
 }
 
 .navbar-link{
@@ -2086,4 +2082,95 @@ form input.locast-button{
 
 .static-form.login {
     margin-top:50px;
+}
+
+
+/* Voice of Youth */
+/* colors.css
+ *
+ * VOY green: #00aba0;
+ *
+ *
+ * */
+body.voy{
+    background-color:#ffffff;
+}
+
+body.voy #footer {
+    background-color: #00aba0;
+    color:black;
+}
+
+body.voy #footer a {
+    color: #ffffff;
+}
+body.voy h1 {
+    color: #00aba0 !important;
+}
+
+body.voy .btn.blue {
+  background-color: #00aba0;
+  background-image: -moz-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: -ms-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00CBBE), to(#00aba0));
+  background-image: -webkit-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: -o-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: linear-gradient(top, #00CBBE, #00aba0);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CBBE', endColorstr='#00aba0', GradientType=0);
+  text-shadow: 0px -1px #006E67;
+  color: #ffffff;
+  border-color: #008078;
+}
+
+body.register-form #login-bar,
+body.register-form #search-bar {
+    display: none;
+}
+
+body.voy .locast-button {
+  background-color: #00aba0;
+  background-image: -ms-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00CBBE), to(#00aba0));
+  background-image: -webkit-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: -o-linear-gradient(top, #00CBBE, #00aba0);
+  background-image: linear-gradient(top, #00CBBE, #00aba0);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CBBE', endColorstr='#00aba0', GradientType=0);
+  text-shadow: 0px -1px #006E67;
+  color: #ffffff;
+  border-color: #008078;
+  box-shadow: inset 0px 1px 0px #00CBBE;
+}
+
+body.voy #intro-map-list li:hover,
+body.voy .cast-itineraries a:hover,
+body.voy #mel-credit a:hover,
+body.voy #home-link:hover,
+body.voy .navbar-link:hover,
+body.voy #language-selector a:hover,
+body.voy #map-list li:hover,
+body.voy #current-map:hover,
+body.voy #user-profile-info:hover {
+    background-color: #009C92;
+}
+
+body.voy #map-title {
+    background: #008D84;
+}
+body.voy #search-bar {
+    background: #00aba0;
+}
+
+body.voy .delete-media,
+body.voy #content-details .locast-open-cast a.delete-media:hover {
+    background-color: #00aba0;
+}
+
+body.voy #intro-page-content .intro-message,
+body.voy .locast-open-cast .cast-header .title,
+body.voy #map-cast-list .cast .list-link .title,
+body.voy .popup-content .title,
+body.voy .cast-tag {
+    color: #00605A;
 }
